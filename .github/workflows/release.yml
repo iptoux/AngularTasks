@@ -36,15 +36,6 @@ jobs:
           npx electron-packager ./ MyTaskApplication --platform=win32 --overwrite
           Compress-Archive -Path ./MyTaskApplication-win32-x64 -DestinationPath dist/MyTaskApplication-win32-x64-${{ env.TAG_VERSION }}.zip
 
-      - name: Package Electron Mac (darwin)
-        run: |
-          npx electron-packager ./ MyTaskApplication --platform=darwin --overwrite
-          npx electron-installer-dmg "./MyTaskApplication-darwin-x64/MyTaskApplication.app" "MyTaskApplication" --out=dist --overwrite --dmg-title="MyTaskApplication ${TAG_VERSION}"
-
-      - name: Rename DMG with version
-        run: |
-          mv dist/MyTaskApplication.dmg dist/MyTaskApplication-macOS-x64-${{ env.TAG_VERSION }}.dmg
-
       - name: Package Electron Linux X64
         run: |
           npx electron-packager ./ MyTaskApplication --platform=linux --overwrite
@@ -111,7 +102,124 @@ jobs:
           echo "EOF" >> $GITHUB_ENV
         shell: bash
 
-      # Schritt 5: Release veröffentlichen und dabei die zusammengestellte Beschreibung verwenden
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: electron-builds
+          path: |
+            dist/MyTaskApplication-win32-x64-${{ env.TAG_VERSION }}.zip
+            dist/MyTaskApplication-linux-x64-${{ env.TAG_VERSION }}.tar.gz
+
+  build-mac:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Holt alle Tags für korrekte Versionsbestimmung
+
+      - name: Get Tag Version
+        id: get_version
+        run: echo "TAG_VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Electron App
+        run: npm run build  # Stelle sicher, dass dein package.json einen "build"-Script hat
+
+      - name: Package Electron Mac (darwin)
+        run: |
+          npx electron-packager ./ MyTaskApplication --platform=darwin --overwrite
+          npx electron-installer-dmg "./MyTaskApplication-darwin-x64/MyTaskApplication.app" "MyTaskApplication" --out=dist --overwrite --dmg-title="MyTaskApplication ${TAG_VERSION}"
+
+      - name: Rename DMG with version
+        run: |
+          mv dist/MyTaskApplication.dmg dist/MyTaskApplication-macOS-x64-${{ env.TAG_VERSION }}.dmg
+
+      # Schritt 1: Letzte Commit-Nachricht erfassen
+      - name: Get Last Commit Message
+        id: get_commit
+        run: |
+          LAST_COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          echo "LAST_COMMIT_MESSAGE<<EOF" >> $GITHUB_ENV
+          echo "$LAST_COMMIT_MESSAGE"
+          echo "EOF" >> $GITHUB_ENV
+        shell: bash
+
+      # Schritt 2: Prüfen, ob es sich um einen Merge-Commit handelt und ggf. die PR-Nummer extrahieren
+      - name: Check if commit is a merge and extract PR number
+        id: parse_pr
+        run: |
+          echo "Prüfe, ob der letzte Commit ein Merge-Commit ist:"
+          if echo "$LAST_COMMIT_MESSAGE" | grep -q "Merge pull request"; then
+            echo "Merge-Commit erkannt."
+            if [[ "$LAST_COMMIT_MESSAGE" =~ Merge\ pull\ request\ \#([0-9]+) ]]; then
+              PR_NUMBER=${BASH_REMATCH[1]}
+              echo "PR_NUMBER=$PR_NUMBER" >> $GITHUB_ENV
+            else
+              echo "Keine PR-Nummer gefunden."
+            fi
+          else
+            echo "Kein Merge-Commit, benutze die normale Commit-Nachricht."
+            echo "PR_NUMBER=" >> $GITHUB_ENV
+          fi
+        shell: bash
+
+      # Schritt 3: Falls ein PR vorliegt, dessen Details (z. B. Beschreibung) abrufen
+      - name: Get Pull Request details if merge commit
+        if: env.PR_NUMBER != ''
+        id: get_pr
+        run: |
+          curl -s \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/${{ github.repository }}/pulls/${{ env.PR_NUMBER }} > pr.json
+
+          PR_BODY=$(jq -r .body pr.json)
+          echo "PR_BODY=$PR_BODY" >> $GITHUB_ENV
+        shell: bash
+
+      # Schritt 4: Release-Beschreibung entsprechend zusammenbauen. Hierbei wird geprüft:
+      # - Besteht ein PR_NUMBER, dann nutze die PR-Beschreibung;
+      # - ansonsten die originale Commit-Nachricht
+      - name: Assemble Release Body
+        id: assemble_release_body
+        run: |
+          if [ -n "$PR_NUMBER" ]; then
+            RELEASE_BODY="Automated Electron Build Release version $TAG_VERSION\nPull Request Beschreibung:\n$PR_BODY"
+          else
+            RELEASE_BODY="Automated Electron Build Release version $TAG_VERSION\nLetzter Commit:\n$LAST_COMMIT_MESSAGE"
+          fi
+          echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
+          echo -e "$RELEASE_BODY"
+          echo "EOF" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: electron-builds
+          path: |
+            dist/MyTaskApplication-macOS-x64-${{ env.TAG_VERSION }}.dmg
+
+  release:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download Build Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: electron-builds
+          path: dist/
+
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v2
         with:
@@ -122,4 +230,3 @@ jobs:
           body: ${{ env.RELEASE_BODY }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
