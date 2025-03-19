@@ -3,13 +3,18 @@ import { TasksService } from '../../services/tasks.service';
 import { Task } from '../../interfaces/task';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { Subscription } from 'rxjs';
+import {CdkDrag, CdkDragDrop, CdkDragPlaceholder, CdkDropList, moveItemInArray} from '@angular/cdk/drag-drop';
+
 
 @Component({
   selector: 'app-task-list',
   imports: [
     NgForOf,
     NgIf,
-    NgClass
+    NgClass,
+    CdkDrag,
+    CdkDropList,
+    CdkDragPlaceholder
   ],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
@@ -41,4 +46,11 @@ export class TaskListComponent implements OnInit, OnDestroy {
     task.completed = !task.completed;
     this.tasksService.updateTask(task);
   }
+
+  drop(event: CdkDragDrop<Task[]>): void {
+    moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
+    this.tasksService.updateTasksOrder(this.tasks);
+  }
+
+
 }

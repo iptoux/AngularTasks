@@ -73,6 +73,13 @@ export class TasksService {
     }
   }
 
+  updateTasksOrder(updatedTasks: Task[]): void {
+    this.tasks = updatedTasks;
+    this.saveTasks();
+    this.applyFilter();
+  }
+
+
   getFilterType() {
     return this.filterType;
   }
