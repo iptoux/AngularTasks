@@ -43,7 +43,7 @@ jobs:
           Compress-Archive -Path ./MyTaskApplication-win32-x64 -DestinationPath dist/MyTaskApplication-win32-x64-$env:TAG_VERSION.zip
 
       - name: Upload Windows Artifact
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v4
         with:
           name: electron-win
           path: dist/MyTaskApplication-win32-x64-$env:TAG_VERSION.zip
@@ -83,7 +83,7 @@ jobs:
         shell: bash
 
       - name: Upload Linux Artifact
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v4
         with:
           name: electron-linux
           path: dist/MyTaskApplication-linux-x64-${{ env.TAG_VERSION }}.tar.gz
@@ -124,7 +124,7 @@ jobs:
         shell: bash
 
       - name: Upload macOS Artifact
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v4
         with:
           name: electron-mac
           path: dist/MyTaskApplication-macOS-x64-${{ env.TAG_VERSION }}.dmg
@@ -198,19 +198,19 @@ jobs:
         shell: bash
 
       - name: Download Windows Artifact
-        uses: actions/download-artifact@v3.1.2
+        uses: actions/download-artifact@v4
         with:
           name: electron-win
           path: dist/
 
       - name: Download Linux Artifact
-        uses: actions/download-artifact@v3.1.2
+        uses: actions/download-artifact@v4
         with:
           name: electron-linux
           path: dist/
 
       - name: Download macOS Artifact
-        uses: actions/download-artifact@v3.1.2
+        uses: actions/download-artifact@v4
         with:
           name: electron-mac
           path: dist/
