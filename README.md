@@ -1,5 +1,18 @@
 # AngularTasks
 
+
+<p align="center" width="100%">
+    <img src="https://img.shields.io/badge/Angular-FFD43B?style=for-the-badge&logo=angular&logoColor=darkgreen">
+    <img src="https://img.shields.io/github/package-json/v/iptoux/AngularTasks?style=for-the-badge" title="GitHub package.json version">
+    <img src="https://img.shields.io/github/directory-file-count/iptoux/AngularTasks/src?style=for-the-badge" title="GitHub repo file count (file dir extension)">
+    <img src="https://img.shields.io/github/languages/code-size/iptoux/AngularTasks?style=for-the-badge" title="GitHub code size in bytes">
+    <img src="https://img.shields.io/github/issues/iptoux/AngularTasks?style=for-the-badge" title="GitHub issues">
+    <img src="https://img.shields.io/github/license/iptoux/AngularTasks?style=for-the-badge" title="GitHub">
+    <img src="https://img.shields.io/github/package-json/keywords/iptoux/AngularTasks?style=flat-square" title="GitHub package.json dynamic">
+    <img src="https://github.com/iptoux/AngularTasks/actions/workflows/release.yml/badge.svg">
+</p>
+
+
 ![Bildschirmfoto_20250319_113043](https://github.com/user-attachments/assets/e21b2f5f-aa61-4206-8f8c-1bd87582fe78)
 
 
