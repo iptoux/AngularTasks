@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
+  min-width: 380px;
   background: linear-gradient(135deg, #4c8bf5, #6b72f6, #9463f7);
   background-size: 150% 150%;
   animation: gradient-animation 6s ease infinite;
@@ -13,7 +13,6 @@
   font-size: 24px;
   font-family: Arial, sans-serif;
 }
-
 
 @keyframes gradient-animation {
   0% {
