@@ -34,7 +34,7 @@ jobs:
       - name: Package Electron App (EXE)
         run: |
           npx electron-packager ./ ./MyTaskApplication --platform=win32 --overwrite
-          Compress-Archive -Path MyTaskApplication -DestinationPath dist/MyTaskApplication-${{ env.TAG_VERSION }}.zip
+          Compress-Archive -Path ./MyTaskApplication -DestinationPath dist/MyTaskApplication-${{ env.TAG_VERSION }}.zip
 
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v2
