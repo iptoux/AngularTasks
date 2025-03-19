@@ -36,10 +36,21 @@ jobs:
           npx electron-packager ./ MyTaskApplication --platform=win32 --overwrite
           Compress-Archive -Path ./MyTaskApplication-win32-x64 -DestinationPath dist/MyTaskApplication-${{ env.TAG_VERSION }}.zip
 
+      - name: Get Last Commit Message
+        id: get_commit
+        run: |
+          echo "LAST_COMMIT_MESSAGE<<EOF" >> $GITHUB_ENV
+          git log -1 --pretty=%B
+          echo "EOF" >> $GITHUB_ENV
+        shell: bash
+
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v2
         with:
           files: dist/MyTaskApplication-${{ env.TAG_VERSION }}.zip
-          body: "Automated Electron Build Release version ${{ env.TAG_VERSION }}"
+          body: |
+            Automated Electron Build Release ${{ env.TAG_VERSION }}
+            Changelog:
+            ${{ env.LAST_COMMIT_MESSAGE }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
