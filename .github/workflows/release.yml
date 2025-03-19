@@ -141,6 +141,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Set TAG_VERSION
+        run: echo "TAG_VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+        shell: bash
+
       # Schritt 1: Letzte Commit-Nachricht erfassen
       - name: Get Last Commit Message
         id: get_commit
