@@ -4,12 +4,18 @@
     <div class="card-body p-4">
 
       <form>
-        <ul>
-          <li *ngFor="let task of tasks; index as id">
+        <ul cdkDropList (cdkDropListDropped)="drop($event)">
+          <li *ngFor="let task of tasks; index as id" cdkDrag>
             <input type="checkbox" id="task{{id}}" [checked]="task.completed" (change)="updateTaskStatus(task)" />
             <label for="task{{id}}" [ngClass]="{'completed-task': task.completed}">{{ task.description }}</label>
             <button class="close-btn" (click)="removeTask(task.id)">×</button>
-    </li>
+
+            <ng-template cdkDragPlaceholder>
+              <div class="drag-placeholder">
+              </div>
+            </ng-template>
+
+          </li>
 
         </ul>
         <p *ngIf="tasks.length === 0" class="text-muted">Nothing todo actually, have a nice day!</p>

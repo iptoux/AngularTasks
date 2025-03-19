@@ -1,1 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+/*li.cdk-drag-preview {*/
+/*  opacity: 0.8; !* Ajustieren Sie die Opazität des Vorschauelements *!*/
+/*  background-color: #FFA500; !* Hintergrundfarbe anpassen *!*/
+/*  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); !* Schatten hinzufügen *!*/
+/*}*/
