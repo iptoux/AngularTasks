@@ -8,8 +8,7 @@
     <img src="https://img.shields.io/github/languages/code-size/iptoux/AngularTasks?style=for-the-badge" title="GitHub code size in bytes">
     <img src="https://img.shields.io/github/issues/iptoux/AngularTasks?style=for-the-badge" title="GitHub issues">
     <img src="https://img.shields.io/github/license/iptoux/AngularTasks?style=for-the-badge" title="GitHub">
-    <img src="https://img.shields.io/github/package-json/keywords/iptoux/AngularTasks?style=flat-square" title="GitHub package.json dynamic">
-    <img src="https://github.com/iptoux/AngularTasks/actions/workflows/release.yml/badge.svg">
+    <img src="https://img.shields.io/github/actions/workflow/status/iptoux/AngularTasks/release.yml?style=for-the-badge">
 </p>
 
 
