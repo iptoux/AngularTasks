@@ -19,7 +19,7 @@ export class TaskAddComponent {
 
   addTask(taskDescription:string) {
 
-    let new_id = this.tasksService.getTasks().length + 1;
+    let new_id = this.tasksService.getLastID() + 1;
 
     let task: Task = {
       id: new_id,

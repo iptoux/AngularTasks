@@ -54,6 +54,10 @@ export class TasksService {
     return this.filterType === -1 ? [...this.tasks] : [...this.filteredTasks];
   }
 
+  getLastID() {
+    return this.tasks.length;
+  }
+
   getTasks() {
     return this.getFilteredTasks();
   }

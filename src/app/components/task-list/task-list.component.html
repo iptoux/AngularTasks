@@ -6,8 +6,8 @@
       <form>
         <ul cdkDropList (cdkDropListDropped)="drop($event)">
           <li *ngFor="let task of tasks; index as id" cdkDrag>
-            <input type="checkbox" id="task{{id}}" [checked]="task.completed" (change)="updateTaskStatus(task)" />
-            <label for="task{{id}}" [ngClass]="{'completed-task': task.completed}">{{ task.description }}</label>
+            <input type="checkbox" id="{{task.id}}" [checked]="task.completed" (change)="updateTaskStatus(task)" />
+            <label for="{{task.id}}" [ngClass]="{'completed-task': task.completed}">{{ task.description }}</label>
             <button class="close-btn" (click)="removeTask(task.id)">×</button>
 
             <ng-template cdkDragPlaceholder>
