@@ -64,6 +64,6 @@ li.cdk-drag-preview > .close-btn {
 }
 
 .drag-placeholder {
-  padding: 4px;
+  padding: 20px;
   border: 1px dashed #ccc;
 }
