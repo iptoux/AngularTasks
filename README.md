@@ -1,4 +1,7 @@
-# Untitled1
+# AngularTasks
+
+![Bildschirmfoto_20250319_113043](https://github.com/user-attachments/assets/e21b2f5f-aa61-4206-8f8c-1bd87582fe78)
+
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
 
