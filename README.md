@@ -12,8 +12,7 @@
     <img alt="GitHub Downloads (all assets, latest release)" src="https://img.shields.io/github/downloads/iptoux/AngularTasks/latest/total?style=for-the-badge">
 </p>
 
-
-![Bildschirmfoto_20250319_113043](https://github.com/user-attachments/assets/e21b2f5f-aa61-4206-8f8c-1bd87582fe78)
+[2025-03-19 23-45-01.webm](https://github.com/user-attachments/assets/bfcd3ed5-09be-4542-aba7-18e5c74e78a7)
 
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
@@ -23,16 +22,6 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 ```bash
 npm install
 ```
-
-## Development server
-
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
 ## Building
 
@@ -55,6 +44,18 @@ ng build && electron .
 ```
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+## Development server
+
+To start a local development server, run:
+
+```bash
+ng serve
+```
+
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+
+---
 
 ## Where are the Tasks stored?
 
