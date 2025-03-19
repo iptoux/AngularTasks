@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { Task} from '../../interfaces/task';
 import { TasksService} from '../../services/tasks.service';
+import {FormsModule} from '@angular/forms';
 
 
 @Component({
   selector: 'app-task-add',
-  imports: [],
+  imports: [
+    FormsModule
+  ],
   templateUrl: './task-add.component.html',
   styleUrl: './task-add.component.css'
 })

@@ -2,9 +2,10 @@
   <div class="card">
     <div class="card-body p-4">
       <p>Add a new Task</p>
-      <form>
+      <form (ngSubmit)="addTask(taskInput.value); taskInput.value=''; $event.preventDefault()"
+      >
         <div class="form-outline flex-fill">
-          <input #taskInput type="text" id="taskAdd" class="form-control" placeholder="Enter task description..."/>
+          <input #taskInput type="text" id="taskAdd" class="form-control" placeholder="Enter task description..." />
         </div>
         <button type="button" class="btn btn-info ms-2" (click)="addTask(taskInput.value);taskInput.value=''">Add</button>
       </form>
