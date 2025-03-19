@@ -15,6 +15,11 @@ jobs:
         with:
           fetch-depth: 0  # Holt alle Tags für korrekte Versionsbestimmung
 
+      - name: Get Tag Version
+        id: get_version
+        run: echo "TAG_VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+        shell: bash
+
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
@@ -29,12 +34,12 @@ jobs:
       - name: Package Electron App (EXE)
         run: |
           npx electron-packager ./ ./MyTaskApplication --platform=win32 --overwrite
-          Compress-Archive -Path MyTaskApplication -DestinationPath dist/MyTaskApplication.zip
+          Compress-Archive -Path MyTaskApplication -DestinationPath dist/MyTaskApplication-${{ env.TAG_VERSION }}.zip
 
       - name: Upload Release Asset
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/MyTaskApplication.zip
+          files: dist/MyTaskApplication-${{ env.TAG_VERSION }}.zip
           body: "Automated Electron Build Release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
