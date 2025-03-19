@@ -29,6 +29,18 @@ To build the project run:
 ng build
 ```
 
+### Run Electron app from Repo
+
+```bash
+ng build && electron .
+```
+
+### Building as (Native) App (binary)
+
+```bash
+ electron-packager ./ ./MyTaskApplication-win32-x64 --platform=win32 --overwrite
+```
+
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
 ## Where are the Tasks stored?
