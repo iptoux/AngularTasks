@@ -36,6 +36,12 @@ export class TasksService {
     const storedTasks = localStorage.getItem('tasks');
     if (storedTasks) {
       this.tasks = JSON.parse(storedTasks) as Task[];
+      this.tasks.forEach((task, index) => {
+        if (task.order === undefined) {
+          task.order = index;
+        }
+      });
+      this.tasks.sort((a, b) => a.order - b.order);
       this.applyFilter();
     }
   }
@@ -75,6 +81,22 @@ export class TasksService {
 
   updateTasksOrder(updatedTasks: Task[]): void {
     this.tasks = updatedTasks;
+    this.saveTasks();
+    this.applyFilter();
+  }
+
+  updateTasksOrderForFilter(filteredTasks: Task[]): void {
+    if (this.filterType === -1) {
+      this.tasks = filteredTasks;
+    } else {
+      for (let updatedTask of filteredTasks) {
+        const taskIndex = this.tasks.findIndex(task => task.id === updatedTask.id);
+        if (taskIndex !== -1) {
+          this.tasks[taskIndex].order = updatedTask.order;
+        }
+      }
+      this.tasks.sort((a, b) => a.order - b.order);
+    }
     this.saveTasks();
     this.applyFilter();
   }

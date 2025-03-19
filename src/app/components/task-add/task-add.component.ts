@@ -24,7 +24,8 @@ export class TaskAddComponent {
     let task: Task = {
       id: new_id,
       description: taskDescription,
-      completed: false
+      completed: false,
+      order: new_id
     }
 
     this.tasksService.addTask(task);
