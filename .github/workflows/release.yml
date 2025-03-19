@@ -1,0 +1,41 @@
+name: Build and Release Electron App
+
+on:
+  push:
+    tags:
+      - 'v*'  # Läuft nur, wenn ein neuer Tag mit 'v' gepusht wird (z.B. v1.0.0)
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Holt alle Tags für korrekte Versionsbestimmung
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Build Electron App
+        run: npm run build  # Stelle sicher, dass dein package.json einen "build"-Script hat
+
+      - name: Package Electron App (EXE)
+        run: |
+          npx electron-packager ./ ./MyTaskApplication --platform=win32 --overwrite
+          mkdir -p dist
+          Compress-Archive -Path MyTaskApplication -DestinationPath dist/MyTaskApplication.zip
+
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/MyTaskApplication.zip
+          body: "Automated Electron Build Release"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
