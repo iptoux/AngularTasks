@@ -39,10 +39,7 @@ jobs:
       - name: Package Electron Mac (darwin)
         run: |
           npx electron-packager ./ MyTaskApplication --platform=darwin --overwrite
-          npx electron-installer-dmg "./MyTaskApplication-darwin-x64/MyTaskApplication.app" "MyTaskApplication" \
-          --out=dist \
-          --overwrite \
-          --dmg-title="MyTaskApplication ${TAG_VERSION}"
+          npx electron-installer-dmg "./MyTaskApplication-darwin-x64/MyTaskApplication.app" "MyTaskApplication" --out=dist --overwrite --dmg-title="MyTaskApplication ${TAG_VERSION}"
 
       - name: Rename DMG with version
         run: |
