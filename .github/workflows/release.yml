@@ -46,7 +46,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: electron-win
-          path: dist/MyTaskApplication-win32-x64-$env:TAG_VERSION.zip
+          path: dist/MyTaskApplication-win32-x64-${{ env.TAG_VERSION }}.zip
 
   build-linux:
     name: Build Linux
@@ -128,7 +128,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: electron-mac
-          path: dist/MyTaskApplication-macOS-x64-${{ env.TAG_VERSION }}.dmg
+          path: dist/MyTaskApplication-macOS-arm64-${{ env.TAG_VERSION }}.dmg
 
   release:
     name: Create GitHub Release
@@ -201,19 +201,19 @@ jobs:
       - name: Download Windows Artifact
         uses: actions/download-artifact@v4
         with:
-          name: build-win
+          name: electron-win
           path: dist/
 
       - name: Download Linux Artifact
         uses: actions/download-artifact@v4
         with:
-          name: build-linux
+          name: electron-linux
           path: dist/
 
       - name: Download macOS Artifact
         uses: actions/download-artifact@v4
         with:
-          name: build-mac
+          name: electron-mac
           path: dist/
 
       - name: Create GitHub Release
@@ -224,6 +224,6 @@ jobs:
           files: |
             dist/MyTaskApplication-win32-x64-${{ env.TAG_VERSION }}.zip
             dist/MyTaskApplication-linux-x64-${{ env.TAG_VERSION }}.tar.gz
-            dist/MyTaskApplication-macOS-x64-${{ env.TAG_VERSION }}.dmg
+            dist/MyTaskApplication-macOS-arm64-${{ env.TAG_VERSION }}.dmg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
