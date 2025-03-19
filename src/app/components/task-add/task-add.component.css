@@ -1,0 +1,28 @@
+.card {
+  border-radius: 0;
+
+  form {
+    display:flex;
+    justify-content: center;
+    align-items:center;
+  }
+
+  form > *, form > * > * {
+    border-radius: 0;
+  }
+
+  form > button {
+    background-color: #4c8bf5;
+    border: 0;
+    color: #fff;
+  }
+
+  form > button:hover {
+    background-color: #9463f7;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  p {
+    font-weight: bold;
+  }
+}

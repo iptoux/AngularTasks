@@ -1,0 +1,28 @@
+.todo-banner {
+  padding: 10px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(135deg, #4c8bf5, #6b72f6, #9463f7);
+  background-size: 150% 150%;
+  animation: gradient-animation 6s ease infinite;
+  color: #fff;
+  text-align: center;
+  font-size: 24px;
+  font-family: Arial, sans-serif;
+}
+
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}

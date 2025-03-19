@@ -1,0 +1,13 @@
+<div class="col col-xl-10 m-auto mb-5 mt-5">
+  <div class="card">
+    <div class="card-body p-4">
+      <p>Add a New Task</p>
+      <form>
+        <div class="form-outline flex-fill">
+          <input #taskInput type="text" id="taskAdd" class="form-control" placeholder="Enter task description..."/>
+        </div>
+        <button type="button" class="btn btn-info ms-2" (click)="addTask(taskInput.value);taskInput.value=''">Add</button>
+      </form>
+    </div>
+  </div>
+</div>

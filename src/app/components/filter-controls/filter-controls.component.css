@@ -1,0 +1,23 @@
+.filter-controls {
+  margin: 30px 0;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  .filter-head {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .filter-links {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .active-filter {
+    font-weight: bold;
+    color: #0066cc;
+  }
+
+}
