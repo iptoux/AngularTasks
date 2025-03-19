@@ -29,7 +29,6 @@ jobs:
       - name: Package Electron App (EXE)
         run: |
           npx electron-packager ./ ./MyTaskApplication --platform=win32 --overwrite
-          mkdir -p dist
           Compress-Archive -Path MyTaskApplication -DestinationPath dist/MyTaskApplication.zip
 
       - name: Upload Release Asset
