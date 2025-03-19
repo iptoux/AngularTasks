@@ -19,5 +19,13 @@
     font-weight: bold;
     color: #0066cc;
   }
+}
 
+.nav-link {
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+  color: #0066cc;
 }
