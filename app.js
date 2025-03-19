@@ -12,7 +12,8 @@ function createWindow() {
     height: 800,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false
+      contextIsolation: false,
+      webviewTag: true
     }
   })
 
@@ -27,6 +28,13 @@ function createWindow() {
   appWindow.on('closed', function () {
     appWindow = null
   });
+
+  appWindow.webContents.on('will-navigate', (event, url) => {
+    // Verhindern Sie externe Navigationen
+    event.preventDefault();
+
+  });
+
 }
 
 app.whenReady().then(() => {
