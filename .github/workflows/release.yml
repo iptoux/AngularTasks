@@ -42,4 +42,4 @@ jobs:
           files: dist/MyTaskApplication-${{ env.TAG_VERSION }}.zip
           body: "Automated Electron Build Release version ${{ env.TAG_VERSION }}"
         env:
-          TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
