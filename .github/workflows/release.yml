@@ -120,8 +120,8 @@ jobs:
         run: |
           npx electron-packager ./ MyTaskApplication --platform=darwin --overwrite
           pwd && ls
-          npx electron-installer-dmg "./MyTaskApplication-darwin-x64/MyTaskApplication.app" "MyTaskApplication" --out=dist --overwrite --dmg-title="MyTaskApplication $TAG_VERSION"
-          mv dist/MyTaskApplication.dmg dist/MyTaskApplication-macOS-x64-${TAG_VERSION}.dmg
+          npx electron-installer-dmg "./MyTaskApplication-darwin-arm64/MyTaskApplication.app" "MyTaskApplication" --out=dist --overwrite --dmg-title="MyTaskApplication $TAG_VERSION"
+          mv dist/MyTaskApplication.dmg dist/MyTaskApplication-macOS-arm64-${TAG_VERSION}.dmg
         shell: bash
 
       - name: Upload macOS Artifact
