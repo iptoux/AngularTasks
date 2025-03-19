@@ -41,7 +41,7 @@ jobs:
           Compress-Archive -Path ./MyTaskApplication-win32-x64 -DestinationPath dist/MyTaskApplication-win32-x64-$env:TAG_VERSION.zip
 
       - name: Upload Windows Artifact
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v4
         with:
           name: electron-win
           path: dist/MyTaskApplication-win32-x64-$env:TAG_VERSION.zip
