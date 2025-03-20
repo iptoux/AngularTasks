@@ -55,7 +55,4 @@ export class TaskListComponent implements OnInit, OnDestroy {
     });
    this.tasksService.updateTasksOrderForFilter(this.tasks);
   }
-
-
-
 }
