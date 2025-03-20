@@ -1,0 +1,12 @@
+<div class="col col-xl-10 m-auto mb-5 mt-5">
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-success progress-bar-animated"
+         role="progressbar"
+         [attr.aria-valuenow]="progress"
+         aria-valuemin="0"
+         aria-valuemax="100"
+         [style.width.%]="progress">
+      {{ progress }}% Complete
+    </div>
+  </div>
+</div>
