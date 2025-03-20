@@ -1,22 +1,127 @@
-GNU GENERAL PUBLIC LICENSE
-Version 3, 29 June 2007
+                           GNU GENERAL PUBLIC LICENSE
+                            Version 3, 29 June 2007
 
-Copyright (C) [2025] [Maik Roland Damm]
-All rights reserved.
+                    Copyright (C) [2025] [Maik Roland Damm]
+                            All rights reserved.
 
-The use of this code is permitted under the terms of the GNU General Public License Version 3 (GPLv3), with the
-following modification:
+The GNU General Public License is a free software license, which guarantees end
+users the freedom to run, study, share, and modify the software. Below is the
+full text of the GPLv3 license with the modification added for your case.
 
-1. **Modifications for Private Use**: You are allowed to modify the code for private use without publishing these
-     modifications. Private use means you do not share or distribute the changes in any way.
+---
 
-2. **Publishing Modifications**: If you publish or distribute the code, whether publicly or commercially, you must
-     license the changes under the GPLv3 as well. This applies to derivative works based on this code.
+**Preamble**
 
-3. **Use in a Private Repository**: Modifications made in a private repository that are not publicly accessible do
-     not require publishing or licensing under the GPLv3. This includes using and modifying the code for personal or
-     internal projects without a licensing obligation for third parties.
+The GNU General Public License is designed to ensure your freedom to share and
+change free software. By guaranteeing these rights, the GPLv3 protects the
+interests of users, and ensures that the software remains free for all future
+users.
 
-All other provisions of the GPLv3 remain in full effect.
+When we speak of free software, we are referring to freedom, not price. To
+understand the concept, you should think of “free” as in “free speech,” not as
+in “free beer.”
 
-Copy the text of the GPLv3 when distributing the code, and ensure that the license terms are clearly stated.
+To protect your rights, we need to make restrictions that forbid distributors
+to deprive you of these rights or to ask you to surrender these rights. These
+restrictions are necessary to prevent proprietary software from taking away
+your freedom to share and change software.
+
+---
+
+**TERMS AND CONDITIONS**
+
+*0. Definitions.*
+
+"This License" refers to version 3 of the GNU General Public License.
+
+"The Program" refers to any software or other work that is covered by this
+License.
+
+"Source code" refers to the preferred form for making modifications to the
+Program.
+
+"Object code" refers to any non-source form of the Program.
+
+---
+
+*1. Source Code.*
+
+The Program is licensed to you as a whole. You may copy, modify, and
+distribute the Program, provided that the source code is made available, and
+the software is licensed under the terms of this GPLv3.
+
+---
+
+*2. Modifications for Private Use (Modified Clause).*
+
+You are allowed to modify the code for private use without publishing these
+modifications. Private use means you do not share or distribute the changes in
+any way.
+
+---
+
+*3. Publishing Modifications.*
+
+If you publish or distribute the code, whether publicly or commercially, you
+must license the changes under the GPLv3 as well. This applies to derivative
+works based on this code. When distributing the Program or modified versions,
+you must provide recipients with a copy of this License.
+
+---
+
+*4. Use in a Private Repository.*
+
+Modifications made in a private repository that are not publicly accessible do
+not require publishing or licensing under the GPLv3. This includes using and
+modifying the code for personal or internal projects without a licensing
+obligation for third parties.
+
+---
+
+*5. Conveying Modified Source Versions.*
+
+You must cause modified versions of the Program to be licensed under the GPLv3.
+When you distribute the Program or a modified version, you must provide a copy
+of this License along with the source code.
+
+---
+
+*6. Conveying Non-Source Forms.*
+
+You may distribute the Program in object code or executable form under the
+terms of the GPLv3, but you must include a copy of this License along with it.
+
+---
+
+*7. No Warranty.*
+
+The Program is licensed "as is," without any warranty of any kind. If the
+Program has defects, you are responsible for fixing them.
+
+---
+
+*8. Termination.*
+
+This License will terminate automatically if you fail to comply with its terms.
+However, if your violation is curable, you may be reinstated as a licensee
+after you correct the violation.
+
+---
+
+**END OF TERMS AND CONDITIONS**
+
+---
+
+**How to Apply These Terms to Your New Programs**
+
+If you develop a new program and want to apply the GPLv3, simply add the
+following notice at the beginning of your program:
+
+Copyright (C) [2025] [Maik Roland Damm] This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of
+the License, or (at your option) any later version. This program is distributed in the hope that it will be
+useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR
+PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General
+Public License along with this program. If not, see https://www.gnu.org/licenses/.
+
+**End of GPLv3 License**
