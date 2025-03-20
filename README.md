@@ -12,7 +12,7 @@
     <img alt="GitHub Downloads (all assets, latest release)" src="https://img.shields.io/github/downloads/iptoux/AngularTasks/latest/total?style=for-the-badge">
 </p>
 
-[MyTasksApplication.webm](https://github.com/user-attachments/assets/61f13d56-f528-42c4-81b7-f9824ec39c00)
+[MyTaskApplication.webm](https://github.com/user-attachments/assets/e3ea71cf-a482-48d5-8756-41ab02f3bb97)
 
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
