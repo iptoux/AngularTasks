@@ -6,7 +6,10 @@
          aria-valuemin="0"
          aria-valuemax="100"
          [style.width.%]="progress">
-      {{ progress }}% Complete
+      @if(progress)
+      {
+        {{ progress }}% Complete
+      }
     </div>
   </div>
 </div>
