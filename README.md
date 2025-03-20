@@ -9,7 +9,8 @@
     <img src="https://img.shields.io/github/issues/iptoux/AngularTasks?style=for-the-badge" title="GitHub issues">
     <img src="https://img.shields.io/github/license/iptoux/AngularTasks?style=for-the-badge" title="GitHub">
     <img src="https://img.shields.io/github/actions/workflow/status/iptoux/AngularTasks/release.yml?style=for-the-badge">
-    <img alt="GitHub Downloads (all assets, latest release)" src="https://img.shields.io/github/downloads/iptoux/AngularTasks/latest/total?style=for-the-badge">
+    <img alt="GitHub Downloads (all assets, all releases)" src="https://img.shields.io/github/downloads/iptoux/AngularTasks/total?style=for-the-badge">
+
 </p>
 
 [MyTaskApplication.webm](https://github.com/user-attachments/assets/e3ea71cf-a482-48d5-8756-41ab02f3bb97)
