@@ -1,0 +1,22 @@
+GNU GENERAL PUBLIC LICENSE
+Version 3, 29 June 2007
+
+Copyright (C) [2025] [Maik Roland Damm]
+All rights reserved.
+
+The use of this code is permitted under the terms of the GNU General Public License Version 3 (GPLv3), with the
+following modification:
+
+1. **Modifications for Private Use**: You are allowed to modify the code for private use without publishing these
+     modifications. Private use means you do not share or distribute the changes in any way.
+
+2. **Publishing Modifications**: If you publish or distribute the code, whether publicly or commercially, you must
+     license the changes under the GPLv3 as well. This applies to derivative works based on this code.
+
+3. **Use in a Private Repository**: Modifications made in a private repository that are not publicly accessible do
+     not require publishing or licensing under the GPLv3. This includes using and modifying the code for personal or
+     internal projects without a licensing obligation for third parties.
+
+All other provisions of the GPLv3 remain in full effect.
+
+Copy the text of the GPLv3 when distributing the code, and ensure that the license terms are clearly stated.
