@@ -30,7 +30,7 @@ export class TodoProgressbarComponent implements OnInit, OnDestroy {
     } else if (tasksCompleted === 0) {
       return 0;
     } else {
-      return (tasksCompleted / tasksCount) * 100;
+      return Number(((tasksCompleted / tasksCount) * 100).toFixed(0));
     }
   }
 
