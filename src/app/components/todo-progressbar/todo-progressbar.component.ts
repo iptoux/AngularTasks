@@ -24,7 +24,14 @@ export class TodoProgressbarComponent implements OnInit, OnDestroy {
   get progress(): number {
     let tasksCount = this.tasks.length;
     let tasksCompleted = this.tasks.filter(task => task.completed).length;
-    return (tasksCompleted / tasksCount) * 100;
+
+    if (tasksCount === 0) {
+      return 0;
+    } else if (tasksCompleted === 0) {
+      return 0;
+    } else {
+      return (tasksCompleted / tasksCount) * 100;
+    }
   }
 
 
@@ -33,5 +40,7 @@ export class TodoProgressbarComponent implements OnInit, OnDestroy {
       this.subscription.unsubscribe();
     }
   }
+
+  protected readonly NaN = NaN;
 }
 
