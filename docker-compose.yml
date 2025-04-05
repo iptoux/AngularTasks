@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  angular_tasks:
+    build: .
+    hostname: angular-tasks
+    ports:
+      - "4200:4200"
+    volumes:
+      - angular_node_modules:/app/AngularTasks/node_modules
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+
+volumes:
+  angular_node_modules:
