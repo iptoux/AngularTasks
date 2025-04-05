@@ -26,15 +26,7 @@ RUN npm install
 RUN <<'EOF' cat >
  start-servers.sh
 #!/bin/bash
-
-# Starte den Webhook-Server im Hintergrund
 cd /app/AngularTasks
-node updater.js &
-
-# Warte kurz, damit der Webhook-Server starten kann
-sleep 2
-
-# Starte den Angular-Server
 ng serve --host 0.0.0.0 --disable-host-check --poll 2000
 EOF
 
