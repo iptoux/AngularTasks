@@ -22,19 +22,13 @@ WORKDIR /app/AngularTasks
 
 RUN npm install
 
-# Erstelle das Start-Skript während des Builds
-RUN <<'EOF' cat >
- start-servers.sh
-#!/bin/bash
-cd /app/AngularTasks
-ng serve --host 0.0.0.0 --disable-host-check --poll 2000
-EOF
+COPY entrypoint.sh .
 
 # Mache das Start-Skript ausführbar
-RUN chmod +x start-servers.sh
+RUN chmod +x entrypoint.sh
 
 # Exponiere die Ports
 EXPOSE 4200
 
 # Setze den Standardbefehl
-CMD ["./start-servers.sh"]
+CMD ["./entrypoint.sh"]
