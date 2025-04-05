@@ -23,7 +23,8 @@ WORKDIR /app/AngularTasks
 RUN npm install
 
 # Erstelle das Start-Skript während des Builds
-RUN cat << 'EOF' > start-servers.sh
+RUN <<'EOF' cat >
+ start-servers.sh
 #!/bin/bash
 
 # Starte den Webhook-Server im Hintergrund
