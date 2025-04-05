@@ -1,4 +1,4 @@
-FROM FROM node:23.9.0-bullseye
+FROM node:23.9.0-bullseye
 LABEL authors="iptoux"
 
 # Setze das Arbeitsverzeichnis im Container
