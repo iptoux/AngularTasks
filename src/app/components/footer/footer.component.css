@@ -8,13 +8,45 @@
 }
 
 .card {
-  padding: 8px;
-  justify-items: flex-end;
-  justify-content: flex-end;
+  padding: 2px;
   border-radius: 0;
-  align-items: end;
   background-color: rgba(33, 37, 41, 0.033);
   border-bottom: 0;
+
+  .right-box {
+    justify-items: flex-end;
+    justify-content: flex-end;
+    align-items: end;
+  }
+
+  .left-box {
+    justify-items: flex-start;
+    justify-content: flex-start;
+    align-items: start;
+
+    .icon-3d {
+      --icon-color: #2a2a2a;
+      --shadow-color: #d9d9d9;
+      --shadow-color-light: white;
+      color: var(--icon-color);
+      text-shadow: 1px 1px 1px var(--shadow-color-light),
+      -1px -1px 1px var(--shadow-color);
+      position: relative;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .icon-3d:hover {
+      transform: scale(1.1) translateY(-3px);
+      text-shadow: 3px 3px 5px var(--shadow-color),
+      -3px -3px 5px #4c8bf5;
+      transition: all 0.2s ease-in-out;
+    }
+
+
+
+  }
+
 
   a {
     text-decoration: none;
