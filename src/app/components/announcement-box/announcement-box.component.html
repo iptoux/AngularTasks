@@ -1,6 +1,11 @@
-<div class="col-lg-10 col-md-5 col col-xl-10 m-auto mb-5 mt-5 announcement-box">
-  <div class="alert alert-info alert-dismissible fade show" role="alert">
-    <strong><i class="bi bi-info-circle-fill"></i> Holy guacamole!</strong> You should check in on some of those fields below.
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+@if (latestUnreadAnnouncement() ; as announcement) {
+  <div class="col-lg-10 col-md-5 col col-xl-10 m-auto mb-5 mt-5 announcement-box">
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+      <strong><i class="bi bi-info-circle-fill"></i> {{ announcement?.title }}</strong> {{ announcement?.Description }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="markAsRead(announcement)"></button>
+    </div>
   </div>
-</div>
+} @else {
+  <div #noAnnouncement></div>
+}
+
