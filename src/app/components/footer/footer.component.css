@@ -26,20 +26,16 @@
 
     .icon-3d {
       --icon-color: #2a2a2a;
-      --shadow-color: #d9d9d9;
-      --shadow-color-light: white;
       color: var(--icon-color);
-      text-shadow: 1px 1px 1px var(--shadow-color-light),
-      -1px -1px 1px var(--shadow-color);
       position: relative;
       cursor: pointer;
-      transition: all 0.2s ease-in-out;
+      transition: all 0.125s ease-in-out;
     }
 
     .icon-3d:hover {
       transform: scale(1.1) translateY(-3px);
-      text-shadow: 3px 3px 5px var(--shadow-color),
-      -3px -3px 5px #4c8bf5;
+      text-shadow: 0 0 10px #d9d9d9,
+      0 0 10px #4c8bf5;
       transition: all 0.2s ease-in-out;
     }
 
