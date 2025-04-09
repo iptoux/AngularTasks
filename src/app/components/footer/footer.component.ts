@@ -5,6 +5,8 @@ import {Announcement} from '../../interfaces/announcement';
 import {FormsModule} from '@angular/forms';
 import {SettingsService} from '../../services/settings.service';
 import {Settings} from '../../interfaces/settings'
+// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-footer',
