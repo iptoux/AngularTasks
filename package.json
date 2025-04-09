@@ -25,6 +25,7 @@
     "bootstrap-icons": "^1.11.3",
     "bootstrap-toggle": "^2.2.2",
     "electron-packager": "^17.1.2",
+    "jquery": "^3.7.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
