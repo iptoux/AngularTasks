@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { TasksService} from '../../services/tasks.service';
 import {NgClass} from '@angular/common';
+import {DarkModeService} from '../../services/dark-mode.service';
 
 
 @Component({
@@ -15,7 +16,11 @@ export class FilterControlsComponent implements OnInit {
 
   filterType: number = -1;
 
-  constructor(private tasksService: TasksService) {
+  constructor(private tasksService: TasksService,
+              private darkModeService: DarkModeService) {}
+
+  get isDarkMode(): boolean {
+    return this.darkModeService.isDarkMode();
   }
 
   ngOnInit() {

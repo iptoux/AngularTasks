@@ -32,8 +32,16 @@
   transition: all 0.3s ease-in-out;
 }
 
+.dark-theme .filter-link {
+  cursor: pointer;
+  padding: 2px 20px;
+  border: 1px solid rgba(148, 99, 247, 0.35);
+  border-radius: 0.15rem;
+  transition: all 0.3s ease-in-out;
+}
+
 .filter-link:hover {
-  background-color: rgba(148, 99, 247, 0.65);
+  background-color: rgba(148, 99, 247, 0.55);
   color: #ffffff!important;
   border: 1px solid #9463f7;
   box-shadow: 0 0 20px 0 #9463f7;
