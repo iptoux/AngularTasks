@@ -77,10 +77,21 @@
     margin-bottom: 0;
 }
 
+/* Container für das Settings Icon */
 .settings-container {
-  position: relative;
+  position: relative; /* Diese Eigenschaft in CSS statt im HTML */
   display: inline-block;
+  isolation: isolate; /* Moderne Alternative zu z-index */
 }
+
+/* Spezifisch für das Gear-Icon */
+.settings-container .bi-gear.icon-3d {
+  position: relative;
+  z-index: 5;
+  transform-origin: center center; /* Definiert den Ursprungspunkt der Transformation */
+  will-change: transform; /* Verbessert Performance bei Animationen */
+}
+
 
 .settings-dropdown {
   position: static; /* Change from relative to static */
@@ -156,6 +167,22 @@
   border-color: var(--border-color);
 }
 
+.dark-theme .settings-container .bi-gear.icon-3d:hover {
+  transform: scale(1.1) translateY(-3px) !important;
+  color: var(--primary-color) !important;
+  text-shadow: 0 0 10px var(--primary-color),
+  0 0 10px var(--secondary-color);
+}
+
+/* Aktiver Zustand (wenn Menü geöffnet) */
+.dark-theme .settings-container .bi-gear.icon-3d.active {
+  transform: scale(1.1) translateY(-3px) !important;
+  color: var(--primary-color) !important;
+  text-shadow: 0 0 10px var(--primary-color),
+  0 0 10px var(--secondary-color);
+}
+
+
 .dark-theme .card,
 .dark-theme .card p,
 .dark-theme .card a,
@@ -169,11 +196,10 @@
   color: #ffffff !important; /* Use !important to ensure it overrides any other styles */
 }
 
-
 /* Hover effects for dark theme */
 /* Specific hover effect for the gear icon */
-.dark-theme .left-box .settings-container .icon-3d:hover,
-.dark-theme .left-box .settings-container .icon-3d:focus {
+.dark-theme .left-box .icon-3d:hover,
+.dark-theme .left-box .icon-3d:focus {
   transform: scale(1.1) translateY(-3px);
   color: var(--primary-color) !important;
   text-shadow: 0 0 10px var(--primary-color),
