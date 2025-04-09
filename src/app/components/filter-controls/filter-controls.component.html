@@ -2,9 +2,9 @@
   <div class="filter-control-box">
     <p class="filter-head">Filter</p>
     <div class="filter-links">
-      [<span class="nav-link" [ngClass]="{'active-filter': filterType === -1}" (click)="clearFilter()">All Tasks</span>]
-      [<span class="nav-link" [ngClass]="{'active-filter': filterType === 1}" (click)="filter_by_completed()">Completed</span>]
-      [<span class="nav-link" [ngClass]="{'active-filter': filterType === 0}" (click)="filter_by_incomplete()">InComplete</span>]
+      <span class="filter-link" [ngClass]="{'active-filter': filterType === -1}" (click)="clearFilter()">All Tasks</span>
+      <span class="filter-link" [ngClass]="{'active-filter': filterType === 1}" (click)="filter_by_completed()">Completed</span>
+      <span class="filter-link" [ngClass]="{'active-filter': filterType === 0}" (click)="filter_by_incomplete()">InComplete</span>
     </div>
   </div>
 </div>

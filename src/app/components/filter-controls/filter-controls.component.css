@@ -18,14 +18,24 @@
   .active-filter {
     font-weight: bold;
     color: #0066cc;
+    border: 1px solid rgba(148, 99, 247, 0.55);
+    box-shadow: 0 0 5px 0 #9463f7;
+    transition: all 0.3s ease-in-out;
   }
 }
 
-.nav-link {
+.filter-link {
   cursor: pointer;
+  padding: 2px 20px;
+  border: 1px solid #0000002d;
+  border-radius: 0.30rem;
+  transition: all 0.3s ease-in-out;
 }
 
-.nav-link:hover {
-  text-decoration: underline;
-  color: #0066cc;
+.filter-link:hover {
+  background-color: rgba(148, 99, 247, 0.65);
+  color: #ffffff!important;
+  border: 1px solid #9463f7;
+  box-shadow: 0 0 20px 0 #9463f7;
+  transition: all 0.3s ease-in-out;
 }
