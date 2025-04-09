@@ -2,10 +2,23 @@
   <div class="card" [ngClass]="isDarkMode ? 'dark-theme' : ''">
     <div class="card-body p-4">
       <p>Add a new Task</p>
-      <form (ngSubmit)="addTask(taskInput.value); taskInput.value=''; $event.preventDefault()">
+      <form class="d-flex gap-3" (ngSubmit)="addTask(taskInput.value); taskInput.value=''; $event.preventDefault()">
         <div class="form-outline flex-fill">
           <input #taskInput type="text" id="taskAdd" class="form-control" placeholder="Enter task description..." />
         </div>
+        <!-- Datepicker mit Icon -->
+        <div class="input-group" style="width: 20%;margin-left: 10px;">
+          <input
+            #dateTimeInput
+            type="datetime-local"
+            class="form-control datepicker"
+            name="datetime"
+            [(ngModel)]="selectedDateTime">
+          <button class="btn btn-info datepicker" type="button" (click)="dateTimeInput.showPicker()">
+            <i class="bi bi-alarm"></i>
+          </button>
+        </div>
+
         <button
           type="button"
           class="btn btn-info ms-2"
