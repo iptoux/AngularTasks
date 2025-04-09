@@ -1,5 +1,5 @@
 <div class="col col-xl-10 m-auto mb-5 mt-5">
-  <div class="card">
+  <div class="card" [ngClass]="isDarkMode ? 'dark-theme' : ''">
     <div class="card-body p-4">
       <p>Add a new Task</p>
       <form (ngSubmit)="addTask(taskInput.value); taskInput.value=''; $event.preventDefault()">
