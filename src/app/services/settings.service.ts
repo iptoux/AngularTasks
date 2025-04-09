@@ -1,4 +1,4 @@
-import {computed, Injectable, Signal, signal} from '@angular/core';
+import {Injectable, Signal, signal} from '@angular/core';
 
 interface Settings {
   darkMode?: boolean;
