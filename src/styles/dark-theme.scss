@@ -36,3 +36,82 @@
 
   // Add more component-specific dark styles as needed
 }
+.dark-theme li.cdk-drag-preview {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  opacity: 0.8;
+  background-color: #4c52c8!important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme li.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.dark-theme li.cdk-drag-preview > .close-btn {
+  margin-left: auto;
+  border: 0;
+  background-color: transparent;
+  color: #c6b8b8;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 8px;
+}
+
+.dark-theme {
+  li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px;
+  }
+
+  li > label.completed-task {
+    text-decoration: line-through;
+    flex-grow: 1;
+  }
+
+  li > input[type="checkbox"] {
+    border-radius: 0;
+  }
+
+  li > .close-btn {
+    margin-left: auto;
+    border: 0;
+    background-color: transparent;
+    color: #666;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 8px;
+  }
+  li > .close-btn:hover {
+    color: #ff4d4f;
+    font-weight: bold;
+  }
+  .badge {
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+    margin-right: 20px;
+  }
+
+  .badge-pill {
+    padding-right: .6em;
+    padding-left: .6em;
+    border-radius: 10rem;
+  }
+
+  .badge-success {
+    color: #fff;
+    background-color: #9463f7;
+  }
+}
