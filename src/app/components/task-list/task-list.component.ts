@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TasksService } from '../../services/tasks.service';
 import { Task } from '../../interfaces/task';
-import { NgClass, NgForOf, NgIf } from '@angular/common';
+import {DatePipe, NgClass, NgForOf, NgIf} from '@angular/common';
 import { Subscription } from 'rxjs';
 import {CdkDrag, CdkDragDrop, CdkDragPlaceholder, CdkDropList, moveItemInArray} from '@angular/cdk/drag-drop';
 import {DarkModeService} from '../../services/dark-mode.service';
@@ -17,7 +17,8 @@ import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
     CdkDrag,
     CdkDropList,
     CdkDragPlaceholder,
-    NgbTooltip
+    NgbTooltip,
+    DatePipe
   ],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'

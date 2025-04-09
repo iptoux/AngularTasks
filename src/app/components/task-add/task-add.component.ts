@@ -7,7 +7,6 @@ import {NgClass} from '@angular/common';
 import {NgbDatepickerModule, NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 
 
-
 @Component({
   selector: 'app-task-add',
   imports: [
