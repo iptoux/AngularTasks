@@ -171,12 +171,23 @@
 
 
 /* Hover effects for dark theme */
-.dark-theme .left-box .icon-3d:hover {
+/* Specific hover effect for the gear icon */
+.dark-theme .left-box .settings-container .icon-3d:hover,
+.dark-theme .left-box .settings-container .icon-3d:focus {
   transform: scale(1.1) translateY(-3px);
   color: var(--primary-color) !important;
   text-shadow: 0 0 10px var(--primary-color),
   0 0 10px var(--secondary-color);
 }
+
+
+.dark-theme .left-box .icon-3d.active {
+  transform: scale(1.1) translateY(-3px);
+  color: var(--primary-color) !important;
+  text-shadow: 0 0 10px var(--primary-color),
+  0 0 10px var(--secondary-color);
+}
+
 
 .dark-theme .right-box .footer_inline {
   color: var(--text-color);
@@ -186,7 +197,6 @@
 .dark-theme .settings-menu {
   background-color: var(--surface-color);
   border-color: var(--border-color);
-  border-bottom: None;
 }
 
 .dark-theme .settings-menu::after {

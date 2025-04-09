@@ -12,7 +12,7 @@
 
             <!-- Wrap the gear icon and dropdown together -->
             <div class="settings-container position-relative">
-              <i class="bi bi-gear fs-4 icon-3d" (click)="toggleSettingsMenu($event)"></i>
+              <i class="bi bi-gear fs-4 icon-3d" [class.active]="showSettingsMenu" (click)="toggleSettingsMenu($event)"></i>
               <div class="settings-dropdown">
                 @if (showSettingsMenu) {
                   <div class="settings-menu">
