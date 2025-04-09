@@ -1,6 +1,11 @@
 .progress.bg-bar-dark {
-  background-color: rgba(193, 127, 255, 0.49);
+  background-color: rgba(193, 127, 255, 0.3);
   div {
-    color: #19092e;
+    color: #fdfdfd;
   }
+}
+
+.bg-info {
+  background-color: rgba(193, 127, 255, 0.15) !important;
+
 }
