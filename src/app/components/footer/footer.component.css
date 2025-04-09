@@ -93,10 +93,10 @@
   padding: 0.5rem 0;
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.15);
-  border-radius: 0.25rem;
+  border-radius: 0.15rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
   bottom: 40px; /* Position above the gear icon */
-  right: -150px; /* Move the menu to the right */
+  right: -215px; /* Move the menu to the right */
   transform: none;
 }
 

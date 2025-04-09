@@ -20,6 +20,7 @@ export class FooterComponent implements OnInit {
   notificationsEnabled = false; // assuming you have this property already
   darkModeEnabled = false;
   ProgressbarEnabled = true;
+  announcementsEnabled = true;
 
 
   toggleSettingsMenu(event: Event): void {
@@ -68,6 +69,14 @@ export class FooterComponent implements OnInit {
     );
   }
 
+  // Add this method
+  toggleAnnouncements() {
+    // Your notification toggling logic here
+    console.log('Announcement toggled:', this.announcementsEnabled);
+
+    // Example: You might want to save the setting or notify a service
+    // this.userSettingsService.updateNotificationPreference(this.notificationsEnabled);
+  }
 
   // Add this method
   toggleDarkMode() {
