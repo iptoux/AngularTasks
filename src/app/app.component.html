@@ -5,7 +5,11 @@
   </app-filter-controls>
   <app-task-add>
   </app-task-add>
-  <app-todo-progressbar></app-todo-progressbar>
+  <div class="progress-box" [style.opacity]="showProgressBar ? '1' : '0'">
+    <app-todo-progressbar></app-todo-progressbar>
+  </div>
+  <div class="progress-placeholder" [style.opacity]="showProgressBar ? '0' : '1'"></div>
+
   <app-task-list>
 
   </app-task-list>
