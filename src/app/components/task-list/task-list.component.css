@@ -110,6 +110,38 @@ li.cdk-drag-preview > .close-btn {
   background-color: #9463f7;
 }
 
+
+.time-progress-container {
+  width: 80%;
+  height: 2px;
+  background-color: transparent;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.time-progress-bar {
+  height: 2px;
+  background-color: #28a745;
+  transition: width 0.3s ease;
+}
+
+/* Styles für den Hintergrund-Fortschrittsbalken */
+.low-time-bg {
+  background-color: rgba(239, 27, 47, 0.7); /* Abgeschwächtes Rot */
+}
+
+.medium-time-bg {
+  background-color: rgba(255, 193, 7, 0.7); /* Abgeschwächtes Gelb */
+}
+
+.good-time-bg {
+  background-color: rgba(21, 182, 57, 0.7); /* Abgeschwächtes Grün */
+}
+
+
+
+
+
 .dark-theme {
   color: white;
 
@@ -162,6 +194,23 @@ li.cdk-drag-preview > .close-btn {
   }
 
 }
+
+.dark-theme {
+  /* Styles für den Hintergrund-Fortschrittsbalken */
+  .low-time-bg {
+    background-color: rgba(239, 27, 47, 0.4); /* Abgeschwächtes Rot */
+  }
+
+  .medium-time-bg {
+    background-color: rgba(255, 193, 7, 0.4); /* Abgeschwächtes Gelb */
+  }
+
+  .good-time-bg {
+    background-color: rgba(21, 182, 57, 0.4); /* Abgeschwächtes Grün */
+  }
+
+}
+
 
 .dark-theme .card .card-body form ul li.cdk-drag-preview {
   list-style: none;

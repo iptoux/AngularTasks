@@ -35,6 +35,42 @@ export class TaskListComponent implements OnInit, OnDestroy {
     return this.darkModeService.isDarkMode();
   }
 
+  /**
+   * Calculates the percentage of time remaining until the due date
+   * @param dueDate The task's due date
+   * @returns A number between 0 and 100 representing the percentage of time left
+   */
+  calculateTimeLeftPercentage(dueDate?: Date): number {
+    if (!dueDate) {
+      return 0;
+    }
+
+    const now = new Date();
+    const dueDateObj = new Date(dueDate);
+
+    // If the due date is in the past, return 0
+    if (dueDateObj < now) {
+      console.log("Due date is in the past");
+      return 0;
+    }
+
+    // Calculate the total time span (in milliseconds)
+    const totalTimeSpan = dueDateObj.getTime() - now.getTime();
+
+    // Limit the maximum timespan to 7 days (604800000 ms)
+    // This makes the progress bar more meaningful for longer tasks
+    const maxTimeSpan = 7 * 24 * 60 * 60 * 1000;
+
+    // Calculate percentage (capped at 100%)
+    const percentage = Math.min(100, Math.round((totalTimeSpan / maxTimeSpan) * 100));
+    console.log(percentage);
+
+    return percentage;
+  }
+
+
+
+
   ngOnInit() {
     this.subscription = this.tasksService.tasks$.subscribe(tasks => {
       this.tasks = tasks;
