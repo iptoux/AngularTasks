@@ -7,12 +7,27 @@
 
           <!-- Left box content -->
           <div class="box left-box p-3 d-flex gap-3">
-            <i class="bi bi-door-closed fs-4 icon-3d"></i>
-            <i class="bi bi-person-circle fs-4 icon-3d"></i>
+            <i class="bi bi-door-closed fs-4 icon-3d"
+               ngbTooltip="Login"
+               placement="top"
+               tooltipClass="custom-tooltip"
+               [openDelay]="200"
+               [closeDelay]="100"></i>
+            <i class="bi bi-person-circle fs-4 icon-3d"
+               ngbTooltip="Profile"
+               placement="top"
+               tooltipClass="custom-tooltip"
+               [openDelay]="200"
+               [closeDelay]="100"></i>
 
             <!-- Wrap the gear icon and dropdown together -->
             <div class="settings-container">
-              <i class="bi bi-gear fs-4 icon-3d" [class.active]="showSettingsMenu" (click)="toggleSettingsMenu($event)"></i>
+              <i class="bi bi-gear fs-4 icon-3d" [class.active]="showSettingsMenu" (click)="toggleSettingsMenu($event)"
+                 ngbTooltip="Settings"
+                 placement="right"
+                 tooltipClass="custom-tooltip"
+                 [openDelay]="200"
+                 [closeDelay]="100"></i>
               <div class="settings-dropdown">
                 @if (showSettingsMenu) {
                   <div class="settings-menu">
@@ -27,7 +42,12 @@
                                type="checkbox"
                                id="announcementsToggle"
                                [(ngModel)]="announcementsEnabled"
-                               (change)="toggleAnnouncements()">
+                               (change)="toggleAnnouncements()"
+                               ngbTooltip="Click to toggle"
+                               placement="right"
+                               tooltipClass="custom-tooltip"
+                               [openDelay]="200"
+                               [closeDelay]="100">
                       </div>
                     </div>
 
@@ -39,7 +59,12 @@
                                type="checkbox"
                                id="checkForUpdatesToggle"
                                [(ngModel)]="checkForUpdatesEnabled"
-                               (change)="toggleCheckForUpdates()">
+                               (change)="toggleCheckForUpdates()"
+                               ngbTooltip="Click to toggle"
+                               placement="right"
+                               tooltipClass="custom-tooltip"
+                               [openDelay]="200"
+                               [closeDelay]="100">
                       </div>
                     </div>
 
@@ -51,7 +76,12 @@
                                type="checkbox"
                                id="darkModeToggle"
                                [(ngModel)]="darkModeEnabled"
-                               (change)="toggleDarkMode()">
+                               (change)="toggleDarkMode()"
+                               ngbTooltip="Click to toggle"
+                               placement="right"
+                               tooltipClass="custom-tooltip"
+                               [openDelay]="200"
+                               [closeDelay]="100">
                       </div>
                     </div>
 
@@ -63,7 +93,12 @@
                                type="checkbox"
                                id="ProgressbarToggle"
                                [(ngModel)]="ProgressbarEnabled"
-                               (change)="toggleProgressbar()">
+                               (change)="toggleProgressbar()"
+                               ngbTooltip="Click to toggle"
+                               placement="right"
+                               tooltipClass="custom-tooltip"
+                               [openDelay]="200"
+                               [closeDelay]="100">
                       </div>
                     </div>
 
@@ -75,12 +110,22 @@
                                type="checkbox"
                                id="notificationsToggle"
                                [(ngModel)]="notificationsEnabled"
-                               (change)="toggleNotifications()">
+                               (change)="toggleNotifications()"
+                               ngbTooltip="Click to toggle"
+                               placement="right"
+                               tooltipClass="custom-tooltip"
+                               [openDelay]="200"
+                               [closeDelay]="100">
                       </div>
                     </div>
 
                     <div class="divider"></div>
-                    <a class="settings-item" (click)="selectSetting('help')">Help</a>
+                    <a class="settings-item" (click)="selectSetting('help')"
+                       ngbTooltip="Click to show help"
+                       placement="right"
+                       tooltipClass="custom-tooltip"
+                       [openDelay]="200"
+                       [closeDelay]="100">Help</a>
                   </div>
                 }
               </div>
@@ -96,10 +141,32 @@
         <div class="col-md-6">
           <!-- Right box content -->
           <div class="box right-box p-3">
-            <p>© 2025 <a href="https://damm.dev" target="_blank" title="Link to website damm.dev">Damm.dev</a></p>
+            <p>© 2025 <a href="https://damm.dev" target="_blank" title="Link to website damm.dev">Damm.dev</a>
+            </p>
             <div class="footer_inline">
-              v{{version}}&nbsp;|&nbsp;
-              <a href="https://github.com/AngularTasks" target="_blank" title="Link to github Repository"><i class="bi bi-github"></i></a> | <a href="https://x.com" target="_blank"><i class="bi bi-twitter-x"></i></a>
+              <span ngbTooltip="Running AngularTasks"
+                    placement="left"
+                    tooltipClass="custom-tooltip"
+                    [openDelay]="200"
+                    [closeDelay]="100">
+                v{{version}}&nbsp;|&nbsp;
+              </span>
+              <a href="https://github.com/AngularTasks" target="_blank" title="Link to github Repository">
+                <i class="bi bi-github"
+                   ngbTooltip="AngularTasks on Github"
+                   placement="top"
+                   tooltipClass="custom-tooltip"
+                   [openDelay]="200"
+                   [closeDelay]="100"></i>
+              </a> |
+              <a href="https://x.com" target="_blank">
+                <i class="bi bi-twitter-x"
+                   ngbTooltip="Visit me on Twitter"
+                   placement="top"
+                   tooltipClass="custom-tooltip"
+                   [openDelay]="200"
+                   [closeDelay]="100"></i>
+              </a>
             </div>
           </div>
         </div>

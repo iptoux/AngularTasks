@@ -7,13 +7,15 @@ import {SettingsService} from '../../services/settings.service';
 import {Settings} from '../../interfaces/settings'
 import {NgClass} from '@angular/common';
 import {DarkModeService} from '../../services/dark-mode.service';
+import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
   selector: 'app-footer',
   imports: [
     FormsModule,
-    NgClass
+    NgClass,
+    NgbTooltip
   ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
