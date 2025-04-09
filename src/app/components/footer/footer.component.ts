@@ -3,6 +3,8 @@ import {VersionService} from '../../services/version.service';
 import {AnnouncementService} from '../../services/announcement.service';
 import {Announcement} from '../../interfaces/announcement';
 import {FormsModule} from '@angular/forms';
+import {SettingsService} from '../../services/settings.service';
+import {Settings} from '../../interfaces/settings'
 
 @Component({
   selector: 'app-footer',
@@ -17,10 +19,11 @@ export class FooterComponent implements OnInit {
   updateAvailable: boolean = false;
   latestVersion: string | null = null;
   showSettingsMenu = false;
-  notificationsEnabled = false; // assuming you have this property already
+  notificationsEnabled = true; // assuming you have this property already
   darkModeEnabled = false;
   ProgressbarEnabled = true;
   announcementsEnabled = true;
+  checkForUpdatesEnabled = true;
 
 
   toggleSettingsMenu(event: Event): void {
@@ -47,7 +50,8 @@ export class FooterComponent implements OnInit {
 
 
   constructor(private versionService: VersionService,
-              private announcementService: AnnouncementService) {}
+              private announcementService: AnnouncementService,
+              private settingsService: SettingsService) {}
 
   addAnnouncement(type: string, title: string, description: string): void {
     const announcement: Announcement = {
@@ -71,44 +75,73 @@ export class FooterComponent implements OnInit {
 
   // Add this method
   toggleAnnouncements() {
-    // Your notification toggling logic here
-    console.log('Announcement toggled:', this.announcementsEnabled);
-
-    // Example: You might want to save the setting or notify a service
-    // this.userSettingsService.updateNotificationPreference(this.notificationsEnabled);
+    // NICHT nötig: this.announcementsEnabled = !this.announcementsEnabled;
+    // Weil ngModel das schon gemacht hat
+    this.updateSettings({ showAnnouncements: this.announcementsEnabled });
+    console.log('Announcements toggled:', this.announcementsEnabled);
   }
+
+
+  // Add this method
+  toggleCheckForUpdates() {
+    this.updateSettings({ checkForUpdates: this.checkForUpdatesEnabled });
+    console.log('Check for updates toggled:', this.checkForUpdatesEnabled);
+  }
+
 
   // Add this method
   toggleDarkMode() {
-    // Your notification toggling logic here
-    console.log('DarkMode toggled:', this.notificationsEnabled);
-
-    // Example: You might want to save the setting or notify a service
-    // this.userSettingsService.updateNotificationPreference(this.notificationsEnabled);
+    this.updateSettings({ darkMode: this.darkModeEnabled });
+    console.log('Dark mode toggled:', this.darkModeEnabled);
   }
+
 
   // Add this method
   toggleNotifications() {
-    // Your notification toggling logic here
+    this.updateSettings({ showNotifications: this.notificationsEnabled });
     console.log('Notifications toggled:', this.notificationsEnabled);
-
-    // Example: You might want to save the setting or notify a service
-    // this.userSettingsService.updateNotificationPreference(this.notificationsEnabled);
   }
+
 
   // Add this method
   toggleProgressbar() {
-    // Your notification toggling logic here
-    console.log('Progressbar toggled:', this.ProgressbarEnabled);
-
-    // Example: You might want to save the setting or notify a service
-    // this.userSettingsService.updateNotificationPreference(this.notificationsEnabled);
+    this.updateSettings({ showProgressBar: this.ProgressbarEnabled });
+    console.log('Progress bar toggled:', this.ProgressbarEnabled);
   }
+
+
+  // Helper method to update settings in the service
+  private updateSettings(updates: Partial<Settings>): void {
+    const currentSettings = this.settingsService.getSettings()();
+    if (currentSettings && currentSettings.length > 0) {
+      const updatedSettings = currentSettings.map((settings, index) => {
+        if (index === 0) {
+          // Update only the first settings object
+          return { ...settings, ...updates };
+        }
+        return settings;
+      });
+
+      this.settingsService.updateSettings(updatedSettings);
+    }
+  }
+
 
 
   ngOnInit(): void {
     // Get current version
     this.version = this.versionService.getVersion();
+
+    // Initialize settings from SettingsService
+    const currentSettings = this.settingsService.getSettings()();
+    if (currentSettings && currentSettings.length > 0) {
+      const settings = currentSettings[0];
+      this.darkModeEnabled = settings.darkMode ?? false;
+      this.announcementsEnabled = settings.showAnnouncements ?? true;
+      this.checkForUpdatesEnabled = settings.checkForUpdates ?? true;
+      this.notificationsEnabled = settings.showNotifications ?? true;
+      this.ProgressbarEnabled = settings.showProgressBar ?? true;
+    }
 
     // Check for updates
     this.versionService.checkForUpdates().subscribe(result => {
