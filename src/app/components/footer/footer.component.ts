@@ -77,8 +77,8 @@ export class FooterComponent implements OnInit {
   addUpdateAnnouncement(): void {
     this.addAnnouncement(
       'update',
-      'New Version Available',
-      `Version ${this.latestVersion} is now available! You are currently using version ${this.version}.`
+      `New Version Available [${this.latestVersion}] now!`,
+      `You are currently using version ${this.version}.`
     );
   }
 
