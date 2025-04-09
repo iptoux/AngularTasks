@@ -108,7 +108,7 @@ li.cdk-drag-preview > .close-btn {
   }
 
   form > ul > li:hover {
-    background-color: #9757db;
+    background-color: rgba(151, 87, 219, 0.15);
     border-radius: 0.15rem;
   }
 
@@ -134,13 +134,28 @@ li.cdk-drag-preview > .close-btn {
     color: #4dff6b;
     font-weight: bold;
   }
-
   .card {
     color: white;
 
     .card-header {
       border-bottom: 1px solid rgba(148, 99, 247, 0.75);
     }
+
   }
 
+}
+
+.dark-theme .card .card-body form ul li.cdk-drag-preview {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  opacity: 0.8;
+  background-color: #4c52c8!important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme .drag-placeholder {
+  padding: 20px;
+  border: 1px dashed #662694;
 }
