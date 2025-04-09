@@ -3,7 +3,11 @@
     <div class="card-header text-center">Your Task list</div>
     <div class="card-body p-4">
 
-      <form>
+      <form ngbTooltip="Drag to reorder"
+            placement="bottom"
+            tooltipClass="custom-tooltip"
+            [openDelay]="200"
+            [closeDelay]="100">
         <ul cdkDropList (cdkDropListDropped)="drop($event)">
           <li *ngFor="let task of tasks; index as id" cdkDrag>
             <input type="checkbox" id="{{task.id}}" [checked]="task.completed" (change)="updateTaskStatus(task)" />

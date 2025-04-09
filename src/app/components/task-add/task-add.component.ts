@@ -4,13 +4,15 @@ import { TasksService} from '../../services/tasks.service';
 import {FormsModule} from '@angular/forms';
 import {DarkModeService} from '../../services/dark-mode.service';
 import {NgClass} from '@angular/common';
+import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
   selector: 'app-task-add',
   imports: [
     FormsModule,
-    NgClass
+    NgClass,
+    NgbTooltip
   ],
   templateUrl: './task-add.component.html',
   styleUrl: './task-add.component.css'

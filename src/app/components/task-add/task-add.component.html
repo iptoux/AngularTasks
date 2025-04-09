@@ -6,7 +6,15 @@
         <div class="form-outline flex-fill">
           <input #taskInput type="text" id="taskAdd" class="form-control" placeholder="Enter task description..." />
         </div>
-        <button type="button" class="btn btn-info ms-2" (click)="addTask(taskInput.value);taskInput.value=''">Add</button>
+        <button
+          type="button"
+          class="btn btn-info ms-2"
+          (click)="addTask(taskInput.value);taskInput.value=''"
+          ngbTooltip="Click to add a new task"
+          placement="top"
+          tooltipClass="custom-tooltip"
+          [openDelay]="200"
+          [closeDelay]="100">Add</button>
       </form>
     </div>
   </div>

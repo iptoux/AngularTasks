@@ -2,12 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import { TasksService} from '../../services/tasks.service';
 import {NgClass} from '@angular/common';
 import {DarkModeService} from '../../services/dark-mode.service';
+import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
   selector: 'app-filter-controls',
   imports: [
-    NgClass
+    NgClass,
+    NgbTooltip
   ],
   templateUrl: './filter-controls.component.html',
   styleUrl: './filter-controls.component.css'
