@@ -5,7 +5,6 @@ import {Announcement} from '../../interfaces/announcement';
 import {FormsModule} from '@angular/forms';
 import {SettingsService} from '../../services/settings.service';
 import {Settings} from '../../interfaces/settings'
-// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -36,6 +35,7 @@ export class FooterComponent implements OnInit {
   selectSetting(setting: string): void {
     console.log(`Selected setting: ${setting}`);
     // Implement your logic here
+
     this.showSettingsMenu = false;
   }
 
@@ -48,8 +48,6 @@ export class FooterComponent implements OnInit {
       }
     }
   }
-
-
 
   constructor(private versionService: VersionService,
               private announcementService: AnnouncementService,

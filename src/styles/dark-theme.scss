@@ -1,0 +1,37 @@
+// Dark theme variables
+:root.dark-theme {
+  // Colors
+  --background-color: #121212;
+  --surface-color: #1e1e1e;
+  --primary-color: #bb86fc;
+  --secondary-color: #03dac6;
+  --text-color: #ffffff;
+  --text-secondary-color: #b3b3b3;
+  --border-color: #333333;
+  --error-color: #cf6679;
+
+  // Other styles specific to dark mode
+}
+
+// Apply theme colors to elements
+.dark-theme {
+  background-color: var(--background-color);
+  color: var(--text-color);
+
+  // Add specific component styles for dark mode
+  .card, .modal {
+    background-color: var(--surface-color);
+    border-color: var(--border-color);
+  }
+
+  a {
+    color: var(--primary-color);
+  }
+
+  button.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+
+  // Add more component-specific dark styles as needed
+}

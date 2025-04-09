@@ -4,3 +4,5 @@
 /*  background-color: #FFA500; !* Hintergrundfarbe anpassen *!*/
 /*  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); !* Schatten hinzufügen *!*/
 /*}*/
+/* Main styles file */
+@import 'styles/dark-theme.scss';
