@@ -92,3 +92,51 @@ li.cdk-drag-preview > .close-btn {
   background-color: #9463f7;
 }
 
+.dark-theme {
+  color: white;
+
+  form p.text-muted {
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  form > ul > li {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px;
+  }
+
+  form > ul > li:hover {
+    background-color: #9757db;
+    border-radius: 0.15rem;
+  }
+
+  form > ul > li > label.completed-task {
+    text-decoration: line-through;
+    flex-grow: 1;
+  }
+
+  form > ul > li > input[type="checkbox"] {
+    border-radius: 0;
+  }
+
+  form > ul > li > .close-btn {
+    margin-left: auto;
+    border: 0;
+    background-color: transparent;
+    color: #4de4ff;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 8px;
+  }
+  form > ul > li > .close-btn:hover {
+    color: #4dff6b;
+    font-weight: bold;
+  }
+
+  .card {
+    color: white;
+  }
+
+}

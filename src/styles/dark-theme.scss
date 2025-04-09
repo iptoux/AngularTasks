@@ -1,13 +1,13 @@
 // Dark theme variables
-:root.dark-theme {
+:root {
   // Colors
-  --background-color: #121212;
-  --surface-color: #1e1e1e;
+  --background-color: rgba(53, 45, 45, 0.9);
+  --surface-color: rgba(55, 32, 86, 0.55);
   --primary-color: #bb86fc;
   --secondary-color: #03dac6;
   --text-color: #ffffff;
   --text-secondary-color: #b3b3b3;
-  --border-color: #333333;
+  --border-color: rgba(148, 99, 247, 0.75);
   --error-color: #cf6679;
 
   // Other styles specific to dark mode
@@ -15,8 +15,9 @@
 
 // Apply theme colors to elements
 .dark-theme {
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-image: radial-gradient(circle at 50% 50%,#020514,#040718,#06091b,#080b1e,#0a0d21,#0c0f24,#0d1128,#0e122b)!important;
+  color: var(--text-color)!important;
+
 
   // Add specific component styles for dark mode
   .card, .modal {

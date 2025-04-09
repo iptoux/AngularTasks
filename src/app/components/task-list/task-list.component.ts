@@ -4,6 +4,7 @@ import { Task } from '../../interfaces/task';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { Subscription } from 'rxjs';
 import {CdkDrag, CdkDragDrop, CdkDragPlaceholder, CdkDropList, moveItemInArray} from '@angular/cdk/drag-drop';
+import {DarkModeService} from '../../services/dark-mode.service';
 
 
 @Component({
@@ -24,7 +25,12 @@ export class TaskListComponent implements OnInit, OnDestroy {
   tasks: Task[] = [];
   private subscription: Subscription | null = null;
 
-  constructor(private tasksService: TasksService) {}
+  constructor(private tasksService: TasksService,
+              private darkModeService: DarkModeService) {}
+
+  get isDarkMode(): boolean {
+    return this.darkModeService.isDarkMode();
+  }
 
   ngOnInit() {
     this.subscription = this.tasksService.tasks$.subscribe(tasks => {

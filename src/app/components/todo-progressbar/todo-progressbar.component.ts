@@ -2,10 +2,14 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TasksService} from '../../services/tasks.service';
 import {Subscription} from 'rxjs';
 import {Task} from '../../interfaces/task';
+import {NgClass} from '@angular/common';
+import {DarkModeService} from '../../services/dark-mode.service';
 
 @Component({
   selector: 'app-todo-progressbar',
-  imports: [],
+  imports: [
+    NgClass
+  ],
   templateUrl: './todo-progressbar.component.html',
   styleUrl: './todo-progressbar.component.css'
 })
@@ -13,7 +17,12 @@ export class TodoProgressbarComponent implements OnInit, OnDestroy {
   tasks: Task[] = [];
   private subscription: Subscription | null = null;
 
-  constructor(private tasksService: TasksService) {}
+  constructor(private tasksService: TasksService,
+              private darkModeService: DarkModeService) {}
+
+  get isDarkMode(): boolean {
+    return this.darkModeService.isDarkMode();
+  }
 
   ngOnInit() {
     this.subscription = this.tasksService.tasks$.subscribe(tasks => {

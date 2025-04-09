@@ -7,6 +7,12 @@
   margin: 0;
 }
 
+/* With this */
+.footer.dark-theme {
+  color: #fff;
+}
+
+
 .card {
   padding: 2px;
   border-radius: 0;
@@ -142,4 +148,56 @@
   margin: 0.5rem 0;
   overflow: hidden;
   border-top: 1px solid #e9ecef;
+}
+
+/* Apply dark theme to footer content */
+.dark-theme .card {
+  background-color: var(--surface-color);
+  border-color: var(--border-color);
+}
+
+.dark-theme .card,
+.dark-theme .card p,
+.dark-theme .card a,
+.dark-theme .card span {
+  color: var(--text-color);
+}
+
+/* Override specifically for dark theme */
+.dark-theme .left-box .icon-3d {
+  --icon-color: #ffffff; /* White color for dark mode */
+  color: #ffffff !important; /* Use !important to ensure it overrides any other styles */
+}
+
+
+/* Hover effects for dark theme */
+.dark-theme .left-box .icon-3d:hover {
+  transform: scale(1.1) translateY(-3px);
+  color: var(--primary-color) !important;
+  text-shadow: 0 0 10px var(--primary-color),
+  0 0 10px var(--secondary-color);
+}
+
+.dark-theme .right-box .footer_inline {
+  color: var(--text-color);
+}
+
+/* Settings menu in dark mode */
+.dark-theme .settings-menu {
+  background-color: var(--surface-color);
+  border-color: var(--border-color);
+  border-bottom: None;
+}
+
+.dark-theme .settings-menu::after {
+  border-color: var(--surface-color) transparent transparent transparent;
+}
+
+.dark-theme .settings-item {
+  color: var(--text-color);
+}
+
+.dark-theme .settings-item:hover {
+  color: var(--primary-color);
+  background-color: rgba(0, 0, 0, 0.2);
 }

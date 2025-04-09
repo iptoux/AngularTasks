@@ -5,12 +5,15 @@ import {Announcement} from '../../interfaces/announcement';
 import {FormsModule} from '@angular/forms';
 import {SettingsService} from '../../services/settings.service';
 import {Settings} from '../../interfaces/settings'
+import {NgClass} from '@angular/common';
+import {DarkModeService} from '../../services/dark-mode.service';
 
 
 @Component({
   selector: 'app-footer',
   imports: [
-    FormsModule
+    FormsModule,
+    NgClass
   ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
@@ -51,7 +54,13 @@ export class FooterComponent implements OnInit {
 
   constructor(private versionService: VersionService,
               private announcementService: AnnouncementService,
-              private settingsService: SettingsService) {}
+              private settingsService: SettingsService,
+              private darkModeService: DarkModeService) {}
+
+  get isDarkMode(): boolean {
+    return this.darkModeService.isDarkMode();
+  }
+
 
   addAnnouncement(type: string, title: string, description: string): void {
     const announcement: Announcement = {

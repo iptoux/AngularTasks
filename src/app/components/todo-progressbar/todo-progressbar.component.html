@@ -1,6 +1,7 @@
 <div class="col col-xl-10 m-auto mb-5 mt-5">
-  <div class="progress">
+  <div class="progress" [ngClass]="isDarkMode ? 'bg-bar-dark' : ''">
     <div class="progress-bar progress-bar-striped bg-success progress-bar-animated"
+         [ngClass]="isDarkMode ? 'bg-info' : 'bg-success'"
          role="progressbar"
          [attr.aria-valuenow]="progress"
          aria-valuemin="0"

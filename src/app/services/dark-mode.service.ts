@@ -51,8 +51,10 @@ export class DarkModeService implements OnDestroy {
       };
 
       this.settingsService.updateSettings(currentSettings);
+      // The effect will handle enabling/disabling dark mode
     }
   }
+
 
 
   enableDarkMode(): void {
