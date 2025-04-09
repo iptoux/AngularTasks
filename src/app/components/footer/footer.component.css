@@ -70,3 +70,76 @@
 .footer_inline {
     margin-bottom: 0;
 }
+
+.settings-container {
+  position: relative;
+  display: inline-block;
+}
+
+.settings-dropdown {
+  position: static; /* Change from relative to static */
+}
+
+
+
+.icon-3d {
+  cursor: pointer;
+}
+
+.settings-menu {
+  position: absolute;
+  z-index: 1000;
+  min-width: 250px;
+  padding: 0.5rem 0;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.175);
+  bottom: 40px; /* Position above the gear icon */
+  right: -150px; /* Move the menu to the right */
+  transform: none;
+}
+
+
+
+
+
+/* Modify the arrow to point down to the gear icon */
+.settings-menu::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 15px; /* Position the arrow toward the left side */
+  margin-left: 0;
+  border-width: 8px;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+}
+
+
+
+
+.settings-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.settings-item:hover {
+  color: #16181b;
+  text-decoration: none;
+  background-color: #f8f9fa;
+}
+
+.divider {
+  height: 0;
+  margin: 0.5rem 0;
+  overflow: hidden;
+  border-top: 1px solid #e9ecef;
+}
