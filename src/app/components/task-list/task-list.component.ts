@@ -5,6 +5,7 @@ import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { Subscription } from 'rxjs';
 import {CdkDrag, CdkDragDrop, CdkDragPlaceholder, CdkDropList, moveItemInArray} from '@angular/cdk/drag-drop';
 import {DarkModeService} from '../../services/dark-mode.service';
+import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -15,7 +16,8 @@ import {DarkModeService} from '../../services/dark-mode.service';
     NgClass,
     CdkDrag,
     CdkDropList,
-    CdkDragPlaceholder
+    CdkDragPlaceholder,
+    NgbTooltip
   ],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
