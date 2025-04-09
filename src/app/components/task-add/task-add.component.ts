@@ -4,8 +4,7 @@ import { TasksService} from '../../services/tasks.service';
 import {FormsModule} from '@angular/forms';
 import {DarkModeService} from '../../services/dark-mode.service';
 import {NgClass} from '@angular/common';
-import {NgbModal, NgbTimepicker, NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
-import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbDatepickerModule, NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 
 
 
