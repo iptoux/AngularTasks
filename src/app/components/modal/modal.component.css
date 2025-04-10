@@ -1,0 +1,19 @@
+.modal-header-success {
+  background-color: var(--bs-success);
+  color: white;
+}
+
+.modal-header-error {
+  background-color: var(--bs-danger);
+  color: white;
+}
+
+.modal-header-info {
+  background-color: var(--bs-info);
+  color: white;
+}
+
+.modal-header-confirmation {
+  background-color: var(--bs-danger);
+  color: white;
+}
