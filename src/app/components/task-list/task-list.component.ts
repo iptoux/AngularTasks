@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { TasksService } from '../../services/tasks.service';
-import { Task } from '../../interfaces/task';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {TasksService} from '../../services/tasks.service';
+import {Task} from '../../interfaces/task';
 import {DatePipe, NgClass, NgForOf, NgIf} from '@angular/common';
-import { Subscription } from 'rxjs';
+import {Subscription} from 'rxjs';
 import {CdkDrag, CdkDragDrop, CdkDragPlaceholder, CdkDropList, moveItemInArray} from '@angular/cdk/drag-drop';
 import {DarkModeService} from '../../services/dark-mode.service';
 import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
@@ -61,9 +61,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     const maxTimeSpan = 7 * 24 * 60 * 60 * 1000;
 
     // Calculate percentage (capped at 100%)
-    const percentage = Math.min(100, Math.round((totalTimeSpan / maxTimeSpan) * 100));
-
-    return percentage;
+    return Math.min(100, Math.round((totalTimeSpan / maxTimeSpan) * 100));
   }
 
 
