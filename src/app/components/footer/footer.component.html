@@ -120,6 +120,13 @@
                     </div>
 
                     <div class="divider"></div>
+                    <!-- Remove user Data -->
+                    <div class="settings-item toggle-container d-flex justify-content-between align-items-center">
+                      <span>Remove user data</span>
+                      <div class="form-check">
+                        <button class="btn btn-outline-danger" (click)="removeUserData()"><i class="bi bi-trash"></i></button>
+                      </div>
+                    </div>
                     <a class="settings-item" (click)="showHelpModal()"
                        ngbTooltip="Click to show help"
                        placement="right"

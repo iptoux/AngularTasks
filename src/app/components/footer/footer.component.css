@@ -139,7 +139,8 @@
 .settings-item {
   display: block;
   width: 100%;
-  padding: 0.25rem 1.5rem;
+  padding: 0.25rem 0.25rem 0.25rem 1.0rem;
+  font-size: 0.875rem;
   clear: both;
   text-align: inherit;
   white-space: nowrap;
@@ -236,4 +237,27 @@
 .dark-theme .settings-item:hover {
   color: var(--primary-color);
   background-color: rgba(0, 0, 0, 0.2);
+}
+
+.btn-outline-danger {
+  color: #4c8bf5;
+  border-color: #4c8bf5;
+  border-radius: 0.15rem;
+  padding: 0.25rem 0.5rem;
+  transition: all 0.225s ease-in-out;
+  margin-right: 4px;
+}
+
+.btn-outline-danger:hover i {
+  color: #000000;
+  transition: all 0.225s ease-in-out;
+}
+
+.btn-outline-danger:hover {
+  background-color: #4c8bf5;
+  border-color: #4c8bf5;
+  color: darkred;
+  border-radius: 0.35rem;
+  padding: 0.25rem 0.5rem;
+  transition: all 0.225s ease-in-out;
 }

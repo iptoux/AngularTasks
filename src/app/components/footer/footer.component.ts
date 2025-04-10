@@ -146,7 +146,9 @@ export class FooterComponent implements OnInit {
     }
   }
 
-
+  removeUserData() {
+    console.log('Remove user data');
+  }
 
   ngOnInit(): void {
     // Get current version
