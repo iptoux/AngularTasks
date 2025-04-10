@@ -1,5 +1,5 @@
 <div class="modal-header" [ngClass]="'modal-header-' + type">
-  <h4 class="modal-title">{{ title }}</h4>
+  <h4 class="modal-title d-flex gap-3 align-items-center"><i class="bi" [ngClass]="type === 'error' ? 'bi-exclamation-circle' : 'bi-info-circle'"></i>{{ title }}</h4>
   @if (showCloseButton) {
     <button type="button" class="btn-close"
             [ngClass]="{'btn-close-white': type !== 'info'}"
@@ -8,21 +8,24 @@
     </button>
   }
 </div>
-<div class="modal-body">
-  <p [innerHTML]="message"></p>
-</div>
-<div class="modal-footer">
-  @if (showConfirmButtons) {
-    <button type="button" class="btn btn-secondary" (click)="confirm('no')">No</button>
-    <button type="button" class="btn btn-primary" (click)="confirm('yes')">Yes</button>
-  } @else {
-    <button type="button" class="btn {{buttonClass}}"
-            [ngClass]="type === 'info' ? 'btn-info' : 'btn-call-to-action'"
-            (click)="close()">OK</button>
-  }
+<div class="fade-line-left-to-right"></div>
+<div class="modal-body-footer-container">
+  <div class="modal-body" [ngClass]="'modal-body-' + type">
+    <p [innerHTML]="message"></p>
+  </div>
+  <div class="modal-footer" [ngClass]="'modal-footer-' + type">
+    @if (showConfirmButtons) {
+      <button type="button" class="btn btn-secondary" (click)="confirm('no')">No</button>
+      <button type="button" class="btn btn-primary" (click)="confirm('yes')">Yes</button>
+    } @else {
+      <button type="button" class="btn {{buttonClass}}"
+              [ngClass]="type === 'info' ? 'btn-info' : 'btn-call-to-action'"
+              (click)="close()">OK</button>
+    }
 
-  <!-- Standard OK button for other modal types -->
-  <ng-template #standardButtons>
-    <button type="button" class="btn {{buttonClass}}" [ngClass]="type === 'info' ? 'btn-info' : 'btn-call-to-action'" (click)="close()">OK</button>
-  </ng-template>
+    <!-- Standard OK button for other modal types -->
+    <ng-template #standardButtons>
+      <button type="button" class="btn {{buttonClass}}" [ngClass]="type === 'info' ? 'btn-info' : 'btn-call-to-action'" (click)="close()">OK</button>
+    </ng-template>
+  </div>
 </div>

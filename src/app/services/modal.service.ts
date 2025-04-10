@@ -19,7 +19,7 @@ export class ModalService {
   }
 
   showErrorModal(title: string, message: string, options?: NgbModalOptions): void {
-    const defaultOptions: NgbModalOptions = { centered: true };
+    const defaultOptions: NgbModalOptions = { centered: true, windowClass: 'success-modal', backdropClass:'custom-backdrop',modalDialogClass: 'modal-success', keyboard: false};
     const modalOptions = { ...defaultOptions, ...options };
 
     const modalRef = this.modalService.open(ModalComponent, modalOptions);
