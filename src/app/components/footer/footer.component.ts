@@ -79,7 +79,6 @@ export class FooterComponent implements OnInit {
     this.announcementService.addAnnouncement(announcement);
   }
 
-
   showHelpModal() {
     this.modalService.showInfoModal(
       "Help",
@@ -103,20 +102,17 @@ export class FooterComponent implements OnInit {
     console.log('Announcements toggled:', this.announcementsEnabled);
   }
 
-
   // Add this method
   toggleCheckForUpdates() {
     this.updateSettings({ checkForUpdates: this.checkForUpdatesEnabled });
     console.log('Check for updates toggled:', this.checkForUpdatesEnabled);
   }
 
-
   // Add this method
   toggleDarkMode() {
     this.updateSettings({ darkMode: this.darkModeEnabled });
     console.log('Dark mode toggled:', this.darkModeEnabled);
   }
-
 
   // Add this method
   toggleNotifications() {
@@ -189,18 +185,18 @@ export class FooterComponent implements OnInit {
       this.ProgressbarEnabled = settings.showProgressBar ?? true;
     }
 
-    // Check for updates
-    this.versionService.checkForUpdates().subscribe(result => {
-      if (result.hasUpdate) {
-        console.log(`Update available! Current: ${result.currentVersion}, Latest: ${result.latestVersion}`);
-        this.updateAvailable = true;
-        this.latestVersion = result.latestVersion;
-        this.addUpdateAnnouncement()
-      } else {
-        console.log('No updates available');
-      }
-    });
-
+    if(this.checkForUpdatesEnabled) {
+      // Check for updates
+      this.versionService.checkForUpdates().subscribe(result => {
+        if (result.hasUpdate) {
+          console.log(`Update available! Current: ${result.currentVersion}, Latest: ${result.latestVersion}`);
+          this.updateAvailable = true;
+          this.latestVersion = result.latestVersion;
+          this.addUpdateAnnouncement()
+        } else {
+          console.log('No updates available');
+        }
+      });
+    }
   }
-
 }
