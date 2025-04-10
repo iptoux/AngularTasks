@@ -9,6 +9,7 @@ import {NgClass} from '@angular/common';
 import {DarkModeService} from '../../services/dark-mode.service';
 import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 import {ModalService} from '../../services/modal.service';
+import {TasksService} from '../../services/tasks.service';
 
 
 @Component({
@@ -59,7 +60,8 @@ export class FooterComponent implements OnInit {
               private announcementService: AnnouncementService,
               private settingsService: SettingsService,
               private darkModeService: DarkModeService,
-              private modalService: ModalService) {}
+              private modalService: ModalService,
+              private tasksService: TasksService) {}
 
   get isDarkMode(): boolean {
     return this.darkModeService.isDarkMode();
@@ -153,14 +155,20 @@ export class FooterComponent implements OnInit {
     ).then(confirmed => {
       if (confirmed) {
         console.log('User confirmed deletion');
-        this.modalService.showSuccessModal(
-          "User Data Deleted",
-          "All your user data has been deleted successfully.")
+        this.tasksService.clearAllTasks();
+        localStorage.removeItem('AGTASKS_SETTINGS')
+        this.addAnnouncement(
+          'success',
+          'Success!',
+          'All your user data has been deleted.'
+        );
       } else {
         console.log('User canceled deletion');
-        this.modalService.showInfoModal(
-          "Deletion Canceled",
-          "Deletion of your user data has been canceled.")
+        this.addAnnouncement(
+          'error',
+          'Deletion Canceled',
+          'Deletion of your user data has been canceled.'
+        );
       }
     });
   }

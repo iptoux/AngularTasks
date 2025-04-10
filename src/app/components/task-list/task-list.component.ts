@@ -50,7 +50,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
     // If the due date is in the past, return 0
     if (dueDateObj < now) {
-      console.log("Due date is in the past");
       return 0;
     }
 
@@ -63,7 +62,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
     // Calculate percentage (capped at 100%)
     const percentage = Math.min(100, Math.round((totalTimeSpan / maxTimeSpan) * 100));
-    console.log(percentage);
 
     return percentage;
   }
