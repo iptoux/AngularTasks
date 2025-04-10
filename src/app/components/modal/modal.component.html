@@ -1,0 +1,10 @@
+<div class="modal-header" [ngClass]="{'bg-success text-white': type === 'success', 'bg-danger text-white': type === 'error', 'bg-info text-white': type === 'info'}">
+  <h4 class="modal-title">{{ title }}</h4>
+  <button *ngIf="showCloseButton" type="button" class="btn-close" [ngClass]="{'btn-close-white': type !== 'info'}" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <p [innerHTML]="message"></p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn {{buttonClass}}" [ngClass]="type === 'info' ? 'btn-info' : 'btn-call-to-action'" (click)="close()">OK</button>
+</div>
