@@ -2,3 +2,9 @@
   min-width: 380px;
   position: relative;
 }
+.progress-placeholder {
+  transition: all 0.55s ease-in-out;
+}
+.progress-box {
+  transition: all 0.55s ease-in-out;
+}

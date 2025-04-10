@@ -53,3 +53,66 @@
   box-shadow: 0 0 0 0.25rem rgba(187, 134, 252, 0.25); /* Glow that matches primary color */
 }
 
+/* Style für das datetime-local Feld */
+input[type="datetime-local"] {
+  border-radius: 0;
+  color: #000;
+}
+
+/* Style für datetime-local im Dark Mode */
+.dark-theme input[type="datetime-local"] {
+  background-color: #1a1a2e;
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+/* Icon-Button für das Datumsfeld im Dark Mode */
+.dark-theme .input-group .btn {
+  background-color: transparent;
+  border-color: var(--border-color);
+  border-left: 0;
+  color: white;
+}
+
+.dark-theme .input-group .btn:hover {
+  background-color: rgba(148, 99, 247, 0.1);
+  border-color: #9463f7;
+}
+
+.dark-theme .input-group .btn:hover {
+  background-color: #4c8bf5;
+}
+
+.dark-theme .input-group i.datepicker {
+  color: var(--text-color);
+}
+
+/* Versteckt das Kalender-Icon in datetime-local inputs */
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+/* Entfernt den extra Padding/Space wo das Icon normalerweise ist */
+input[type="datetime-local"] {
+  padding-right: 0.75rem; /* Normaler Padding, nicht der extra für das Icon */
+}
+
+/* Optional: Macht den Cursor zum Pointer, damit es klickbar aussieht */
+.datepicker {
+  cursor: pointer;
+}
+
+/* Versteckt das Kalender-Icon in datetime-local inputs */
+.dark-theme input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+/* Entfernt den extra Padding/Space wo das Icon normalerweise ist */
+.dark-theme input[type="datetime-local"] {
+  padding-right: 0.75rem; /* Normaler Padding, nicht der extra für das Icon */
+}
+
+/* Optional: Macht den Cursor zum Pointer, damit es klickbar aussieht */
+.dark-theme .datepicker {
+  cursor: pointer;
+}

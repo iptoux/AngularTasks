@@ -7,13 +7,16 @@ import {SettingsService} from '../../services/settings.service';
 import {Settings} from '../../interfaces/settings'
 import {NgClass} from '@angular/common';
 import {DarkModeService} from '../../services/dark-mode.service';
+import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
+import {ModalService} from '../../services/modal.service';
 
 
 @Component({
   selector: 'app-footer',
   imports: [
     FormsModule,
-    NgClass
+    NgClass,
+    NgbTooltip
   ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css'
@@ -55,7 +58,8 @@ export class FooterComponent implements OnInit {
   constructor(private versionService: VersionService,
               private announcementService: AnnouncementService,
               private settingsService: SettingsService,
-              private darkModeService: DarkModeService) {}
+              private darkModeService: DarkModeService,
+              private modalService: ModalService) {}
 
   get isDarkMode(): boolean {
     return this.darkModeService.isDarkMode();
@@ -73,6 +77,13 @@ export class FooterComponent implements OnInit {
     this.announcementService.addAnnouncement(announcement);
   }
 
+
+  showHelpModal() {
+    this.modalService.showInfoModal(
+      "Help",
+      "This is a simple Help Modal",
+    )
+  }
 
   addUpdateAnnouncement(): void {
     this.addAnnouncement(
