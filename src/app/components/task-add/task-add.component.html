@@ -4,7 +4,13 @@
       <p>Add a new Task</p>
       <form class="d-flex gap-3" (ngSubmit)="addTask(taskInput.value); taskInput.value=''; $event.preventDefault()">
         <div class="form-outline flex-fill">
-          <input #taskInput type="text" id="taskAdd" class="form-control" placeholder="Enter task description..." />
+          <input #taskInput
+                 type="text"
+                 id="taskAdd"
+                 name="taskDescription"
+                 class="form-control"
+                 placeholder="Enter task description..."
+                 required />
         </div>
         <!-- Datepicker mit Icon -->
         <div class="input-group" style="width: 20%;margin-left: 10px;">
