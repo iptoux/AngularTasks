@@ -1,10 +1,28 @@
-<div class="modal-header" [ngClass]="{'bg-success text-white': type === 'success', 'bg-danger text-white': type === 'error', 'bg-info text-white': type === 'info'}">
+<div class="modal-header" [ngClass]="'modal-header-' + type">
   <h4 class="modal-title">{{ title }}</h4>
-  <button *ngIf="showCloseButton" type="button" class="btn-close" [ngClass]="{'btn-close-white': type !== 'info'}" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+  @if (showCloseButton) {
+    <button type="button" class="btn-close"
+            [ngClass]="{'btn-close-white': type !== 'info'}"
+            aria-label="Close"
+            (click)="activeModal.dismiss('Cross click')">
+    </button>
+  }
 </div>
 <div class="modal-body">
   <p [innerHTML]="message"></p>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn {{buttonClass}}" [ngClass]="type === 'info' ? 'btn-info' : 'btn-call-to-action'" (click)="close()">OK</button>
+  @if (showConfirmButtons) {
+    <button type="button" class="btn btn-secondary" (click)="confirm('no')">No</button>
+    <button type="button" class="btn btn-primary" (click)="confirm('yes')">Yes</button>
+  } @else {
+    <button type="button" class="btn {{buttonClass}}"
+            [ngClass]="type === 'info' ? 'btn-info' : 'btn-call-to-action'"
+            (click)="close()">OK</button>
+  }
+
+  <!-- Standard OK button for other modal types -->
+  <ng-template #standardButtons>
+    <button type="button" class="btn {{buttonClass}}" [ngClass]="type === 'info' ? 'btn-info' : 'btn-call-to-action'" (click)="close()">OK</button>
+  </ng-template>
 </div>
