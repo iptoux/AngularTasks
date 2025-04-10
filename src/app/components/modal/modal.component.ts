@@ -13,9 +13,12 @@ export class ModalComponent implements OnInit
 {
   @Input() title: string = '';
   @Input() message: string = '';
-  @Input() type: 'success' | 'error' | 'info' = 'info';
+  @Input() type: 'success' | 'error' | 'info' | 'confirmation' = 'info';  // Updated to include 'confirmation'
   @Input() showCloseButton: boolean = true;
   @Input() buttonClass: string = '';
+  @Input() showConfirmButtons: boolean = false;
+
+
 
 
   constructor(public activeModal: NgbActiveModal) { }
@@ -25,6 +28,10 @@ export class ModalComponent implements OnInit
 
   close(): void {
     this.activeModal.close('close');
+  }
+
+  confirm(result: 'yes' | 'no'): void {
+    this.activeModal.close(result);
   }
 
 }

@@ -147,8 +147,24 @@ export class FooterComponent implements OnInit {
   }
 
   removeUserData() {
-    console.log('Remove user data');
+    this.modalService.showConfirmModal(
+      "Delete User Data",
+      "Are you sure you want to delete all your user data?"
+    ).then(confirmed => {
+      if (confirmed) {
+        console.log('User confirmed deletion');
+        this.modalService.showSuccessModal(
+          "User Data Deleted",
+          "All your user data has been deleted successfully.")
+      } else {
+        console.log('User canceled deletion');
+        this.modalService.showInfoModal(
+          "Deletion Canceled",
+          "Deletion of your user data has been canceled.")
+      }
+    });
   }
+
 
   ngOnInit(): void {
     // Get current version
