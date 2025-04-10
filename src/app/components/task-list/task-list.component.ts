@@ -6,6 +6,7 @@ import {Subscription} from 'rxjs';
 import {CdkDrag, CdkDragDrop, CdkDragPlaceholder, CdkDropList, moveItemInArray} from '@angular/cdk/drag-drop';
 import {DarkModeService} from '../../services/dark-mode.service';
 import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
+import {ClockComponent} from '../clock/clock.component';
 
 
 @Component({
@@ -18,7 +19,8 @@ import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
     CdkDropList,
     CdkDragPlaceholder,
     NgbTooltip,
-    DatePipe
+    DatePipe,
+    ClockComponent
   ],
   templateUrl: './task-list.component.html',
   styleUrl: './task-list.component.css'
@@ -27,6 +29,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   tasks: Task[] = [];
   private subscription: Subscription | null = null;
+
 
   constructor(private tasksService: TasksService,
               private darkModeService: DarkModeService) {}
@@ -58,14 +61,11 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
     // Limit the maximum timespan to 7 days (604800000 ms)
     // This makes the progress bar more meaningful for longer tasks
-    const maxTimeSpan = 7 * 24 * 60 * 60 * 1000;
+    const maxTimeSpan = 30 * 24 * 60 * 60 * 1000;
 
     // Calculate percentage (capped at 100%)
     return Math.min(100, Math.round((totalTimeSpan / maxTimeSpan) * 100));
   }
-
-
-
 
   ngOnInit() {
     this.subscription = this.tasksService.tasks$.subscribe(tasks => {
@@ -77,6 +77,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+
   }
 
   removeTask(id: number): void {

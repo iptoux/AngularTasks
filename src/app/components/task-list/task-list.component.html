@@ -1,6 +1,10 @@
 <div class="col col-xl-10 m-auto mt-5" [ngClass]="isDarkMode ? 'dark-theme' : ''">
   <div class="card">
-    <div class="card-header text-center">Your Task list</div>
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <div></div>
+      <div class="text-center">Your Task list</div>
+      <div class="d-flex gap-2"><app-clock></app-clock></div>
+    </div>
     <div class="card-body p-4">
 
       <form ngbTooltip="Drag to reorder"
