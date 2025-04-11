@@ -56,6 +56,23 @@ body.dark-theme {
     background-color: rgba(12, 125, 154, 0.75); /* Dunklere Variante für Dark Mode */
   }
 
+  li > .badge-danger {
+    background-color: rgba(255, 21, 83, 0.75); /* Dunklere Variante für Dark Mode */
+    border-radius: 0.15rem;
+    transition: all 0.225s ease-in-out;
+    animation: blink 3s infinite;
+  }
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1; /* Völlig sichtbar */
+  }
+  50% {
+    opacity: 0; /* Unsichtbar */
+  }
+
+}
+
   li > input[type="checkbox"] {
     border-radius: 0;
   }
