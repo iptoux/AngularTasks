@@ -250,3 +250,11 @@ li > .badge-danger {
   padding: 20px;
   border: 1px dashed #662694;
 }
+
+.dark-theme form > ul > li > input[type="checkbox"].form-check-input {
+  background-color: #1a1a2e; /* Dark background for input */
+  color: var(--text-color); /* White text */
+  border-color: var(--border-color);
+  border-radius: 0;
+  margin-bottom: 4px;
+}
