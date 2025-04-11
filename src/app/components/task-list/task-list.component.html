@@ -32,7 +32,7 @@
                       placement="left"
                       tooltipClass="custom-tooltip"
                       [openDelay]="200"
-                      [closeDelay]="100">&lt; 24h
+                      [closeDelay]="100">&lt; {{ this.calculateRemainingHours(task.dueDate) }}h
               </span>
             }
             <span class="badge badge-pill badge-info d-flex gap-2" [style.position]="'relative'" [style.z-index]="'1'"
