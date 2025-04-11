@@ -33,7 +33,6 @@ export class ModalService {
     }
   }
 
-
   showInfoModal(title: string, message: string, options?: NgbModalOptions): void {
     const defaultOptions: NgbModalOptions = { centered: true };
     const modalOptions = { ...defaultOptions, ...options };
@@ -44,15 +43,20 @@ export class ModalService {
     modalRef.componentInstance.type = 'info';
   }
 
-  showConfirmModal(title: string, message: string, options?: NgbModalOptions): Promise<boolean> {
+  showConfirmModal(title: string, message: string, extraOptions?: {showCloseButton?: boolean}, modalOptions?: NgbModalOptions): Promise<boolean> {
     const defaultOptions: NgbModalOptions = { centered: true };
-    const modalOptions = { ...defaultOptions, ...options };
+    const finalModalOptions = {...defaultOptions, ...modalOptions};
 
-    const modalRef = this.modalService.open(ModalComponent, modalOptions);
+    const modalRef = this.modalService.open(ModalComponent, finalModalOptions);
     modalRef.componentInstance.title = title;
     modalRef.componentInstance.message = message;
     modalRef.componentInstance.type = 'confirmation';
     modalRef.componentInstance.showConfirmButtons = true;
+    modalRef.componentInstance.showCloseButton = false;
+
+    if (extraOptions && extraOptions.showCloseButton !== undefined) {
+      modalRef.componentInstance.showCloseButton = extraOptions.showCloseButton;
+    }
 
     return modalRef.result.then(
       (result) => result === 'yes',

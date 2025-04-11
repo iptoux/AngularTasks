@@ -7,12 +7,18 @@
   border-bottom-right-radius: 0.15rem;
 }
 
+.modal-footer-confirmation {
+  border-top: 0;
+  border-bottom-left-radius: 0.15rem;
+  border-bottom-right-radius: 0.15rem;
+}
+
 .modal-header-success {
   background-color: var(--bs-success);
   color: white;
 }
 
-.modal-header-error {
+.modal-header-error, .modal-header-confirmation {
   border-top-left-radius: 0.15rem;
   border-top-right-radius: 0.15rem;
   border-bottom: 0;
@@ -24,12 +30,6 @@
   background-color: var(--bs-info);
   color: white;
 }
-
-.modal-header-confirmation {
-  background-color: var(--bs-danger);
-  color: white;
-}
-
 
 .modal-body-footer-container {
   padding: 0.525rem;
