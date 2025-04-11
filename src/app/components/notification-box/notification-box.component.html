@@ -1,0 +1,11 @@
+@if (getLastNotification() ; as notification) {
+  <div class="col-lg-10 col-md-12 col col-xl-10 m-auto mb-5 mt-5 notification-box">
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+      <strong><i class="bi bi-info-circle-fill"></i> {{ notification?.type }}</strong> {{ notification?.message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" (click)="removeLastNotification()"></button>
+    </div>
+  </div>
+} @else {
+  <div #noNotification></div>
+}
+
