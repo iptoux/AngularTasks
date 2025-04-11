@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {ModalComponent} from '../components/modal/modal.component';
 import {NgbModal, NgbModalOptions} from '@ng-bootstrap/ng-bootstrap';
+import {OptionsModalComponent} from '../components/options-modal/options-modal.component';
+import {Task} from '../interfaces/task';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,6 @@ export class ModalService {
     modalRef.componentInstance.message = message;
     modalRef.componentInstance.type = 'success';
   }
-
 
   showErrorModal(title: string, message: string, extraOptions?: {showCloseButton?: boolean}, modalOptions?: NgbModalOptions): void {
     const defaultOptions: NgbModalOptions = { centered: true, windowClass: 'success-modal', backdropClass:'custom-backdrop',modalDialogClass: 'modal-success', keyboard: false};
@@ -62,6 +63,16 @@ export class ModalService {
       (result) => result === 'yes',
       () => false // Handles dismiss cases (like clicking outside the modal)
     );
+  }
+
+  showOptionsModal(task: Task, modalOptions?: NgbModalOptions): Promise<Task> {
+    const defaultOptions: NgbModalOptions = { centered: true };
+    const finalModalOptions = {...defaultOptions, ...modalOptions};
+
+    const modalRef = this.modalService.open(OptionsModalComponent, finalModalOptions);
+    modalRef.componentInstance.task = task;
+
+    return modalRef.result;
   }
 
 }
