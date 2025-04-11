@@ -151,6 +151,23 @@ li > .badge-danger {
 .dark-theme {
   color: white;
 
+  .showOptionsGear {
+    color: #edff4d;
+    cursor: pointer;
+  }
+  .showOptionsGear:hover {
+    color: #4dff6b;
+  }
+
+  .showOptionsGear-disabled {
+    color: #666;
+    cursor: pointer;
+  }
+  .showOptionsGear-disabled:hover {
+    color: #666;
+  }
+
+
   .card-body {
     max-height: 325px;
     overflow-y: auto;

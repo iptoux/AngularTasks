@@ -7,6 +7,7 @@ import {CdkDrag, CdkDragDrop, CdkDragPlaceholder, CdkDropList, moveItemInArray} 
 import {DarkModeService} from '../../services/dark-mode.service';
 import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 import {ClockComponent} from '../clock/clock.component';
+import {ModalService} from '../../services/modal.service';
 
 
 @Component({
@@ -32,12 +33,25 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
 
   constructor(private tasksService: TasksService,
-              private darkModeService: DarkModeService) {}
+              private darkModeService: DarkModeService,
+              private modalService: ModalService) {}
 
   get isDarkMode(): boolean {
     return this.darkModeService.isDarkMode();
   }
 
+  showOptionsModal() {
+    console.log("Show options modal");
+    this.modalService.showInfoModal(
+      "Options",
+      "This is the options modal",
+      {
+        centered: true,
+      }
+    );
+
+    return false;
+  }
 
   /**
    * Calculates the number of hours remaining until the due date

@@ -12,7 +12,13 @@
           <li *ngFor="let task of tasks; index as id" cdkDrag
               [style.position]="'relative'"
               [style.overflow]="'hidden'">
-
+            <span class="d-flex gap-2" [style.position]="'relative'" [style.z-index]="'1'">
+              <i class="bi bi-gear"
+                 (click)=" showOptionsModal()"
+                 [ngClass]="task.options ? 'showOptionsGear' : 'showOptionsGear-disabled'"
+              >
+              </i>
+            </span>
             <!-- Bestehende Elemente ohne Wrapper -->
             <input type="checkbox" id="{{task.id}}" [checked]="task.completed" (change)="updateTaskStatus(task)"
                    [style.position]="'relative'" [style.z-index]="'1'" />

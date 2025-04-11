@@ -89,12 +89,6 @@ export class TasksService {
     this.applyFilter();
   }
 
-  updateTasksOrder(updatedTasks: Task[]): void {
-    this.tasks = updatedTasks;
-    this.saveTasks();
-    this.applyFilter();
-  }
-
   updateTasksOrderForFilter(filteredTasks: Task[]): void {
     if (this.filterType === -1) {
       this.tasks = filteredTasks;
@@ -110,7 +104,6 @@ export class TasksService {
     this.saveTasks();
     this.applyFilter();
   }
-
 
   getFilterType() {
     return this.filterType;
