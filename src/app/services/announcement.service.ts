@@ -5,7 +5,7 @@ import {Announcement} from '../interfaces/announcement';
   providedIn: 'root'
 })
 export class AnnouncementService {
-  private storageKey = 'announcements';
+  private storageKey = 'AGTASKS_ANNOUNCEMENTS';
 
   // Create signals
   private announcements = signal<Announcement[]>([]);

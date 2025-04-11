@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, inject, OnInit} from '@angular/core';
 import {VersionService} from '../../services/version.service';
 import {AnnouncementService} from '../../services/announcement.service';
 import {Announcement} from '../../interfaces/announcement';
@@ -10,6 +10,7 @@ import {DarkModeService} from '../../services/dark-mode.service';
 import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 import {ModalService} from '../../services/modal.service';
 import {TasksService} from '../../services/tasks.service';
+import {NotificationService} from '../../services/notification.service';
 
 
 @Component({
@@ -33,6 +34,7 @@ export class FooterComponent implements OnInit {
   announcementsEnabled = true;
   checkForUpdatesEnabled = true;
 
+  notificationService = inject(NotificationService)
 
   toggleSettingsMenu(event: Event): void {
     event.stopPropagation();
@@ -153,11 +155,15 @@ export class FooterComponent implements OnInit {
         console.log('User confirmed deletion');
         this.tasksService.clearAllTasks();
         localStorage.removeItem('AGTASKS_SETTINGS')
-        this.addAnnouncement(
-          'success',
+        localStorage.removeItem('AGTASKS_ANNOUNCEMENTS')
+        this.notificationService.addNotification(
           'Success!',
-          'All your user data has been deleted.'
-        );
+          'All your user data has been deleted.')
+        // this.addAnnouncement(
+        //   'success',
+        //   'Success!',
+        //   'All your user data has been deleted.'
+        // );
       } else {
         console.log('User canceled deletion');
         this.addAnnouncement(

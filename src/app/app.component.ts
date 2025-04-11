@@ -8,10 +8,11 @@ import {FooterComponent} from './components/footer/footer.component';
 import {AnnouncementBoxComponent} from './components/announcement-box/announcement-box.component';
 import {DarkModeService} from './services/dark-mode.service';
 import {SettingsService} from './services/settings.service';
+import {NotificationBoxComponent} from './components/notification-box/notification-box.component';
 
 @Component({
   selector: 'app-root',
-  imports: [HeaderComponent, FilterControlsComponent, TaskAddComponent, TaskListComponent, TodoProgressbarComponent, FooterComponent, AnnouncementBoxComponent],
+  imports: [HeaderComponent, FilterControlsComponent, TaskAddComponent, TaskListComponent, TodoProgressbarComponent, FooterComponent, AnnouncementBoxComponent, NotificationBoxComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
