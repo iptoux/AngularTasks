@@ -77,11 +77,15 @@ export class TasksService {
   updateTask(updatedTask: Task): void {
     const taskIndex = this.tasks.findIndex(task => task.id === updatedTask.id);
     if (taskIndex !== -1) {
-      this.tasks[taskIndex].completed = updatedTask.completed;
+      // Komplettes Objekt aktualisieren statt nur completed
+      this.tasks[taskIndex] = {
+        ...updatedTask
+      };
       this.saveTasks();
       this.applyFilter();
     }
   }
+
 
   clearAllTasks(): void {
     this.tasks = [];
