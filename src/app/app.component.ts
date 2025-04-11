@@ -30,6 +30,10 @@ export class AppComponent {
     return this.settings()[0]?.showProgressBar || false
   }
 
+  get showNotifications():boolean {
+    return this.settings()[0]?.showNotifications || false
+  }
+
   constructor(private darkModeService: DarkModeService) {}
 
   toggleDarkMode(): void {
