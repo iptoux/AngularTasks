@@ -13,13 +13,11 @@
   // Other styles specific to dark mode
 }
 
-// Apply theme colors to elements
+
 .dark-theme {
   background-image: radial-gradient(circle at 50% 50%,#020514,#040718,#06091b,#080b1e,#0a0d21,#0c0f24,#0d1128,#0e122b);
   color: var(--text-color)!important;
 
-
-  // Add specific component styles for dark mode
   .card, .modal {
     background-color: var(--surface-color);
     border-color: var(--border-color);
@@ -34,33 +32,6 @@
     border-color: var(--primary-color);
   }
 
-  // Add more component-specific dark styles as needed
-}
-.dark-theme li.cdk-drag-preview {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  padding: 4px;
-  opacity: 0.8;
-  background-color: #4c52c8!important;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.dark-theme li.cdk-drag-animating {
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-}
-
-.dark-theme li.cdk-drag-preview > .close-btn {
-  margin-left: auto;
-  border: 0;
-  background-color: transparent;
-  color: #c6b8b8;
-  font-size: 18px;
-  cursor: pointer;
-  padding: 0 8px;
-}
-
-.dark-theme {
   li {
     list-style: none;
     display: flex;
@@ -72,6 +43,14 @@
   li > label.completed-task {
     text-decoration: line-through;
     flex-grow: 1;
+  }
+
+  li > label.pending-task {
+    flex-grow: 1;
+  }
+
+  li > .badge-info {
+    background-color: rgba(12, 125, 154, 0.75); /* Dunklere Variante für Dark Mode */
   }
 
   li > input[type="checkbox"] {
@@ -87,10 +66,17 @@
     cursor: pointer;
     padding: 0 8px;
   }
+
   li > .close-btn:hover {
     color: #ff4d4f;
     font-weight: bold;
   }
+
+  li:active {
+    background-color: transparent;
+    border-radius: 0.15rem;
+  }
+
   .badge {
     display: inline-block;
     padding: .25em .4em;
@@ -114,9 +100,33 @@
     color: #fff;
     background-color: #9463f7;
   }
-}
 
-.dark-theme .modal-content {
-  background: transparent;
-  color: var(--text-color);
+  li.cdk-drag-preview {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    opacity: 0.8;
+    background-color: #4c52c8!important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  li.cdk-drag-animating {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  li.cdk-drag-preview > .close-btn {
+    margin-left: auto;
+    border: 0;
+    background-color: transparent;
+    color: #c6b8b8;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 8px;
+  }
+
+  .modal-content {
+    background: transparent;
+    color: var(--text-color);
+  }
 }

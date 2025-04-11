@@ -11,3 +11,44 @@ modal-content {
   background: transparent;
   color: var(--text-color);
 }
+
+li > label.pending-task {
+  flex-grow: 1;
+}
+
+li > label.completed-task {
+  text-decoration: line-through;
+  flex-grow: 1;
+}
+
+li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px;
+}
+
+li:active {
+  background-color: transparent;
+  border-radius: 0.15rem;
+}
+
+li > .badge-info {
+  color: #fff;
+  background-color: #17a2b8;
+}
+
+li > .close-btn {
+  margin-left: auto;
+  border: 0;
+  background-color: transparent;
+  color: #666;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 8px;
+}
+li > .close-btn:hover {
+  color: #ff4d4f;
+  font-weight: bold;
+}

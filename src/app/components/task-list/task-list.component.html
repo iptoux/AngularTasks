@@ -16,32 +16,23 @@
           <li *ngFor="let task of tasks; index as id" cdkDrag
               [style.position]="'relative'"
               [style.overflow]="'hidden'">
-            <!-- Hintergrund-Fortschrittsbalken -->
-            <div [style.position]="'absolute'"
-                 [style.left]="'0'"
-                 [style.top]="'0'"
-                 [style.height]="'100%'"
-                 [style.width.%]="calculateTimeLeftPercentage(task.dueDate) || 0"
-                 [style.opacity]="'0.2'"
-                 [ngClass]="{'low-time-bg': calculateTimeLeftPercentage(task.dueDate) <= 25,
-                  'medium-time-bg': calculateTimeLeftPercentage(task.dueDate) >= 25 && calculateTimeLeftPercentage(task.dueDate) < 65,
-                  'good-time-bg': calculateTimeLeftPercentage(task.dueDate) >= 65}"
-                 [style.z-index]="'0'">
-            </div>
 
             <!-- Bestehende Elemente ohne Wrapper -->
             <input type="checkbox" id="{{task.id}}" [checked]="task.completed" (change)="updateTaskStatus(task)"
                    [style.position]="'relative'" [style.z-index]="'1'" />
             <label for="{{task.id}}" [ngClass]="{'completed-task': task.completed, 'pending-task': !task.completed}"
                    [style.position]="'relative'" [style.z-index]="'1'">{{ task.description }}</label>
+            <div class="">
+
+            </div>
             @if(task.completed){
               <span class="badge badge-pill badge-success d-flex gap-2" [style.position]="'relative'" [style.z-index]="'1'">
-      <i class="bi bi-check2-all"></i> Completed
-    </span>
+                <i class="bi bi-check2-all"></i> Completed
+              </span>
             }
             <span class="badge badge-pill badge-info d-flex gap-2" [style.position]="'relative'" [style.z-index]="'1'">
-    <i class="bi bi-alarm"></i> {{ task.dueDate | date: 'dd.MM.yyyy' }}
-  </span>
+              <i class="bi bi-alarm"></i> {{ task.dueDate | date: 'dd.MM.yyyy' }}
+            </span>
             <button class="close-btn" (click)="removeTask(task.id)"
                     [style.position]="'relative'" [style.z-index]="'1'">×</button>
 

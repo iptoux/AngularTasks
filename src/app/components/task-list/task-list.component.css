@@ -28,7 +28,6 @@
     background-color: #17a2b8;
   }
 
-
   form > ul > li > label.pending-task {
     flex-grow: 1;
   }
@@ -111,37 +110,6 @@ li.cdk-drag-preview > .close-btn {
 }
 
 
-.time-progress-container {
-  width: 80%;
-  height: 2px;
-  background-color: transparent;
-  border-radius: 0;
-  overflow: hidden;
-}
-
-.time-progress-bar {
-  height: 2px;
-  background-color: #28a745;
-  transition: width 0.3s ease;
-}
-
-/* Styles für den Hintergrund-Fortschrittsbalken */
-.low-time-bg {
-  background-color: rgba(239, 27, 47, 0.7); /* Abgeschwächtes Rot */
-}
-
-.medium-time-bg {
-  background-color: rgba(255, 193, 7, 0.7); /* Abgeschwächtes Gelb */
-}
-
-.good-time-bg {
-  background-color: rgba(21, 182, 57, 0.7); /* Abgeschwächtes Grün */
-}
-
-
-
-
-
 .dark-theme {
   color: white;
 
@@ -160,6 +128,15 @@ li.cdk-drag-preview > .close-btn {
   form > ul > li:hover {
     background-color: rgba(151, 87, 219, 0.15);
     border-radius: 0.15rem;
+  }
+
+  form > ul > li:active {
+    background-color: transparent;
+    border-radius: 0.15rem;
+  }
+
+  form > ul > li > label.pending-task {
+    flex-grow: 1;
   }
 
   form > ul > li > label.completed-task {
@@ -195,22 +172,6 @@ li.cdk-drag-preview > .close-btn {
 
 }
 
-.dark-theme {
-  /* Styles für den Hintergrund-Fortschrittsbalken */
-  .low-time-bg {
-    background-color: rgba(239, 27, 47, 0.4); /* Abgeschwächtes Rot */
-  }
-
-  .medium-time-bg {
-    background-color: rgba(255, 193, 7, 0.4); /* Abgeschwächtes Gelb */
-  }
-
-  .good-time-bg {
-    background-color: rgba(21, 182, 57, 0.4); /* Abgeschwächtes Grün */
-  }
-
-}
-
 
 .dark-theme .card .card-body form ul li.cdk-drag-preview {
   list-style: none;
@@ -227,7 +188,4 @@ li.cdk-drag-preview > .close-btn {
   border: 1px dashed #662694;
 }
 
-/* Dark mode Anpassungen */
-.dark-theme form > ul > li > .badge-info {
-  background-color: rgba(12, 125, 154, 0.75); /* Dunklere Variante für Dark Mode */
-}
+
