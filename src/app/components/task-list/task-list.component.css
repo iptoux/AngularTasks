@@ -1,6 +1,10 @@
 .card {
-  margin-top: 20px;
-  border-radius: 0;
+  border-radius: 0.15rem;
+
+  form > ul {
+    max-height: 700px;
+    overflow-y: auto;
+  }
 
   form > ul > li {
     list-style: none;
@@ -55,20 +59,6 @@
     font-weight: bold;
   }
 
-}
-
-.card-body {
-  max-height: 400px;
-  overflow-y: auto;
-}
-
-.dark-theme .card-body {
-  max-height: 400px;
-  overflow-y: scroll;
-
-  /* Scrollbar-Styling für moderne Browser */
-  scrollbar-width: thin;               /* Firefox */
-  scrollbar-color: rgba(55, 32, 86, 0.35) rgba(108, 73, 189, 0.75);    /* Firefox: Daumen-Farbe Track-Farbe */
 }
 
 .dark-theme .card-body::-webkit-scrollbar {
@@ -143,6 +133,15 @@ li.cdk-drag-preview > .close-btn {
 
 .dark-theme {
   color: white;
+
+  .card-body {
+    max-height: 325px;
+    overflow-y: auto;
+
+    /* Scrollbar-Styling für moderne Browser */
+    scrollbar-width: thin;               /* Firefox */
+    scrollbar-color: rgba(55, 32, 86, 0.35) rgba(108, 73, 189, 0.75);    /* Firefox: Daumen-Farbe Track-Farbe */
+  }
 
   form p.text-muted {
     color: rgba(255, 255, 255, 0.8) !important;
