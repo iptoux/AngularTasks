@@ -261,3 +261,11 @@
   padding: 0.25rem 0.5rem;
   transition: all 0.225s ease-in-out;
 }
+
+.dark-theme .footer-link {
+  color: #4c8bf5;
+}
+.dark-theme .footer-link:hover {
+  color: #BB86FCFF;
+  text-decoration: underline;
+}
