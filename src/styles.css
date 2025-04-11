@@ -54,6 +54,10 @@
   transition: all 0.225s ease-in-out;
 }
 
+li > label {
+  cursor: move;
+}
+
 li > label.pending-task {
   flex-grow: 1;
 }
@@ -69,6 +73,7 @@ li {
   align-items: center;
   gap: 10px;
   padding: 4px;
+  cursor: move;
 }
 
 li:active {
