@@ -8,9 +8,9 @@
 }
 
 /* With this */
-.footer.dark-theme {
-  color: #fff;
-}
+/*.footer.dark-theme {*/
+/*  color: #fff;*/
+/*}*/
 
 
 .card {
@@ -227,7 +227,7 @@
 }
 
 .dark-theme .settings-menu::after {
-  border-color: var(--surface-color) transparent transparent transparent;
+  border-color: var(--border-color) transparent transparent transparent;
 }
 
 .dark-theme .settings-item {
