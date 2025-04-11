@@ -46,11 +46,17 @@ export class TaskAddComponent {
 
     let new_id = this.tasksService.getLastID() + 1;
 
+    const options = {
+      notify: false,
+      auto_remove: false,
+    }
+
     let task: Task = {
       id: new_id,
       description: taskDescription,
       completed: false,
       dueDate: new Date(this.selectedDateTime),
+      options: options,
       order: new_id
     }
 
