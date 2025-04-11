@@ -152,11 +152,11 @@ li > .badge-danger {
   color: white;
 
   .showOptionsGear {
-    color: #edff4d;
+    color: rgba(77, 246, 255, 0.35);
     cursor: pointer;
   }
   .showOptionsGear:hover {
-    color: #4dff6b;
+    color: #9463f7;
   }
 
   .showOptionsGear-disabled {
