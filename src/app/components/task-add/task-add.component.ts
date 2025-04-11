@@ -38,7 +38,8 @@ export class TaskAddComponent {
       // console.log("Empty task description");
       this.modalService.showErrorModal(
         "Empty task description",
-        "Please enter a task description")
+        "Please enter a task description",
+        {showCloseButton:false})
       return;
     }
 

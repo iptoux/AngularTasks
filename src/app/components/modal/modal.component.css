@@ -1,9 +1,5 @@
 /* modal.component.css */
 
-.modal-body-error {
-  background: transparent;
-  /*background-color: var(--bs-dark) !important;*/
-}
 
 .modal-footer-error {
   border-top: 0;
@@ -36,10 +32,10 @@
 
 
 .modal-body-footer-container {
-  margin-top: 10px;
-  background-image: radial-gradient(circle at 50% 50%, rgba(2, 5, 20, 0.8), rgba(4, 7, 24, 0.8), rgba(6, 9, 27, 0.8), rgba(8, 11, 30, 0.8),#0a0d21,#0c0f24,#0d1128,#0e122b);
+  padding: 0.525rem;
   justify-content: space-between;
   align-items: center;
+  background-color: rgba(55, 32, 86, 0.85)!important;
 }
 
 

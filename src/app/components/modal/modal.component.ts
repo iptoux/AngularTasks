@@ -19,8 +19,6 @@ export class ModalComponent implements OnInit
   @Input() showConfirmButtons: boolean = false;
 
 
-
-
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void {

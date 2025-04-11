@@ -18,15 +18,21 @@ export class ModalService {
     modalRef.componentInstance.type = 'success';
   }
 
-  showErrorModal(title: string, message: string, options?: NgbModalOptions): void {
-    const defaultOptions: NgbModalOptions = { centered: true, windowClass: 'success-modal', backdropClass:'custom-backdrop',modalDialogClass: 'modal-success', keyboard: false};
-    const modalOptions = { ...defaultOptions, ...options };
 
-    const modalRef = this.modalService.open(ModalComponent, modalOptions);
+  showErrorModal(title: string, message: string, extraOptions?: {showCloseButton?: boolean}, modalOptions?: NgbModalOptions): void {
+    const defaultOptions: NgbModalOptions = { centered: true, windowClass: 'success-modal', backdropClass:'custom-backdrop',modalDialogClass: 'modal-success', keyboard: false};
+    const finalModalOptions = {...defaultOptions, ...modalOptions};
+
+    const modalRef = this.modalService.open(ModalComponent, finalModalOptions);
     modalRef.componentInstance.title = title;
     modalRef.componentInstance.message = message;
     modalRef.componentInstance.type = 'error';
+
+    if (extraOptions && extraOptions.showCloseButton !== undefined) {
+      modalRef.componentInstance.showCloseButton = extraOptions.showCloseButton;
+    }
   }
+
 
   showInfoModal(title: string, message: string, options?: NgbModalOptions): void {
     const defaultOptions: NgbModalOptions = { centered: true };
