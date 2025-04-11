@@ -7,6 +7,7 @@
 /* Main styles file */
 @import 'styles/dark-theme.scss';
 
-.modal-content {
-  border-radius: 0;
+modal-content {
+  background: transparent;
+  color: var(--text-color);
 }

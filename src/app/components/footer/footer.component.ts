@@ -166,11 +166,9 @@ export class FooterComponent implements OnInit {
         // );
       } else {
         console.log('User canceled deletion');
-        this.addAnnouncement(
-          'error',
-          'Deletion Canceled',
-          'Deletion of your user data has been canceled.'
-        );
+        this.notificationService.addNotification(
+          'Cancelled!',
+          'No user data has been deleted.')
       }
     });
   }
