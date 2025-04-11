@@ -9,8 +9,10 @@ let appWindow
 function createWindow() {
   appWindow = new BrowserWindow({
     width: 1200,
-    height: 950,
+    height: 1020,
+    minHeight: 1020,
     webPreferences: {
+      resizeable: false,
       nodeIntegration: true,
       contextIsolation: false,
       webviewTag: true
