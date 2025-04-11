@@ -5,7 +5,7 @@
   --surface-color: rgba(55, 32, 86, 0.35);
   --primary-color: #bb86fc;
   --secondary-color: #03dac6;
-  --text-color: #ffffff;
+  --text-color: rgb(245, 245, 245);
   --text-secondary-color: #b3b3b3;
   --border-color: rgba(148, 99, 247, 0.75);
   --error-color: #cf6679;
@@ -128,5 +128,85 @@
   .modal-content {
     background: transparent;
     color: var(--text-color);
+  }
+
+  .modal-body-footer-container {
+    padding: 0.525rem;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(55, 32, 86, 0.85)!important;
+  }
+
+  .modal-footer-error button {
+    background-color: transparent;
+    border: 1px solid #4c8bf5;
+    color: #fff;
+    border-radius: 0.15rem;
+  }
+
+  .modal-footer-error button:hover {
+    background-color: #9463f7;
+    color: rgba(255, 255, 255, 0.85);
+    border-radius: 0.275rem;
+  }
+
+  .modal-footer-confirmation button.btn-primary {
+    background-color: #4c8bf5;
+    border: 1px solid #4c8bf5;
+    color: #fff;
+    border-radius: 0.15rem;
+    transition: all 0.225s ease-in-out;
+  }
+
+  .modal-footer-confirmation button.btn-primary:hover {
+    background-color: transparent;
+    border: 1px solid #4c8bf5;
+    border-radius: 0.325rem;
+    color: rgba(255, 255, 255, 0.85);
+    transition: all 0.225s ease-in-out;
+  }
+
+  .modal-footer-confirmation button.btn-secondary {
+    background-color: transparent;
+    border: 1px solid #4c8bf5;
+    color: rgba(255, 255, 255, 0.85);
+    border-radius: 0.15rem;
+    transition: all 0.225s ease-in-out;
+  }
+
+  .modal-footer-confirmation button.btn-secondary:hover {
+    background-color: #4c8bf5;
+    border: 1px solid #4c8bf5;
+    color: rgba(255, 255, 255, 0.85);
+    border-radius: 0.375rem;
+    transition: all 0.225s ease-in-out;
+  }
+
+  .fade-line-left-to-right {
+    position: relative;
+    height: 2px;
+    width: 100%;
+    background: rgba(130, 88, 216, 0.65);
+    overflow: hidden;
+  }
+
+  .fade-line-left-to-right::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -50%;
+    height: 100%;
+    width: 50%;
+    background: linear-gradient(to right, transparent, #bb86fc, transparent);
+    animation: slide-left-to-right 2.25s linear infinite;
+  }
+
+  @keyframes slide-left-to-right {
+    from {
+      left: -50%;
+    }
+    to {
+      left: 100%;
+    }
   }
 }

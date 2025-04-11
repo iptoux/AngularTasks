@@ -172,7 +172,6 @@ li.cdk-drag-preview > .close-btn {
 
 }
 
-
 .dark-theme .card .card-body form ul li.cdk-drag-preview {
   list-style: none;
   display: flex;
@@ -187,5 +186,3 @@ li.cdk-drag-preview > .close-btn {
   padding: 20px;
   border: 1px dashed #662694;
 }
-
-

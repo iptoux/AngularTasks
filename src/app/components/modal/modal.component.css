@@ -18,67 +18,11 @@
   color: white;
 }
 
-.modal-header-error, .modal-header-confirmation {
-  border-top-left-radius: 0.15rem;
-  border-top-right-radius: 0.15rem;
-  border-bottom: 0;
-  background-color: rgba(255, 0, 0, 0.45);
-  color: white;
-}
+
 
 .modal-header-info {
   background-color: var(--bs-info);
   color: white;
 }
 
-.modal-body-footer-container {
-  padding: 0.525rem;
-  justify-content: space-between;
-  align-items: center;
-  background-color: rgba(55, 32, 86, 0.85)!important;
-}
-
-
-.modal-footer-error button {
-  background-color: transparent;
-  border: 1px solid #4c8bf5;
-  color: #fff;
-  border-radius: 0.15rem;
-}
-
-.modal-footer-error button:hover {
-  background-color: #9463f7;
-  color: rgba(255, 255, 255, 0.85);
-  border-radius: 0.275rem;
-}
-
-
-
-.fade-line-left-to-right {
-  position: relative;
-  height: 2px;
-  width: 100%;
-  background: rgba(130, 88, 216, 0.65);
-  overflow: hidden;
-}
-
-.fade-line-left-to-right::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -50%;
-  height: 100%;
-  width: 50%;
-  background: linear-gradient(to right, transparent, #bb86fc, transparent);
-  animation: slide-left-to-right 2.25s linear infinite;
-}
-
-@keyframes slide-left-to-right {
-  from {
-    left: -50%;
-  }
-  to {
-    left: 100%;
-  }
-}
 

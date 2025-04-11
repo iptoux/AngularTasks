@@ -7,9 +7,51 @@
 /* Main styles file */
 @import 'styles/dark-theme.scss';
 
-modal-content {
-  background: transparent;
-  color: var(--text-color);
+.modal-content {
+  background: rgba(255, 255, 255, 0.75);
+  color: #0e122b;
+  border: 0;
+  border-radius: 0.15rem;
+}
+
+.modal-header-error, .modal-header-confirmation {
+  border-top-left-radius: 0.15rem;
+  border-top-right-radius: 0.15rem;
+  border-bottom: 0;
+  background-color: rgba(255, 0, 0, 0.55);
+  color: white;
+}
+
+.modal-footer-confirmation button.btn-primary {
+  background-color: #4c8bf5;
+  border: 1px solid #4c8bf5;
+  color: #fff;
+  border-radius: 0.15rem;
+  transition: all 0.225s ease-in-out;
+}
+
+.modal-footer-confirmation button.btn-primary:hover {
+  background-color: transparent;
+  border: 1px solid #4c8bf5;
+  color: #0e122b;
+  border-radius: 0.325rem;
+  transition: all 0.225s ease-in-out;
+}
+
+.modal-footer-confirmation button.btn-secondary {
+  background-color: transparent;
+  border: 1px solid #4c8bf5;
+  color: #0e122b;
+  border-radius: 0.15rem;
+  transition: all 0.225s ease-in-out;
+}
+
+.modal-footer-confirmation button.btn-secondary:hover {
+  background-color: #4c8bf5;
+  border: 1px solid #4c8bf5;
+  color: rgba(255, 255, 255, 0.85);
+  border-radius: 0.375rem;
+  transition: all 0.225s ease-in-out;
 }
 
 li > label.pending-task {
@@ -51,4 +93,32 @@ li > .close-btn {
 li > .close-btn:hover {
   color: #ff4d4f;
   font-weight: bold;
+}
+
+.fade-line-left-to-right {
+  position: relative;
+  height: 2px;
+  width: 100%;
+  background: rgba(255, 0, 0, 0.55);
+  overflow: hidden;
+}
+
+.fade-line-left-to-right::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -50%;
+  height: 100%;
+  width: 50%;
+  background: linear-gradient(to right, transparent, #980000, transparent);
+  animation: slide-left-to-right 2.25s linear infinite;
+}
+
+@keyframes slide-left-to-right {
+  from {
+    left: -50%;
+  }
+  to {
+    left: 100%;
+  }
 }
