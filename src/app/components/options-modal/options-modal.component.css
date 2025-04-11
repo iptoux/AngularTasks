@@ -1,0 +1,91 @@
+.modal-header {
+  background-color: rgba(145, 100, 199, 0.85);
+  color: rgb(255, 255, 255);
+  border-radius: 0.15rem 0.15rem 0 0;
+  border-bottom: 0;
+}
+
+.modal-body {
+  background-color: rgba(55, 32, 86, 0.75);
+}
+
+.modal-footer {
+  border-top: 0;
+  background-color: rgba(55, 32, 86, 0.75);
+  border-radius: 0.15rem;
+}
+
+.card {
+  color: var(--text-color);
+  border-radius: 0;
+}
+
+input.form-control {
+  border-radius: 0;
+}
+input[type="checkbox"].form-check-input {
+  background-color: #1a1a2e; /* Dark background for input */
+  color: var(--text-color); /* White text */
+  border-color: var(--border-color);
+  border-radius: 0;
+}
+
+/* Style for input fields in dark mode */
+.form-control {
+  background-color: #1a1a2e; /* Dark background for input */
+  color: var(--text-color); /* White text */
+  border-color: var(--border-color);
+}
+
+/* Style for placeholder text in dark mode */
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.6); /* Slightly dimmed for placeholder */
+}
+
+/* Style for focused input in dark mode */
+.form-control:focus {
+  background-color: #2a2a3e; /* Slightly lighter when focused */
+  box-shadow: 0 0 0 0.25rem rgba(187, 134, 252, 0.25); /* Glow that matches primary color */
+}
+
+/* Style für das datetime-local Feld */
+input[type="datetime-local"] {
+  border-radius: 0;
+  color: #24716b;
+}
+
+/* Style für datetime-local im Dark Mode */
+input[type="datetime-local"] {
+  background-color: #1a1a2e;
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+.btn-cancel {
+  background-color: transparent;
+  border: 1px solid #4c8bf5;
+  color: #fff;
+  border-radius: 0.15rem;
+}
+
+.btn-cancel:hover {
+  background-color: #9463f7;
+  color: rgba(255, 255, 255, 0.85);
+  border-radius: 0.275rem;
+}
+
+.btn-save {
+  background-color: #4c8bf5;
+  border: 1px solid #4c8bf5;
+  color: #fff;
+  border-radius: 0.15rem;
+  transition: all 0.225s ease-in-out;
+}
+
+.btn-save:hover {
+  background-color: transparent;
+  border: 1px solid #4c8bf5;
+  border-radius: 0.325rem;
+  color: rgba(255, 255, 255, 0.85);
+  transition: all 0.225s ease-in-out;
+}
