@@ -40,18 +40,16 @@ export class TaskListComponent implements OnInit, OnDestroy {
     return this.darkModeService.isDarkMode();
   }
 
-  showOptionsModal() {
-    console.log("Show options modal");
-    this.modalService.showInfoModal(
-      "Options",
-      "This is the options modal",
-      {
-        centered: true,
-      }
-    );
-
-    return false;
+  showOptionsModal(task: Task): void {
+    this.modalService.showOptionsModal(task)
+      .then((updatedTask: Task) => {
+        this.tasksService.updateTask(updatedTask);
+      })
+      .catch(() => {
+        // Modal wurde geschlossen oder abgebrochen - nichts tun
+      });
   }
+
 
   /**
    * Calculates the number of hours remaining until the due date
