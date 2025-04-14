@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {TasksService} from '../../services/tasks.service';
 import {Task} from '../../interfaces/task';
 import {DatePipe, NgClass, NgForOf, NgIf} from '@angular/common';
@@ -8,7 +8,8 @@ import {DarkModeService} from '../../services/dark-mode.service';
 import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 import {ClockComponent} from '../clock/clock.component';
 import {ModalService} from '../../services/modal.service';
-
+import {AnnouncementService} from '../../services/announcement.service';
+import {Announcement} from '../../interfaces/announcement';
 
 @Component({
   selector: 'app-task-list',
@@ -30,6 +31,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   tasks: Task[] = [];
   private subscription: Subscription | null = null;
+  private announcementService = inject(AnnouncementService)
 
 
   constructor(private tasksService: TasksService,
@@ -73,7 +75,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
     const totalTimeSpan = dueDateObj.getTime() - now.getTime();
 
     // Convert milliseconds to hours and round to the nearest integer
-    return Math.round(totalTimeSpan / (1000 * 60 * 60));
+    return Math.round(totalTimeSpan / (1000 * 60 * 60))
+
   }
 
 
@@ -106,12 +109,43 @@ export class TaskListComponent implements OnInit, OnDestroy {
     return Math.min(100, Math.round((totalTimeSpan / maxTimeSpan) * 100));
   }
 
+  /**
+   * Checks all tasks and creates notifications for those due within one hour
+   */
+  private checkTasksDueSoon(): void {
+    for (let i = 0; i < this.tasks.length; i++) {
+      const task = this.tasks[i];
+      const hours = this.calculateRemainingHours(task.dueDate);
+
+      if (hours <= 12) {
+        this.createDueSoonNotification(task);
+      }
+    }
+  }
+
+  /**
+   * Creates a notification for a task that is due soon
+   */
+  private createDueSoonNotification(task: Task): void {
+    const notification: Announcement = {
+      type: "info",
+      title: "Time's up!",
+      Description: `You have less than 12 hours left for [${task.description}]. Please complete it as soon as possible!`,
+      isRead: false,
+    };
+
+    if(task.options?.notify) {
+      this.announcementService.addAnnouncement(notification);
+    }
+  }
+
+
   ngOnInit() {
     this.subscription = this.tasksService.tasks$.subscribe(tasks => {
       this.tasks = tasks;
+      this.checkTasksDueSoon();
     });
   }
-
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
