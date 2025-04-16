@@ -48,6 +48,7 @@ export class TaskAddComponent {
 
     const options = {
       notify: false,
+      notified: false,
       auto_remove: false,
     }
 
