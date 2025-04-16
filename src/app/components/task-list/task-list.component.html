@@ -13,11 +13,11 @@
               [style.position]="'relative'"
               [style.overflow]="'hidden'"
               class="d-flex align-items-center justify-content-between"
-          >
+          ><span class="task-id">[ T{{task.id}} ]</span>
             <span class="d-flex gap-2" [style.position]="'relative'" [style.z-index]="'1'">
-              <i class="bi bi-gear"
+              <i class="small bi bi-gear"
                  (click)=" showOptionsModal(task)"
-                 [ngClass]="task.options ? 'showOptionsGear' : 'showOptionsGear-disabled'">
+                 [ngClass]="task.options ? 'showOptionsGear' : 'showOptionsGear-disabled'" [style.cursor]="'pointer'">
               </i>
             </span>
             <!-- Bestehende Elemente ohne Wrapper -->
