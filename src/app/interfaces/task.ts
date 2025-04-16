@@ -8,7 +8,7 @@ export interface Task {
   id: number;
   description: string;
   completed: boolean;
-  dueDate?: Date;
+  dueDate?: number;
   options: TaskOptions;
   order: number;
 }
