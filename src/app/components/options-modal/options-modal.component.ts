@@ -29,11 +29,18 @@ export class OptionsModalComponent implements OnInit {
     this.initForm();
   }
 
+
   private initForm(): void {
+    // Convert timestamp to date string for the form
+    let dateString = '';
+    if (this.task?.dueDate) {
+      dateString = this.timestampToDateString(this.task.dueDate);
+    }
+
     this.optionsForm = this.fb.group({
       description: [this.task?.description || '', Validators.required],
       completed: [this.task?.completed || false],
-      dueDate: [this.task?.dueDate ? new Date(this.task.dueDate).toISOString().slice(0, 16) : ''],
+      dueDate: [dateString],
       order: [this.task?.order || 0],
       options: this.fb.group({
         notify: [this.task?.options?.notify || false],
@@ -46,16 +53,40 @@ export class OptionsModalComponent implements OnInit {
 
   saveChanges(): void {
     if (this.optionsForm.valid) {
+      let dueDate: number | undefined = undefined;
+
+      if (this.optionsForm.value.dueDate) {
+        // Convert date string back to timestamp
+        dueDate = this.dateStringToTimestamp(this.optionsForm.value.dueDate);
+      }
+
       const updatedTask: Task = {
         ...this.task,
         description: this.optionsForm.value.description,
         completed: this.optionsForm.value.completed,
-        dueDate: this.optionsForm.value.dueDate ? new Date(this.optionsForm.value.dueDate) : undefined,
+        dueDate: dueDate,
         order: this.optionsForm.value.order,
         options: this.optionsForm.value.options
       };
       this.activeModal.close(updatedTask);
     }
+  }
+  // Helper method to convert timestamp to date string
+  private timestampToDateString(timestamp: number): string {
+    const date = new Date(timestamp);
+
+    const pad = (num: number) => num.toString().padStart(2, '0');
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
+  }
+
+  // Helper method to convert date string to timestamp
+  private dateStringToTimestamp(dateString: string): number {
+    const [datePart, timePart] = dateString.split('T');
+    const [year, month, day] = datePart.split('-').map(Number);
+    const [hours, minutes] = timePart.split(':').map(Number);
+
+    const date = new Date(year, month - 1, day, hours, minutes, 0, 0);
+    return date.getTime();
   }
 
 }
