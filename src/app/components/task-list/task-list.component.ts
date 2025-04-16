@@ -57,57 +57,46 @@ export class TaskListComponent implements OnInit, OnDestroy {
    * @param dueDate The task's due date
    * @returns The number of hours left until the due date, or 0 if the due date is in the past
    */
-  calculateRemainingHours(dueDate?: Date): number {
+  calculateRemainingHours(dueDate?: number): number {
     if (!dueDate) {
       return 0;
     }
 
-    const now = new Date();
-    const dueDateObj = new Date(dueDate);
+    const now = new Date().getTime();
 
     // If the due date is in the past, return 0
-    if (dueDateObj < now) {
+    if (dueDate < now) {
       return 0;
     }
 
     // Calculate the total time span (in milliseconds)
-    const totalTimeSpan = dueDateObj.getTime() - now.getTime();
+    const totalTimeSpan = dueDate - now;
 
     // Convert milliseconds to hours and round to the nearest integer
-    return Math.round(totalTimeSpan / (1000 * 60 * 60))
-
+    return Math.round(totalTimeSpan / (1000 * 60 * 60));
   }
 
-
-  /**
-   * Calculates the percentage of time remaining until the due date
-   * @param dueDate The task's due date
-   * @returns A number between 0 and 100 representing the percentage of time left
-   */
-  calculateTimeLeftPercentage(dueDate?: Date): number {
+  calculateTimeLeftPercentage(dueDate?: number): number {
     if (!dueDate) {
       return 0;
     }
 
-    const now = new Date();
-    const dueDateObj = new Date(dueDate);
+    const now = new Date().getTime();
 
     // If the due date is in the past, return 0
-    if (dueDateObj < now) {
+    if (dueDate < now) {
       return 0;
     }
 
     // Calculate the total time span (in milliseconds)
-    const totalTimeSpan = dueDateObj.getTime() - now.getTime();
+    const totalTimeSpan = dueDate - now;
 
-    // Limit the maximum timespan to 7 days (604800000 ms)
-    // This makes the progress bar more meaningful for longer tasks
+    // Limit the maximum timespan to 30 days (as in your original code)
     const maxTimeSpan = 30 * 24 * 60 * 60 * 1000;
 
     // Calculate percentage (capped at 100%)
     return Math.min(100, Math.round((totalTimeSpan / maxTimeSpan) * 100));
   }
-
   /**
    * Checks all tasks and creates notifications for those due within one hour
    */

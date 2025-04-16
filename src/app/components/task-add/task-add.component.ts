@@ -32,6 +32,12 @@ export class TaskAddComponent {
     return this.darkModeService.isDarkMode();
   }
 
+  adjustTimezone(dateString: string): Date {
+    console.log(dateString);
+    return new Date(dateString);
+    //return new Date(date.getTime() + date.getTimezoneOffset() * 60000);
+  }
+
   addTask(taskDescription:string) {
 
     if(taskDescription.length === 0) {
@@ -43,8 +49,10 @@ export class TaskAddComponent {
       return;
     }
 
-
     let new_id = this.tasksService.getLastID() + 1;
+
+    // Convert the datetime string to timestamp (without timezone issues)
+    const timestamp = this.dateStringToTimestamp(this.selectedDateTime);
 
     const options = {
       notify: false,
@@ -52,11 +60,11 @@ export class TaskAddComponent {
       auto_remove: false,
     }
 
-    let task: Task = {
+      let task: Task = {
       id: new_id,
       description: taskDescription,
       completed: false,
-      dueDate: new Date(this.selectedDateTime),
+      dueDate: timestamp,
       options: options,
       order: new_id
     }
@@ -64,5 +72,19 @@ export class TaskAddComponent {
     this.tasksService.addTask(task);
 
   }
+
+  private dateStringToTimestamp(dateString: string): number {
+    // Parse the datetime string (YYYY-MM-DDTHH:MM)
+    const [datePart, timePart] = dateString.split('T');
+    const [year, month, day] = datePart.split('-').map(Number);
+    const [hours, minutes] = timePart.split(':').map(Number);
+
+    // Create Date object with the specific components (no timezone conversion)
+    const date = new Date(year, month - 1, day, hours, minutes, 0, 0);
+
+    // Return timestamp in milliseconds
+    return date.getTime();
+  }
+
 
 }
