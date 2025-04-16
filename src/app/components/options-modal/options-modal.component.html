@@ -1,44 +1,46 @@
-<div class="modal-header">
-  <h4 class="modal-title">Task settings</h4>
-  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
-</div>
-<div class="fade-line-left-to-right"></div>
-<div class="modal-body">
-  <form [formGroup]="optionsForm">
-    <div class="mb-3">
-      <label for="taskDescription" class="form-label">Description</label>
-      <input type="text" class="form-control" id="taskDescription" formControlName="description">
-      <div *ngIf="optionsForm.get('description')?.invalid && (optionsForm.get('description')?.dirty || optionsForm.get('description')?.touched)" class="text-danger">
-        <div *ngIf="optionsForm.get('description')?.errors?.['required']">Description required.</div>
-      </div>
-    </div>
-
-    <div class="mb-3">
-      <label for="taskDueDate" class="form-label">Due date</label>
-      <input type="datetime-local" class="form-control" id="taskDueDate" formControlName="dueDate">
-    </div>
-
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="taskCompleted" formControlName="completed">
-      <label class="form-check-label" for="taskCompleted">Completed</label>
-    </div>
-
-    <div class="card mt-3">
-      <div class="card-header">Options</div>
-      <div class="card-body" formGroupName="options">
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="taskNotify" formControlName="notify">
-          <label class="form-check-label" for="taskNotify">Send notification</label>
-        </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="taskAutoRemove" formControlName="auto_remove">
-          <label class="form-check-label" for="taskAutoRemove">Auto remove</label>
+<div class="modal-box" [ngClass]="{'dark-theme': isDarkMode}">
+  <div class="modal-header">
+    <h4 class="modal-title">Task settings</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+  </div>
+  <div class="fade-line-left-to-right"></div>
+  <div class="modal-body">
+    <form [formGroup]="optionsForm">
+      <div class="mb-3">
+        <label for="taskDescription" class="form-label">Description</label>
+        <input type="text" class="form-control" id="taskDescription" formControlName="description">
+        <div *ngIf="optionsForm.get('description')?.invalid && (optionsForm.get('description')?.dirty || optionsForm.get('description')?.touched)" class="text-danger">
+          <div *ngIf="optionsForm.get('description')?.errors?.['required']">Description required.</div>
         </div>
       </div>
-    </div>
-  </form>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-cancel" (click)="activeModal.dismiss('cancel')">Cancel</button>
-  <button type="button" class="btn btn-save" (click)="saveChanges()" [disabled]="optionsForm.invalid">Save</button>
+
+      <div class="mb-3">
+        <label for="taskDueDate" class="form-label">Due date</label>
+        <input type="datetime-local" class="form-control" id="taskDueDate" formControlName="dueDate">
+      </div>
+
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="taskCompleted" formControlName="completed">
+        <label class="form-check-label" for="taskCompleted">Completed</label>
+      </div>
+
+      <div class="card mt-3">
+        <div class="card-header">Options</div>
+        <div class="card-body" formGroupName="options">
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="taskNotify" formControlName="notify">
+            <label class="form-check-label" for="taskNotify">Send notification</label>
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="taskAutoRemove" formControlName="auto_remove">
+            <label class="form-check-label" for="taskAutoRemove">Auto remove</label>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-cancel" (click)="activeModal.dismiss('cancel')">Cancel</button>
+    <button type="button" class="btn btn-save" (click)="saveChanges()" [disabled]="optionsForm.invalid">Save</button>
+  </div>
 </div>
