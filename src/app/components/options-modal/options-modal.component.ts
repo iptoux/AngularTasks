@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { Task } from '../../interfaces/task';
+import {DarkModeService} from '../../services/dark-mode.service';
 
 @Component({
   selector: 'app-options-modal',
@@ -15,9 +16,14 @@ export class OptionsModalComponent implements OnInit {
   optionsForm!: FormGroup;
 
   constructor(
+    private darkModeService: DarkModeService,
     public activeModal: NgbActiveModal,
     private fb: FormBuilder
   ) {}
+
+  get isDarkMode(): boolean {
+    return this.darkModeService.isDarkMode();
+  }
 
   ngOnInit(): void {
     this.initForm();
