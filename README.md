@@ -17,6 +17,7 @@
 </p>
 
 ![AngularTasks-git](https://github.com/user-attachments/assets/32597e9f-d3a6-46ab-a3c3-f3fe8feca5cf)
+![AngularTasks-git-2](https://github.com/user-attachments/assets/ead97519-e914-4de4-8ed6-4785880dd2d0)
 
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
