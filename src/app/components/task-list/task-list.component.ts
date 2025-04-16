@@ -8,8 +8,7 @@ import {DarkModeService} from '../../services/dark-mode.service';
 import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 import {ClockComponent} from '../clock/clock.component';
 import {ModalService} from '../../services/modal.service';
-import {AnnouncementService} from '../../services/announcement.service';
-import {Announcement} from '../../interfaces/announcement';
+import {NotificationService} from '../../services/notification.service';
 
 @Component({
   selector: 'app-task-list',
@@ -31,7 +30,7 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   tasks: Task[] = [];
   private subscription: Subscription | null = null;
-  private announcementService = inject(AnnouncementService)
+  private notificationService = inject(NotificationService)
 
 
   constructor(private tasksService: TasksService,
@@ -127,15 +126,10 @@ export class TaskListComponent implements OnInit, OnDestroy {
    * Creates a notification for a task that is due soon
    */
   private createDueSoonNotification(task: Task): void {
-    const notification: Announcement = {
-      type: "info",
-      title: "Time's up!",
-      Description: `You have less than 12 hours left for [${task.description}]. Please complete it as soon as possible!`,
-      isRead: false,
-    };
-
-    if(task.options?.notify) {
-      this.announcementService.addAnnouncement(notification);
+    if(task.options.notify && !task.options.notified && !task.completed) {
+      this.notificationService.addNotification("Near deadline:",`You have less than 12 hours left for [ TaskID ${task.id} ]. Please complete it as soon as possible!`)
+      task.options.notified = true;
+      this.tasksService.updateTask(task);
     }
   }
 
