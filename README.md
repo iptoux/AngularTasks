@@ -16,7 +16,7 @@
 
 </p>
 
-[MyTaskApplication.webm](https://github.com/user-attachments/assets/e3ea71cf-a482-48d5-8756-41ab02f3bb97)
+![AngularTasks-git](https://github.com/user-attachments/assets/32597e9f-d3a6-46ab-a3c3-f3fe8feca5cf)
 
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
