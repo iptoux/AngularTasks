@@ -6,82 +6,33 @@ on:
       - develop
 
 jobs:
-  build-win:
-    name: Build Windows
-    runs-on: windows-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Get Version Info (Windows)
-        id: get_version
-        shell: pwsh
-        run: |
-          # Check if we're running from a branch or tag
-          if ($env:GITHUB_REF.StartsWith('refs/heads/')) {
-            # Branch-based build - use timestamp and commit hash
-            $date = Get-Date -Format "yyyyMMdd"
-            $commit = git rev-parse --short HEAD
-            $env:VERSION = "$date-$commit"
-          } else {
-            # Tag-based build - extract tag version
-            $env:VERSION = $env:GITHUB_REF -replace '^refs/tags/', ''
-          }
-
-          Write-Host "VERSION=$env:VERSION"
-          echo "VERSION=$env:VERSION" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-
-
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install Dependencies
-        shell: pwsh
-        run: npm install
-
-      - name: Build Electron App
-        shell: pwsh
-        run: npm run build
-
-      - name: Package Electron App to Win64 .msi
-        shell: pwsh
-        run: |
-          npx electron-builder --win msi --projectDir=./
-          $msiFile = Get-ChildItem ./dist -Filter "*.msi" | Select-Object -First 1
-          if ($msiFile) {
-            Rename-Item "./dist/$($msiFile.Name)" -NewName "AngularTasks-win32-x64-$env:VERSION.msi"
-            ls ./dist
-          } else {
-            Write-Error "No MSI file found in ./dist directory"
-            exit 1
-          }
-
-#          Compress-Archive -Path ./MyTaskApplication-win32-x64 -DestinationPath dist/MyTaskApplication-win32-x64-$env:TAG_VERSION.zip
-
-#      - name: Upload Windows Artifact
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: electron-win
-#          path: dist/MyTaskApplication-win32-x64-${{ env.TAG_VERSION }}.zip
-
-#  build-linux:
-#    name: Build Linux
-#    runs-on: ubuntu-latest
+#  build-win:
+#    name: Build Windows
+#    runs-on: windows-latest
 #    steps:
 #      - name: Checkout Repository
 #        uses: actions/checkout@v4
 #        with:
 #          fetch-depth: 0
 #
-#      - name: Get Tag Version (Linux)
+#      - name: Get Version Info (Windows)
 #        id: get_version
-#        shell: bash
+#        shell: pwsh
 #        run: |
-#          echo "TAG_VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+#          # Check if we're running from a branch or tag
+#          if ($env:GITHUB_REF.StartsWith('refs/heads/')) {
+#            # Branch-based build - use timestamp and commit hash
+#            $date = Get-Date -Format "yyyyMMdd"
+#            $commit = git rev-parse --short HEAD
+#            $env:VERSION = "$date-$commit"
+#          } else {
+#            # Tag-based build - extract tag version
+#            $env:VERSION = $env:GITHUB_REF -replace '^refs/tags/', ''
+#          }
+#
+#          Write-Host "VERSION=$env:VERSION"
+#          echo "VERSION=$env:VERSION" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+#
 #
 #      - name: Install Node.js
 #        uses: actions/setup-node@v4
@@ -89,19 +40,76 @@ jobs:
 #          node-version: 20
 #
 #      - name: Install Dependencies
+#        shell: pwsh
 #        run: npm install
-#        shell: bash
 #
 #      - name: Build Electron App
+#        shell: pwsh
 #        run: npm run build
-#        shell: bash
 #
-#      - name: Package Electron App Linux X64
+#      - name: Package Electron App to Win64 .msi
+#        shell: pwsh
 #        run: |
-#          npx electron-packager ./ MyTaskApplication --platform=linux --overwrite
-#          tar -czvf dist/MyTaskApplication-linux-x64-${TAG_VERSION}.tar.gz MyTaskApplication-linux-x64
-#        shell: bash
+#          npx electron-builder --win msi --projectDir=./
+#          $msiFile = Get-ChildItem ./dist -Filter "*.msi" | Select-Object -First 1
+#          if ($msiFile) {
+#            Rename-Item "./dist/$($msiFile.Name)" -NewName "AngularTasks-win32-x64-$env:VERSION.msi"
+#            ls ./dist
+#          } else {
+#            Write-Error "No MSI file found in ./dist directory"
+#            exit 1
+#          }
 #
+##          Compress-Archive -Path ./MyTaskApplication-win32-x64 -DestinationPath dist/MyTaskApplication-win32-x64-$env:TAG_VERSION.zip
+#
+#      - name: Upload Windows Artifact
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: electron-win
+#          path: dist/AngularTasks-win32-x64-${{ env.TAG_VERSION }}.msi
+
+  build-linux:
+    name: Build Linux
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get Tag Version (Linux)
+        id: get_version
+        shell: bash
+        run: |
+          if [[ $GITHUB_REF == refs/heads/* ]]; then
+            date=$(date '+%Y%m%d')
+            commit=$(git rev-parse --short HEAD)
+            VERSION="$date-$commit"
+          else
+            VERSION=${GITHUB_REF#refs/tags/}
+          fi
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        run: npm install
+        shell: bash
+
+      - name: Build Electron App
+        run: npm run build
+        shell: bash
+
+      - name: Package Electron App Linux X64
+        run: |
+          npx electron-builder --projectDir=./
+          ls ./dist
+#          tar -czvf dist/MyTaskApplication-linux-x64-${TAG_VERSION}.tar.gz MyTaskApplication-linux-x64
+        shell: bash
+
 #      - name: Upload Linux Artifact
 #        uses: actions/upload-artifact@v4
 #        with:
