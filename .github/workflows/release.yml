@@ -85,7 +85,7 @@ jobs:
 
       - name: Package Electron App Linux X64
         run: |
-          snap install snapcraft --classic
+          sudo snap install snapcraft --classic
           npx electron-packager ./ MyTaskApplication --platform=linux --overwrite
           tar -czvf dist/AngularTasks-linux-x64-${TAG_VERSION}.tar.gz MyTaskApplication-linux-x64
           npx electron-builder --projectDir=./
