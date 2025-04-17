@@ -68,16 +68,68 @@ jobs:
 #          name: electron-win
 #          path: dist/AngularTasks-win32-x64-${{ env.TAG_VERSION }}.msi
 
-  build-linux:
-    name: Build Linux
-    runs-on: ubuntu-latest
+#  build-linux:
+#    name: Build Linux
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout Repository
+#        uses: actions/checkout@v4
+#        with:
+#          fetch-depth: 0
+#
+#      - name: Get Tag Version (Linux)
+#        id: get_version
+#        shell: bash
+#        run: |
+#          if [[ $GITHUB_REF == refs/heads/* ]]; then
+#            date=$(date '+%Y%m%d')
+#            commit=$(git rev-parse --short HEAD)
+#            VERSION="$date-$commit"
+#          else
+#            VERSION=${GITHUB_REF#refs/tags/}
+#          fi
+#          echo "VERSION=$VERSION" >> $GITHUB_ENV
+#
+#      - name: Install Node.js
+#        uses: actions/setup-node@v4
+#        with:
+#          node-version: 20
+#
+#      - name: Install Dependencies
+#        run: npm install
+#        shell: bash
+#
+#      - name: Build Electron App
+#        run: npm run build
+#        shell: bash
+#
+#      - name: Package Electron App Linux X64
+#        run: |
+#          npx electron-builder --projectDir=./ --publish never
+#          mv ./dist/*.AppImage ./dist/AngularTasks-Linux-x64-${TAG_VERSION}.AppImage
+#          mv ./dist/*.deb ./dist/AngularTasks-Linux-x64-${TAG_VERSION}.deb
+#          mv ./dist/*.snap ./dist/AngularTasks-Linux-x64-${TAG_VERSION}.snap
+#        shell: bash
+
+#     - name: Upload Linux Artifacts
+#       uses: actions/upload-artifact@v4
+#       with:
+#         name: electron-linux
+#         path: |
+#           dist/*.AppImage
+#           dist/*.deb
+#           dist/*.snap
+#
+  build-mac:
+    name: Build macOS
+    runs-on: macos-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Get Tag Version (Linux)
+      - name: Get Tag Version (macOS)
         id: get_version
         shell: bash
         run: |
@@ -103,58 +155,17 @@ jobs:
         run: npm run build
         shell: bash
 
-      - name: Package Electron App Linux X64
+      - name: Package Electron App macOS
         run: |
-          npx electron-builder --projectDir=./ --publish never
-          mv ./dist/*.deb ./dist/AngularTasks-Linux-x64-${TAG_VERSION}.deb
-          mv ./dist/*.snap ./dist/AngularTasks-Linux-x64-${TAG_VERSION}.snap
-          ls ./dist
+          npx electron-packager ./ MyTaskApplication --platform=darwin --overwrite
+          npx electron-builder --mac
+          pwd && ls ./dist
+          npx electron-installer-dmg "./MyTaskApplication-darwin-arm64/MyTaskApplication.app" "MyTaskApplication" --out=dist --overwrite --dmg-title="MyTaskApplication $TAG_VERSION"
+          mv dist/MyTaskApplication.dmg dist/MyTaskApplication-macOS-arm64-${TAG_VERSION}.dmg
         shell: bash
 
-#      - name: Upload Linux Artifact
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: electron-linux
-#          path: dist/MyTaskApplication-linux-x64-${{ env.TAG_VERSION }}.tar.gz
-#
-#  build-mac:
-#    name: Build macOS
-#    runs-on: macos-latest
-#    steps:
-#      - name: Checkout Repository
-#        uses: actions/checkout@v4
-#        with:
-#          fetch-depth: 0
-#
-#      - name: Get Tag Version (macOS)
-#        id: get_version
-#        shell: bash
-#        run: |
-#          echo "TAG_VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
-#
-#      - name: Install Node.js
-#        uses: actions/setup-node@v4
-#        with:
-#          node-version: 20
-#
-#      - name: Install Dependencies
-#        run: npm install
-#        shell: bash
-#
-#      - name: Build Electron App
-#        run: npm run build
-#        shell: bash
-#
-#      - name: Package Electron App macOS
-#        run: |
-#          npx electron-packager ./ MyTaskApplication --platform=darwin --overwrite
-#          pwd && ls
-#          npx electron-installer-dmg "./MyTaskApplication-darwin-arm64/MyTaskApplication.app" "MyTaskApplication" --out=dist --overwrite --dmg-title="MyTaskApplication $TAG_VERSION"
-#          mv dist/MyTaskApplication.dmg dist/MyTaskApplication-macOS-arm64-${TAG_VERSION}.dmg
-#        shell: bash
-#
-#      - name: Upload macOS Artifact
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: electron-mac
-#          path: dist/MyTaskApplication-macOS-arm64-${{ env.TAG_VERSION }}.dmg
+      - name: Upload macOS Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: electron-mac
+          path: dist/MyTaskApplication-macOS-arm64-${{ env.TAG_VERSION }}.dmg
