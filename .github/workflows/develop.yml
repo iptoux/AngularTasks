@@ -159,13 +159,15 @@ jobs:
         run: |
           npx electron-packager ./ MyTaskApplication --platform=darwin --arch x64 --overwrite
           npx electron-builder --mac --x64 --publish never
-          pwd && ls ./dist
-          npx electron-installer-dmg "./MyTaskApplication-darwin-arm64/MyTaskApplication.app" "MyTaskApplication" --out=dist --overwrite --dmg-title="MyTaskApplication $TAG_VERSION"
-          mv dist/MyTaskApplication.dmg dist/MyTaskApplication-macOS-x64-${TAG_VERSION}.dmg
+          npx electron-installer-dmg "./MyTaskApplication-darwin-x64/MyTaskApplication.app" "AngularTasks" --out=dist --overwrite --dmg-title="AngularTasks $TAG_VERSION"
+          mv dist/*.dmg dist/AngularTasks-macOS-x64-${TAG_VERSION}.dmg
+          mv dist/*.zip dist/AngularTasks-macOS-x64-${TAG_VERSION}.zip
+          mv dist/*.tar.gz dist/AngularTasks-macOS-x64-${TAG_VERSION}.tar.gz
+          ls ./dist
         shell: bash
 
-      - name: Upload macOS Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: electron-mac
-          path: dist/MyTaskApplication-macOS-arm64-${{ env.TAG_VERSION }}.dmg
+#      - name: Upload macOS Artifact
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: electron-mac
+#          path: dist/AngularTasks-macOS-x64-${{ env.TAG_VERSION }}.dmg
