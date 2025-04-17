@@ -36,17 +36,24 @@ jobs:
         shell: pwsh
         run: npm run build
 
-      - name: Package Electron App Win64
+      - name: Package Electron App to Win64 .msi
         shell: pwsh
         run: |
-          npx electron-packager ./ MyTaskApplication --platform=win32 --overwrite
-          Compress-Archive -Path ./MyTaskApplication-win32-x64 -DestinationPath dist/MyTaskApplication-win32-x64-$env:TAG_VERSION.zip
+          npx electron-builder --win msi --projectDir=./
+          $msiFile = Get-ChildItem ./dist -Filter "*.msi" | Select-Object -First 1
+          if ($msiFile) {
+            Rename-Item "./dist/$($msiFile.Name)" -NewName "AngularTasks-win32-x64-$env:VERSION.msi"
+            ls ./dist
+          } else {
+            Write-Error "No MSI file found in ./dist directory"
+            exit 1
+          }
 
       - name: Upload Windows Artifact
         uses: actions/upload-artifact@v4
         with:
           name: electron-win
-          path: dist/MyTaskApplication-win32-x64-${{ env.TAG_VERSION }}.zip
+          path: dist/*.msi
 
   build-linux:
     name: Build Linux
@@ -79,14 +86,22 @@ jobs:
       - name: Package Electron App Linux X64
         run: |
           npx electron-packager ./ MyTaskApplication --platform=linux --overwrite
-          tar -czvf dist/MyTaskApplication-linux-x64-${TAG_VERSION}.tar.gz MyTaskApplication-linux-x64
+          tar -czvf dist/AngularTasks-linux-x64-${TAG_VERSION}.tar.gz MyTaskApplication-linux-x64
+          npx electron-builder --projectDir=./
+          mv ./dist/*.AppImage ./dist/AngularTasks-linux-x64-${TAG_VERSION}.AppImage
+          mv ./dist/*.deb ./dist/AngularTasks-linux-x64-${TAG_VERSION}.deb
+          mv ./dist/*.snap ./dist/AngularTasks-linux-x64-${TAG_VERSION}.snap
         shell: bash
 
-      - name: Upload Linux Artifact
+      - name: Upload Linux Artifacts
         uses: actions/upload-artifact@v4
         with:
           name: electron-linux
-          path: dist/MyTaskApplication-linux-x64-${{ env.TAG_VERSION }}.tar.gz
+          path: |
+            dist/*.AppImage
+            dist/*.deb
+            dist/*.snap
+            dist/*.tar.gz
 
   build-mac:
     name: Build macOS
@@ -118,17 +133,16 @@ jobs:
 
       - name: Package Electron App macOS
         run: |
-          npx electron-packager ./ MyTaskApplication --platform=darwin --overwrite
-          pwd && ls
-          npx electron-installer-dmg "./MyTaskApplication-darwin-arm64/MyTaskApplication.app" "MyTaskApplication" --out=dist --overwrite --dmg-title="MyTaskApplication $TAG_VERSION"
-          mv dist/MyTaskApplication.dmg dist/MyTaskApplication-macOS-arm64-${TAG_VERSION}.dmg
+          npx electron-packager ./ MyTaskApplication --platform=darwin --arch x64 --overwrite
+          npx electron-installer-dmg "./MyTaskApplication-darwin-x64/MyTaskApplication.app" "AngularTasks" --out=dist --overwrite --dmg-title="AngularTasks $TAG_VERSION"
+          mv dist/AngularTasks.dmg dist/AngularTasks-macOS-x64-${TAG_VERSION}.dmg
         shell: bash
 
       - name: Upload macOS Artifact
         uses: actions/upload-artifact@v4
         with:
           name: electron-mac
-          path: dist/MyTaskApplication-macOS-arm64-${{ env.TAG_VERSION }}.dmg
+          path: dist/AngularTasks-macOS-x64-${{ env.TAG_VERSION }}.dmg
 
   release:
     name: Create GitHub Release
@@ -228,8 +242,11 @@ jobs:
         with:
           body: ${{ env.RELEASE_BODY }}
           files: |
-            dist/MyTaskApplication-win32-x64-${{ env.TAG_VERSION }}.zip
-            dist/MyTaskApplication-linux-x64-${{ env.TAG_VERSION }}.tar.gz
-            dist/MyTaskApplication-macOS-arm64-${{ env.TAG_VERSION }}.dmg
+            dist/AngularTasks-win32-x64-${{ env.TAG_VERSION }}.msi
+            dist/AngularTasks-linux-x64-${{ env.TAG_VERSION }}.AppImage
+            dist/AngularTasks-linux-x64-${{ env.TAG_VERSION }}.deb
+            dist/AngularTasks-linux-x64-${{ env.TAG_VERSION }}.snap
+            dist/AngularTasks-linux-x64-${{ env.TAG_VERSION }}.tar.gz
+            dist/AngularTasks-macOS-x64-${{ env.TAG_VERSION }}.dmg
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
