@@ -106,8 +106,9 @@ jobs:
       - name: Package Electron App Linux X64
         run: |
           npx electron-builder --projectDir=./ --publish never
+          mv ./dist/*.deb ./dist/AngularTasks-Linux-x64-${TAG_VERSION}.deb
+          mv ./dist/*.snap ./dist/AngularTasks-Linux-x64-${TAG_VERSION}.snap
           ls ./dist
-#          tar -czvf dist/MyTaskApplication-linux-x64-${TAG_VERSION}.tar.gz MyTaskApplication-linux-x64
         shell: bash
 
 #      - name: Upload Linux Artifact
