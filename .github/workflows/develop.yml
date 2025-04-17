@@ -158,11 +158,11 @@ jobs:
       - name: Package Electron App macOS
         run: |
           npx electron-packager ./ MyTaskApplication --platform=darwin --arch x64 --overwrite
-          npx electron-builder --mac --x64 --publish never
+#          npx electron-builder --mac --x64 --publish never
           npx electron-installer-dmg "./MyTaskApplication-darwin-x64/MyTaskApplication.app" "AngularTasks" --out=dist --overwrite --dmg-title="AngularTasks $TAG_VERSION"
           mv dist/*.dmg dist/AngularTasks-macOS-x64-${TAG_VERSION}.dmg
-          mv dist/*.zip dist/AngularTasks-macOS-x64-${TAG_VERSION}.zip
-          mv dist/*.tar.gz dist/AngularTasks-macOS-x64-${TAG_VERSION}.tar.gz
+#          mv dist/*.zip dist/AngularTasks-macOS-x64-${TAG_VERSION}.zip
+#          mv dist/*.tar.gz dist/AngularTasks-macOS-x64-${TAG_VERSION}.tar.gz
           ls ./dist
         shell: bash
 
