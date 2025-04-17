@@ -42,7 +42,7 @@ jobs:
           npx electron-builder --win msi --projectDir=./
           $msiFile = Get-ChildItem ./dist -Filter "*.msi" | Select-Object -First 1
           if ($msiFile) {
-            Rename-Item "./dist/$($msiFile.Name)" -NewName "AngularTasks-win32-x64-$env:VERSION.msi"
+            Rename-Item "./dist/$($msiFile.Name)" -NewName "AngularTasks-win32-x64-$env:TAG_VERSION.msi"
             ls ./dist
           } else {
             Write-Error "No MSI file found in ./dist directory"
