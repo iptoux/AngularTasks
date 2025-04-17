@@ -88,7 +88,7 @@ jobs:
           sudo snap install snapcraft --classic
           npx electron-packager ./ MyTaskApplication --platform=linux --overwrite
           tar -czvf dist/AngularTasks-linux-x64-${TAG_VERSION}.tar.gz MyTaskApplication-linux-x64
-          npx electron-builder --projectDir=./ --config.snap.publish=never
+          npx electron-builder --projectDir=./ --publish never
           mv ./dist/*.AppImage ./dist/AngularTasks-linux-x64-${TAG_VERSION}.AppImage
           mv ./dist/*.deb ./dist/AngularTasks-linux-x64-${TAG_VERSION}.deb
           mv ./dist/*.snap ./dist/AngularTasks-linux-x64-${TAG_VERSION}.snap
