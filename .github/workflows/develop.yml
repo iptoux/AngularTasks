@@ -1,0 +1,131 @@
+name: Build and Release Electron App
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build-win:
+    name: Build Windows
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get Tag Version (Windows)
+        id: get_version
+        shell: pwsh
+        run: |
+          $env:TAG_VERSION = $env:GITHUB_REF -replace '^refs/tags/', ''
+          Write-Host "TAG_VERSION=$env:TAG_VERSION"
+          echo "TAG_VERSION=$env:TAG_VERSION" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install Dependencies
+        shell: pwsh
+        run: npm install
+
+      - name: Build Electron App
+        shell: pwsh
+        run: npm run build
+
+      - name: Package Electron App Win64
+        shell: pwsh
+        run: |
+          npx electron-builder --win msi --projectDir=./ --overwrite
+#          Compress-Archive -Path ./MyTaskApplication-win32-x64 -DestinationPath dist/MyTaskApplication-win32-x64-$env:TAG_VERSION.zip
+
+#      - name: Upload Windows Artifact
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: electron-win
+#          path: dist/MyTaskApplication-win32-x64-${{ env.TAG_VERSION }}.zip
+
+#  build-linux:
+#    name: Build Linux
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout Repository
+#        uses: actions/checkout@v4
+#        with:
+#          fetch-depth: 0
+#
+#      - name: Get Tag Version (Linux)
+#        id: get_version
+#        shell: bash
+#        run: |
+#          echo "TAG_VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+#
+#      - name: Install Node.js
+#        uses: actions/setup-node@v4
+#        with:
+#          node-version: 20
+#
+#      - name: Install Dependencies
+#        run: npm install
+#        shell: bash
+#
+#      - name: Build Electron App
+#        run: npm run build
+#        shell: bash
+#
+#      - name: Package Electron App Linux X64
+#        run: |
+#          npx electron-packager ./ MyTaskApplication --platform=linux --overwrite
+#          tar -czvf dist/MyTaskApplication-linux-x64-${TAG_VERSION}.tar.gz MyTaskApplication-linux-x64
+#        shell: bash
+#
+#      - name: Upload Linux Artifact
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: electron-linux
+#          path: dist/MyTaskApplication-linux-x64-${{ env.TAG_VERSION }}.tar.gz
+#
+#  build-mac:
+#    name: Build macOS
+#    runs-on: macos-latest
+#    steps:
+#      - name: Checkout Repository
+#        uses: actions/checkout@v4
+#        with:
+#          fetch-depth: 0
+#
+#      - name: Get Tag Version (macOS)
+#        id: get_version
+#        shell: bash
+#        run: |
+#          echo "TAG_VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+#
+#      - name: Install Node.js
+#        uses: actions/setup-node@v4
+#        with:
+#          node-version: 20
+#
+#      - name: Install Dependencies
+#        run: npm install
+#        shell: bash
+#
+#      - name: Build Electron App
+#        run: npm run build
+#        shell: bash
+#
+#      - name: Package Electron App macOS
+#        run: |
+#          npx electron-packager ./ MyTaskApplication --platform=darwin --overwrite
+#          pwd && ls
+#          npx electron-installer-dmg "./MyTaskApplication-darwin-arm64/MyTaskApplication.app" "MyTaskApplication" --out=dist --overwrite --dmg-title="MyTaskApplication $TAG_VERSION"
+#          mv dist/MyTaskApplication.dmg dist/MyTaskApplication-macOS-arm64-${TAG_VERSION}.dmg
+#        shell: bash
+#
+#      - name: Upload macOS Artifact
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: electron-mac
+#          path: dist/MyTaskApplication-macOS-arm64-${{ env.TAG_VERSION }}.dmg

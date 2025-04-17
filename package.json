@@ -2,14 +2,57 @@
   "name": "mytaskapplication",
   "version": "1.5.9",
   "main": "app.js",
+  "author": {
+    "name": "Maik Roland Damm",
+    "email": "maik@damm.dev",
+    "url": "https://damm.dev"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-bin-unix": "electron-builder --projectDir=./",
+    "build-bin-msi": "electron-builder --win msi --projectDir=./",
+    "build-bin-mac": "electron-builder --mac",
+    "build-bin-mac-dmg": "electron-installer-dmg ./dist/mac/AngularTaks.app AngulaTasks",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "electron": "electron .",
     "electron-build": "ng build && electron ."
+  },
+  "build": {
+    "appId": "com.bitslix.angulartasks",
+    "productName": "AngularTasks",
+    "files": [
+      "**/*",
+      "!utils/.venv/**",
+      "!**/.venv/**",
+      "!**/node_modules/*/{CHANGELOG.md,README.md,README,readme.md,readme}",
+      "!**/node_modules/*/{test,__tests__,tests,powered-test,example,examples}",
+      "!**/node_modules/.bin",
+      "!**/*.{iml,o,hprof,orig,pyc,pyo,rbc,swp,csproj,sln,xproj}"
+    ],
+    "icon": "public/windows_icon.png",
+    "win": {
+      "target": [
+        {
+          "target": "msi",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "linux": {
+      "target": ["AppImage", "deb","snap"]
+    },
+    "mac": {
+      "target": ["tar.gz", "zip"],
+      "category": "public.app-category.productivity",
+      "icon": "public/windows_icon.png",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist"
+    }
   },
   "private": true,
   "dependencies": {
@@ -39,6 +82,7 @@
     "@angular/compiler-cli": "^19.2.7",
     "@types/jasmine": "~5.1.7",
     "electron": "^35.1.5",
+    "electron-builder": "^26.0.12",
     "electron-installer-dmg": "^5.0.1",
     "jasmine-core": "~5.6.0",
     "karma": "~6.4.4",
