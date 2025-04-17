@@ -66,7 +66,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: electron-win
-          path: dist/AngularTasks-win32-x64-${{ env.TAG_VERSION }}.msi
+          path: dist/*.msi
 
   build-linux:
     name: Build Linux
