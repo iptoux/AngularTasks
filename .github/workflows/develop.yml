@@ -40,7 +40,8 @@ jobs:
         shell: pwsh
         run: |
           npx electron-builder --win msi --projectDir=./
-          ls
+          Rename-Item ./dist/AngularTasks\ $env:TAG_VERSION.msi -NewName AngularTasks-win32-x64-$env:TAG_VERSION.msi
+          ls ./dist
 #          Compress-Archive -Path ./MyTaskApplication-win32-x64 -DestinationPath dist/MyTaskApplication-win32-x64-$env:TAG_VERSION.zip
 
 #      - name: Upload Windows Artifact
