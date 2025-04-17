@@ -1,6 +1,6 @@
 {
   "name": "mytaskapplication",
-  "version": "1.6.2",
+  "version": "1.6.0",
   "main": "app.js",
   "author": {
     "name": "Maik Roland Damm",
