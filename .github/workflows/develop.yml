@@ -158,7 +158,7 @@ jobs:
       - name: Package Electron App macOS
         run: |
           npx electron-packager ./ MyTaskApplication --platform=darwin --overwrite
-          npx electron-builder --mac
+          npx electron-builder --mac --publish never --arch amd64
           pwd && ls ./dist
           npx electron-installer-dmg "./MyTaskApplication-darwin-arm64/MyTaskApplication.app" "MyTaskApplication" --out=dist --overwrite --dmg-title="MyTaskApplication $TAG_VERSION"
           mv dist/MyTaskApplication.dmg dist/MyTaskApplication-macOS-arm64-${TAG_VERSION}.dmg
