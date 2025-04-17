@@ -63,7 +63,7 @@ For special needs, AngularTasks also delivers a ready to run solution for docker
 
 ## How to run?
 There are a few options available to run AngularTasks. The main releases are packed as runnable 
-Electron Apps, but you can also just clone and start AngularTasks*.
+Electron Apps, but you can also just clone and start AngularTasks[*](#requirements).
 
 For enthusiasts, AngularTasks is also shipped with a ready to use docker compose file.
 
@@ -73,7 +73,7 @@ Just [download]() the lastest release, unpack and start AngularTasks
 
 ### Native (Browser)
 
-Here you need to do some steps, for this please refer to the [**Development**]() section.
+Here you need to do some steps, for this please refer to the [**Development**](#development) section.
 
 ### Docker
 
