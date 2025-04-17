@@ -37,15 +37,24 @@
       "target": [
         {
           "target": "msi",
-          "arch": ["x64"]
+          "arch": [
+            "x64"
+          ]
         }
       ]
     },
     "linux": {
-      "target": ["AppImage", "deb","snap"]
+      "target": [
+        "AppImage",
+        "deb",
+        "snap"
+      ]
     },
     "mac": {
-      "target": ["tar.gz", "zip"],
+      "target": [
+        "tar.gz",
+        "zip"
+      ],
       "category": "public.app-category.productivity",
       "icon": "public/windows_icon.png",
       "hardenedRuntime": true,

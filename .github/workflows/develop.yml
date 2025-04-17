@@ -39,7 +39,8 @@ jobs:
       - name: Package Electron App Win64
         shell: pwsh
         run: |
-          npx electron-builder --win msi --projectDir=./ --overwrite
+          npx electron-builder --win msi --projectDir=./
+          ls
 #          Compress-Archive -Path ./MyTaskApplication-win32-x64 -DestinationPath dist/MyTaskApplication-win32-x64-$env:TAG_VERSION.zip
 
 #      - name: Upload Windows Artifact
