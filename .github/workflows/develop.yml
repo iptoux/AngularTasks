@@ -105,7 +105,7 @@ jobs:
 
       - name: Package Electron App Linux X64
         run: |
-          npx electron-builder --projectDir=./
+          npx electron-builder --projectDir=./ --publish never
           ls ./dist
 #          tar -czvf dist/MyTaskApplication-linux-x64-${TAG_VERSION}.tar.gz MyTaskApplication-linux-x64
         shell: bash
