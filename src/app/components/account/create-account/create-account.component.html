@@ -1,7 +1,11 @@
 <div class="col col-xl-10 m-auto mt-5 d-flex flex-column" style="min-height: 0;">
   <div class="col-12 text-center">
   <h1>Local Account Setup</h1>
-  <p class="lead mt-5"></p>
+  <p class="lead mt-5 mb-5">
+    To create your local account, simply enter a username, choose a password (which will encrypt all your data), and
+    upload an avatar of your choice. Be sure to remember this password—if you ever export your data and import it on
+    another device, you’ll need the exact same secret to restore access.
+  </p>
   </div>
 
   <div class="card d-flex flex-column flex-grow-1" [ngClass]="isDarkMode ? 'dark-theme' : ''">
@@ -42,7 +46,7 @@
           </div>
         </div>
         <!-- (click)="createAccount(accName.value, accPass.value)" -->
-        <button type="button" class="btn btn-info ms-2">Create</button>
+        <button type="button" class="btn btn-info ms-2" (click)="createAccount(accName.value, accPass.value, accAvatar.value)">Create</button>
 
       </form>
     </div>

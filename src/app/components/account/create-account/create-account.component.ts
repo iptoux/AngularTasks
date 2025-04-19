@@ -3,6 +3,8 @@ import {ActivatedRoute} from '@angular/router';
 import {DarkModeService} from '../../../services/dark-mode.service';
 import {NgClass} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AccountService} from '../../../services/account.service';
+import {Account} from '../../../interfaces/account';
 
 @Component({
   selector: 'app-create-account',
@@ -18,7 +20,8 @@ export class CreateAccountComponent implements OnInit {
   action:string = '';
 
   constructor(private route: ActivatedRoute,
-              private darkModeService: DarkModeService,) {}
+              private darkModeService: DarkModeService,
+              private accountService: AccountService) {}
 
   get isDarkMode(): boolean {
     return this.darkModeService.isDarkMode();
@@ -30,6 +33,16 @@ export class CreateAccountComponent implements OnInit {
       this.action = params['action'];
       this.handleAction();
     })
+  }
+
+  createAccount(name:string, password:string,avatar:string) {
+    const account:Account = {
+      offline: true,
+      username: name,
+      localStorageKey: password,
+      avatar: avatar,
+    }
+    this.accountService.createAccount(account);
   }
 
   private handleAction() {
