@@ -6,6 +6,8 @@ import {DarkModeService} from './services/dark-mode.service';
 import {SettingsService} from './services/settings.service';
 import {NotificationBoxComponent} from './components/notification-box/notification-box.component';
 import {Router, RouterOutlet} from '@angular/router';
+import {Account} from './interfaces/account';
+import {AccountService} from './services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +17,7 @@ import {Router, RouterOutlet} from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'untitled1';
+  useraccount: Account | undefined
 
   private settingsService = inject(SettingsService)
   protected settings = this.settingsService.getSettings();
@@ -31,11 +34,14 @@ export class AppComponent implements OnInit {
 
   constructor(
     private darkModeService: DarkModeService,
-    private router: Router) {}
+    private router: Router,
+    private accountService: AccountService) {}
 
   ngOnInit() {
     if(this.initialChoice === undefined) {
       void this.router.navigate(['/initial-choice']);
-    }
+    } else
+      if(this.settings()[0]?.initialChoice === 'offline')
+      this.useraccount = this.accountService.loadLocalAccount()
   }
 }
