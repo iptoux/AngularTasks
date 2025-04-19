@@ -136,7 +136,7 @@ export class FooterComponent implements OnInit {
 
   getUserAvatar(): string {
     if (!this.useraccount?.avatar) {
-      return 'assets/default-avatar.png'; // Default avatar path
+      return 'assets/default-avatar.svg'; // Default avatar path
     }
 
     // If the avatar is already a data URL, return it directly
