@@ -5,7 +5,6 @@ import {AnnouncementBoxComponent} from './components/announcement-box/announceme
 import {DarkModeService} from './services/dark-mode.service';
 import {SettingsService} from './services/settings.service';
 import {NotificationBoxComponent} from './components/notification-box/notification-box.component';
-import {InitialChoiceComponent} from './components/initial-choice/initial-choice.component';
 import {Router, RouterOutlet} from '@angular/router';
 
 @Component({
