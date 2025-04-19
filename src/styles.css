@@ -127,3 +127,15 @@ li > .close-btn:hover {
     left: 100%;
   }
 }
+
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1 0 auto;
+  padding-bottom: 60px; /* Adjust based on your footer height */
+}
