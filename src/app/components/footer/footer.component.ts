@@ -156,6 +156,7 @@ export class FooterComponent implements OnInit {
         this.tasksService.clearAllTasks();
         localStorage.removeItem('AGTASKS_SETTINGS')
         localStorage.removeItem('AGTASKS_ANNOUNCEMENTS')
+        localStorage.removeItem('AGTASKS_ACCOUNT')
         this.notificationService.addNotification(
           'Success!',
           'All your user data has been deleted.')

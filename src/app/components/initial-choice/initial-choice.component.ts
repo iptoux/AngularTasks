@@ -51,10 +51,11 @@ export class InitialChoiceComponent {
       return setting;
     });
 
-    // Update the settings with the new array
-    this.settingsService.updateSettings(updatedSettings);
+
     console.log("Initial choice set to: " + choice);
     if (choice === 'offline') {
+      // Update the settings with the new array
+      this.settingsService.updateSettings(updatedSettings);
       // Redirect to home
       void this.router.navigate(['/account/create/local']);
     } else if(choice === 'online') {
@@ -62,15 +63,15 @@ export class InitialChoiceComponent {
       this.notificationService.addNotification("Info:", "Online mode not implemented yet.");
 
       // sleep and show countdown 5 sec
-      this.showCountdown = true;
-      const intervalId = setInterval(() => {
-        this.countdown--;
-
-        if (this.countdown <= 0) {
-          clearInterval(intervalId);
-          window.location.href = '/';
-        }
-      }, 1000);
+      // this.showCountdown = true;
+      // const intervalId = setInterval(() => {
+      //   this.countdown--;
+      //
+      //   if (this.countdown <= 0) {
+      //     clearInterval(intervalId);
+      //     window.location.href = '/';
+      //   }
+      // }, 1000);
     }
 
   }
