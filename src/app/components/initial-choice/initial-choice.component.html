@@ -1,1 +1,49 @@
-<p>initial-choice works!</p>
+<div class="col col-xl-10 m-auto mt-5 d-flex flex-column" style="min-height: 70vh;" [ngClass]="isDarkMode ? 'dark-theme' : ''">
+  <div class="col-12 text-center">
+    @if(showCountdown) {
+      <div class="countdown-timer">
+        Redirecting in {{countdown}} seconds...
+      </div>
+
+    }
+    <h1>Initial Choice</h1>
+    <p class="lead mt-5">
+      Welcome aboard! As this is your first time using our application, please decide whether you’d prefer Offline Mode—offering full
+      functionality without an internet connection and storing all your data securely on your device—or Online Mode, which provides seamless
+      access anytime you’re connected, with your information synchronized safely to the cloud. Choose the option that best fits your
+      needs, and let’s get started!
+    </p>
+  </div>
+
+  <div class="row justify-content-center text-center flex-grow-1">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6 d-flex align-items-center mb-4">
+      <div class="w-100 text-center">
+        <div class="card card-choice" (click)="setInitialChoice('offline')">
+          <div class="card-header">
+            <img ngSrc="../../../assets/images/offline-svgrepo-com.svg" alt="offline" class="img-fluid" height="800"
+                 width="200"/>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Offline</h5>
+            <p class="card-text">Full functionality without an internet connection and storing all your data securely on your device.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xl-6 d-flex align-items-center mb-4">
+      <div class="w-100 text-center">
+        <div class="card card-choice" (click)="setInitialChoice('online')">
+          <div class="card-header">
+            <img ngSrc="../../../assets/images/online-svgrepo-com.svg" alt="offline" class="img-fluid" height="800"
+                                        width="200"/>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Online</h5>
+            <p class="card-text">provides seamless access anytime you’re connected, with your information synchronized safely to the cloud.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
