@@ -1,0 +1,73 @@
+<div class="col col-xl-10 m-auto mt-5 d-flex flex-column" style="min-height: 0;">
+  <div class="col-12 text-center">
+  <h1>Local Account Setup</h1>
+  <p class="lead mt-5 mb-5">
+    To create your local account, simply enter a username, choose a password (which will encrypt all your data), and
+    upload an avatar of your choice. Be sure to remember this password—if you ever export your data and import it on
+    another device, you’ll need the exact same secret to restore access.
+  </p>
+  </div>
+
+  <div class="card d-flex flex-column flex-grow-1" [ngClass]="isDarkMode ? 'dark-theme' : ''">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      Setup your local account
+    </div>
+    <div class="card-body p-4">
+      <form class="d-flex flex-column gap-3" [formGroup]="accountForm">
+        <div class="form-outline flex-fill">
+          <div class="mb-3">
+            <label for="username" class="mb-1">Username:</label>
+            <input
+              type="text"
+              id="username"
+              formControlName="username"
+              class="form-control"
+              placeholder="Enter username...."
+              autocomplete="username" />
+            @if (accountForm.get('username')?.invalid && (accountForm.get('username')?.dirty || accountForm.get('username')?.touched)) {
+              <div class="text-danger">
+                Username is required
+              </div>
+            }
+
+          </div>
+          <div class="mb-3">
+            <label for="password" class="mb-1">Password:</label>
+            <input
+              type="password"
+              id="password"
+              formControlName="password"
+              class="form-control"
+              placeholder="Any secret here..."
+              autocomplete="current-password" />
+            @if (accountForm.get('password')?.invalid && (accountForm.get('password')?.dirty || accountForm.get('password')?.touched)) {
+              <div class="text-danger">
+                Password is required
+              </div>
+            }
+
+          </div>
+          <div class="mb-3">
+            <label for="avatar" class="mb-1">Avatar:</label>
+            <input
+              type="file"
+              id="avatar"
+              (change)="onFileSelected($event)"
+              class="form-control"
+              placeholder="Choose your avatar..."
+              autocomplete="photo" />
+            @if (!selectedFile && accountForm.dirty) {
+              <div class="text-danger">
+                Avatar is required
+              </div>
+            }
+
+          </div>
+        </div>
+        <!-- (click)="createAccount(accName.value, accPass.value)" -->
+        <button type="button" class="btn btn-info ms-2" (click)="submitForm()">Create</button>
+
+      </form>
+    </div>
+  </div>
+</div>

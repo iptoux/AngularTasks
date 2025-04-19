@@ -1,0 +1,33 @@
+.dark-theme {
+  img {
+    filter: invert(1);
+  }
+  .card-choice {
+    cursor: pointer;
+    color: white;
+    opacity: 0.5;
+    transition: all 0.2s ease-in-out;
+  }
+  .card-choice:hover {
+    opacity: 1;
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+.card-choice {
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.2s ease-in-out;
+}
+.card-choice:hover {
+  opacity: 1;
+  transition: all 0.2s ease-in-out;
+}
+
+.countdown-timer {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #dc3545; /* Bootstrap danger color */
+}
