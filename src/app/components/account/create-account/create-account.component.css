@@ -1,0 +1,62 @@
+.card {
+  border-radius: 0.15rem;
+}
+
+form > *, form > * > * > * {
+  border-radius: 0;
+}
+
+form > button {
+  background-color: #4c8bf5;
+  border: 0;
+  color: #fff;
+}
+
+form > button:hover {
+  background-color: #9463f7;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+
+/* Dark theme styles for task-add component */
+.dark-theme {
+  background-color: var(--surface-color);
+  border-color: var(--border-color);
+  color: var(--text-color);
+}
+
+/* Style for input fields in dark mode */
+.dark-theme .form-control {
+  background-color: #1a1a2e; /* Dark background for input */
+  color: var(--text-color); /* White text */
+  border-color: var(--border-color);
+}
+
+/* Style for placeholder text in dark mode */
+.dark-theme .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.6); /* Slightly dimmed for placeholder */
+}
+
+/* Style for focused input in dark mode */
+.dark-theme .form-control:focus {
+  background-color: #2a2a3e; /* Slightly lighter when focused */
+  box-shadow: 0 0 0 0.25rem rgba(187, 134, 252, 0.25); /* Glow that matches primary color */
+}
+
+/* Dark theme specific styles for file input */
+.dark-theme input[type="file"].form-control {
+  background-color: #1a1a2e;
+  color: var(--text-color);
+}
+
+.dark-theme input[type="file"].form-control::file-selector-button {
+  background-color: #333345;
+  color: white;
+}
+
+.dark-theme input[type="file"].form-control::file-selector-button:hover {
+  background-color: #4c4c6d;
+}
+
+
+

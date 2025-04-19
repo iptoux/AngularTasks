@@ -1,1 +1,50 @@
-<p>create-account works!</p>
+<div class="col col-xl-10 m-auto mt-5 d-flex flex-column" style="min-height: 0;">
+  <div class="col-12 text-center">
+  <h1>Local Account Setup</h1>
+  <p class="lead mt-5"></p>
+  </div>
+
+  <div class="card d-flex flex-column flex-grow-1" [ngClass]="isDarkMode ? 'dark-theme' : ''">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      Setup your local account
+    </div>
+    <div class="card-body p-4">
+      <form class="d-flex flex-column gap-3">
+        <div class="form-outline flex-fill">
+          <div class="mb-3">
+            <label for="username" class="mb-1">Username:</label>
+            <input #accName
+                   type="text"
+                   id="username"
+                   name="username"
+                   class="form-control"
+                   placeholder="Enter username...."
+                   required />
+          </div>
+          <div class="mb-3">
+            <label for="password" class="mb-1">Password:</label>
+            <input #accPass
+                   type="password"
+                   id="password"
+                   name="password"
+                   class="form-control"
+                   placeholder="Any secret here..."
+                   required />
+          </div>
+          <div class="mb-3">
+            <label for="avatar" class="mb-1">Avatar:</label>
+            <input #accAvatar
+                   type="file"
+                   id="avatar"
+                   name="avatar"
+                   class="form-control"
+                   required />
+          </div>
+        </div>
+        <!-- (click)="createAccount(accName.value, accPass.value)" -->
+        <button type="button" class="btn btn-info ms-2">Create</button>
+
+      </form>
+    </div>
+  </div>
+</div>
