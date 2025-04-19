@@ -5,7 +5,7 @@ import {Announcement} from '../../interfaces/announcement';
 import {FormsModule} from '@angular/forms';
 import {SettingsService} from '../../services/settings.service';
 import {Settings} from '../../interfaces/settings'
-import {NgClass, NgOptimizedImage} from '@angular/common';
+import {NgClass} from '@angular/common';
 import {DarkModeService} from '../../services/dark-mode.service';
 import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 import {ModalService} from '../../services/modal.service';
