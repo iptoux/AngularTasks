@@ -56,7 +56,7 @@
               class="form-control"
               placeholder="Choose your avatar..."
               autocomplete="photo" />
-            @if (!selectedFile && accountForm.touched) {
+            @if (!selectedFile && accountForm.dirty) {
               <div class="text-danger">
                 Avatar is required
               </div>
