@@ -1,16 +1,17 @@
-import {Component, HostListener, inject, OnInit} from '@angular/core';
+import {Component, HostListener, inject, Input, OnInit} from '@angular/core';
 import {VersionService} from '../../services/version.service';
 import {AnnouncementService} from '../../services/announcement.service';
 import {Announcement} from '../../interfaces/announcement';
 import {FormsModule} from '@angular/forms';
 import {SettingsService} from '../../services/settings.service';
 import {Settings} from '../../interfaces/settings'
-import {NgClass} from '@angular/common';
+import {NgClass, NgOptimizedImage} from '@angular/common';
 import {DarkModeService} from '../../services/dark-mode.service';
 import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 import {ModalService} from '../../services/modal.service';
 import {TasksService} from '../../services/tasks.service';
 import {NotificationService} from '../../services/notification.service';
+import {Account} from '../../interfaces/account';
 
 
 @Component({
@@ -131,6 +132,49 @@ export class FooterComponent implements OnInit {
 
 
   // Helper method to update settings in the service
+  @Input() useraccount!: Account|undefined;
+
+  getUserAvatar(): string {
+    if (!this.useraccount?.avatar) {
+      return 'assets/default-avatar.png'; // Default avatar path
+    }
+
+    // If the avatar is already a data URL, return it directly
+    if (this.useraccount.avatar.startsWith('data:')) {
+      return this.useraccount.avatar;
+    }
+
+    // Otherwise, try to decode it (if it's just a base64 string without the data URL prefix)
+    try {
+      return this.decodeBase64(this.useraccount.avatar);
+    } catch (error) {
+      console.error('Error getting user avatar:', error);
+      return 'assets/default-avatar.png';
+    }
+  }
+
+  decodeBase64(base64String?: string): string {
+    if (!base64String) {
+      return 'assets/default-avatar.png';
+    }
+
+    // If it's already a data URL, return it
+    if (base64String.startsWith('data:')) {
+      return base64String;
+    }
+
+    try {
+      // Try to convert a plain base64 string to a data URL
+      // This assumes the base64String is just the encoded data without the data URL prefix
+      return `data:image/jpeg;base64,${base64String}`;
+    } catch (error) {
+      console.error('Error decoding Base64 string:', error);
+      return 'assets/default-avatar.png';
+    }
+  }
+
+
+
   private updateSettings(updates: Partial<Settings>): void {
     const currentSettings = this.settingsService.getSettings()();
     if (currentSettings && currentSettings.length > 0) {

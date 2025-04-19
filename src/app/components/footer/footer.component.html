@@ -7,18 +7,19 @@
 
           <!-- Left box content -->
           <div class="box left-box p-3 d-flex gap-3">
-            <i class="bi bi-door-closed fs-4 icon-3d"
-               ngbTooltip="Login"
+            <i class="bi bi-door-open fs-4 icon-3d"
+               ngbTooltip="Logout"
                placement="top"
                tooltipClass="custom-tooltip"
                [openDelay]="200"
                [closeDelay]="100"></i>
-            <i class="bi bi-person-circle fs-4 icon-3d"
-               ngbTooltip="Profile"
-               placement="top"
-               tooltipClass="custom-tooltip"
-               [openDelay]="200"
-               [closeDelay]="100"></i>
+
+            <img src="{{getUserAvatar()}}" width="26px" height="26px" class="rounded-circle icon-3d mt-1" alt="logo"
+                 ngbTooltip="{{useraccount?.username}}"
+                 placement="top"
+                 tooltipClass="custom-tooltip"
+                 [openDelay]="200"
+                 [closeDelay]="100"/>
 
             <!-- Wrap the gear icon and dropdown together -->
             <div class="settings-container">
