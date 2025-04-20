@@ -86,49 +86,6 @@ export class TaskMigrationComponent implements OnInit{
   }
 
   /**
-   * Decrypts an encrypted string with the same secret key used for encryption
-   * @param encryptedText The encrypted string (base64 encoded)
-   * @param secretKey The secret key for decryption
-   * @returns Promise with the decrypted string
-   */
-  private async decryptTaskDesk(encryptedText: string, secretKey: string): Promise<string> {
-    if (!encryptedText) return '';
-
-    try {
-      // Convert the base64 string back to array
-      const encryptedData = Uint8Array.from(atob(encryptedText), c => c.charCodeAt(0));
-
-      // Extract the IV (first 12 bytes)
-      const iv = encryptedData.slice(0, 12);
-
-      // Extract the encrypted content (everything except first 12 bytes)
-      const encryptedContent = encryptedData.slice(12);
-
-      // Create a key from the secret
-      const keyMaterial = await this.getKeyMaterial(secretKey);
-      const key = await this.deriveKey(keyMaterial);
-
-      // Decrypt the content
-      const decryptedContent = await crypto.subtle.decrypt(
-        {
-          name: 'AES-GCM',
-          iv
-        },
-        key,
-        encryptedContent
-      );
-
-      // Convert the decrypted content back to string
-      const textDecoder = new TextDecoder();
-      return textDecoder.decode(decryptedContent);
-    } catch (error) {
-      console.error('Decryption error:', error);
-      return '';
-    }
-  }
-
-
-  /**
    * Helper function to generate key material from a password
    */
   private async getKeyMaterial(password: string): Promise<CryptoKey> {
