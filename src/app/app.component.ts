@@ -35,7 +35,12 @@ export class AppComponent implements OnInit {
   constructor(
     private darkModeService: DarkModeService,
     private router: Router,
-    private accountService: AccountService) {}
+    private accountService: AccountService) {
+    this.accountService.accountChanged.subscribe(account => {
+      this.useraccount = account;
+    });
+
+  }
 
   ngOnInit() {
     if(this.initialChoice === undefined) {

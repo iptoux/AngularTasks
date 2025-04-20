@@ -1,0 +1,39 @@
+<div class="col col-xl-10 m-auto mt-5 d-flex flex-column" style="min-height: 0;" [ngClass]="isDarkMode ? 'dark-theme' : ''">
+  <div class="col-12 text-center mb-5">
+    <h1>Task Migration</h1>
+    <p class="lead mt-5">
+      Your tasks from the previous version are now being migrated—please hang tight for a moment. Once the process
+      completes, you’ll be whisked back to the main view and can continue using the application as usual.
+    </p>
+  </div>
+  <div class="card d-flex flex-column flex-grow-1">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <div class="spinner-border spinner-border-sm
+ text-info me-2 small" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <div class="text-center">Migrating your tasks</div>
+      <div class="d-flex gap-2"></div>
+    </div>
+    <div class="card-body p-4 d-flex flex-column">
+      <div class="d-flex align-items-center mb-2">
+        <span class="migration-desc">Task: {{currentTaskDescription}}</span>
+      </div>
+      <div class="progress w-100" [ngClass]="isDarkMode ? 'bg-bar-dark' : ''">
+        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated"
+             [ngClass]="isDarkMode ? 'bg-info' : 'bg-success'"
+             role="progressbar"
+             [attr.aria-valuenow]="progress"
+             aria-valuemin="0"
+             aria-valuemax="100"
+             [style.width.%]="progress">
+          @if(progress)
+          {
+            {{ progress }}% Complete
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

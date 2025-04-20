@@ -1,0 +1,29 @@
+.dark-theme {
+  .card {
+    color: #fff;
+  .migration-desc {
+    margin-left: 1rem;
+  }
+
+    .progress{
+      border-radius: 0.15rem;
+    }
+    .progress.bg-bar-dark {
+      background-color: rgba(193, 127, 255, 0.3);
+      div {
+        color: #fdfdfd;
+      }
+    }
+
+    .bg-info {
+      background-color: rgba(193, 127, 255, 0.15) !important;
+
+    }
+
+
+
+  }
+}
+.progress{
+  border-radius: 0.15rem;
+}

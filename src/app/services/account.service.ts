@@ -1,4 +1,4 @@
-import {inject, Injectable} from '@angular/core';
+import {EventEmitter, inject, Injectable} from '@angular/core';
 import {Account} from '../interfaces/account';
 import {NotificationService} from './notification.service';
 import {Router} from '@angular/router';
@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 export class AccountService {
 
   private account: Account|undefined;
+  public accountChanged = new EventEmitter<Account|undefined>();
   private notificationService = inject(NotificationService);
 
   constructor(private router: Router) { }
@@ -71,13 +72,18 @@ export class AccountService {
     } else {
       this.createLocalAccount();
     }
+
+    this.accountChanged.emit(this.account);
   }
 
+  getSecret(): string {
+    return this.account?.password || '';
+  }
 
   private createLocalAccount() {
     localStorage.setItem('AGTASKS_ACCOUNT', JSON.stringify(this.account));
     this.notificationService.addNotification('Success', 'Account created successfully.');
-    void this.router.navigate(['/']);
+    void this.router.navigate(['/tasks/migration']);
   }
 
 
@@ -88,6 +94,7 @@ export class AccountService {
 
   loadLocalAccount(): Account|undefined {
     this.account = JSON.parse(localStorage.getItem('AGTASKS_ACCOUNT') || '{}');
+    this.accountChanged.emit(this.account);
     return this.account;
   }
 }
