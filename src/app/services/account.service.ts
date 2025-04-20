@@ -76,11 +76,14 @@ export class AccountService {
     this.accountChanged.emit(this.account);
   }
 
+  getSecret(): string {
+    return this.account?.password || '';
+  }
 
   private createLocalAccount() {
     localStorage.setItem('AGTASKS_ACCOUNT', JSON.stringify(this.account));
     this.notificationService.addNotification('Success', 'Account created successfully.');
-    void this.router.navigate(['/']);
+    void this.router.navigate(['/tasks/migration']);
   }
 
 
