@@ -5,4 +5,5 @@ export interface Settings {
   showTaskCount?: boolean;
   showNotifications?: boolean;
   showProgressBar?: boolean;
+  initialChoice?: string;
 }

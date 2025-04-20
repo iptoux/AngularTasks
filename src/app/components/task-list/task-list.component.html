@@ -9,7 +9,7 @@
 
       <form>
         <ul cdkDropList (cdkDropListDropped)="drop($event)">
-          <li *ngFor="let task of tasks; index as id" cdkDrag
+          <li *ngFor="let task of displayTasks; index as id" cdkDrag
               [style.position]="'relative'"
               [style.overflow]="'hidden'"
               class="d-flex align-items-center justify-content-between"
@@ -24,7 +24,7 @@
             <input type="checkbox" id="{{task.id}}" [checked]="task.completed" (change)="updateTaskStatus(task)"
                    [style.position]="'relative'" [style.z-index]="'1'" class="form-check-input" />
             <label for="{{task.id}}" [ngClass]="{'completed-task': task.completed, 'pending-task': !task.completed}"
-                   [style.position]="'relative'" [style.z-index]="'1'">{{ task.description }}</label>
+                   [style.position]="'relative'" [style.z-index]="'1'">{{ task.decryptedDescription }}</label>
             <div class="">
 
             </div>
