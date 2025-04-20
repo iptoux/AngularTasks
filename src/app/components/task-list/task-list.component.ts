@@ -11,6 +11,12 @@ import {ModalService} from '../../services/modal.service';
 import {NotificationService} from '../../services/notification.service';
 import {AccountService} from '../../services/account.service';
 
+// Definiere ein View-Modell nur für die Anzeige
+interface TaskView extends Task {
+  decryptedDescription: string;
+}
+
+
 @Component({
   selector: 'app-task-list',
   imports: [
@@ -32,6 +38,9 @@ export class TaskListComponent implements OnInit, OnDestroy {
   tasks: Task[] = [];
   private subscription: Subscription | null = null;
   private notificationService = inject(NotificationService)
+
+  // Das ist das View-Modell, das nur für die Anzeige verwendet wird
+  displayTasks: TaskView[] = [];
 
 
   constructor(private tasksService: TasksService,
@@ -188,13 +197,26 @@ export class TaskListComponent implements OnInit, OnDestroy {
     }
   }
 
+  private async updateDisplayTasks() {
+    // Erstelle eine neue Instanz des Display-Arrays
+    this.displayTasks = [];
+
+    // Entschlüssle jeden Task und füge ihn dem Display-Array hinzu
+    for (const task of this.tasks) {
+      const displayTask = {
+        ...task, // Alle Eigenschaften kopieren
+        decryptedDescription: await this.decryptTaskDesk(task.description)
+      };
+      this.displayTasks.push(displayTask);
+    }
+  }
 
   ngOnInit() {
     this.subscription = this.tasksService.tasks$.subscribe(async tasks => {
       this.tasks = tasks;
-      for (const task of this.tasks) {
-        task.decryptedDescription = await this.decryptTaskDesk(task.description);
-      }
+      // Anzeige-Tasks erstellen und entschlüsseln
+      await this.updateDisplayTasks();
+
       this.checkTasksDueSoon();
     });
   }
@@ -215,11 +237,20 @@ export class TaskListComponent implements OnInit, OnDestroy {
   }
 
   drop(event: CdkDragDrop<Task[]>): void {
+    // Aktualisiere zuerst das Anzeige-Array für sofortige UI-Aktualisierung
+    moveItemInArray(this.displayTasks, event.previousIndex, event.currentIndex);
+
+    // Dann aktualisiere das Original-Array in der gleichen Weise
     moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
 
     this.tasks.forEach((task, index) => {
       task.order = index;
     });
+
+    this.displayTasks.forEach((task, index) => {
+      task.order = index;
+    });
+
    this.tasksService.updateTasksOrderForFilter(this.tasks);
   }
 }

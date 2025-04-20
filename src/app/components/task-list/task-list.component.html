@@ -9,7 +9,7 @@
 
       <form>
         <ul cdkDropList (cdkDropListDropped)="drop($event)">
-          <li *ngFor="let task of tasks; index as id" cdkDrag
+          <li *ngFor="let task of displayTasks; index as id" cdkDrag
               [style.position]="'relative'"
               [style.overflow]="'hidden'"
               class="d-flex align-items-center justify-content-between"
