@@ -9,6 +9,7 @@ import {NgbTooltip} from '@ng-bootstrap/ng-bootstrap';
 import {ClockComponent} from '../clock/clock.component';
 import {ModalService} from '../../services/modal.service';
 import {NotificationService} from '../../services/notification.service';
+import {AccountService} from '../../services/account.service';
 
 @Component({
   selector: 'app-task-list',
@@ -35,7 +36,8 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
   constructor(private tasksService: TasksService,
               private darkModeService: DarkModeService,
-              private modalService: ModalService) {}
+              private modalService: ModalService,
+              private accountService: AccountService) {}
 
   get isDarkMode(): boolean {
     return this.darkModeService.isDarkMode();
@@ -49,6 +51,91 @@ export class TaskListComponent implements OnInit, OnDestroy {
       .catch(() => {
         // Modal wurde geschlossen oder abgebrochen - nichts tun
       });
+  }
+
+  public async decryptTask(string: string): Promise<string> {
+    return await this.decryptTaskDesk(string);
+  }
+
+  /**
+   * Decrypts an encrypted string with the same secret key used for encryption
+   * @param encryptedText The encrypted string (base64 encoded)
+   * @returns Promise with the decrypted string
+   */
+  private async decryptTaskDesk(encryptedText: string): Promise<string> {
+    const secretKey:string = this.accountService.getSecret()
+
+    if (!encryptedText) return '';
+
+    try {
+      // Convert the base64 string back to array
+      const encryptedData = Uint8Array.from(atob(encryptedText), c => c.charCodeAt(0));
+
+      // Extract the IV (first 12 bytes)
+      const iv = encryptedData.slice(0, 12);
+
+      // Extract the encrypted content (everything except first 12 bytes)
+      const encryptedContent = encryptedData.slice(12);
+
+      // Create a key from the secret
+      const keyMaterial = await this.getKeyMaterial(secretKey);
+      const key = await this.deriveKey(keyMaterial);
+
+      // Decrypt the content
+      const decryptedContent = await crypto.subtle.decrypt(
+        {
+          name: 'AES-GCM',
+          iv
+        },
+        key,
+        encryptedContent
+      );
+
+      // Convert the decrypted content back to string
+      const textDecoder = new TextDecoder();
+      return textDecoder.decode(decryptedContent);
+    } catch (error) {
+      console.error('Decryption error:', error);
+      return '';
+    }
+  }
+
+
+
+  /**
+   * Helper function to generate key material from a password
+   */
+  private async getKeyMaterial(password: string): Promise<CryptoKey> {
+    const textEncoder = new TextEncoder();
+    return await crypto.subtle.importKey(
+      'raw',
+      textEncoder.encode(password),
+      { name: 'PBKDF2' },
+      false,
+      ['deriveBits', 'deriveKey']
+    );
+  }
+
+  /**
+   * Helper function to derive an AES-GCM key from key material
+   */
+  private async deriveKey(keyMaterial: CryptoKey): Promise<CryptoKey> {
+    // Use a salt (can be a fixed value as long as it's consistent)
+    const textEncoder = new TextEncoder(); // Fixed: Define textEncoder here
+    const salt = textEncoder.encode('this-is-a-fixed-salt');
+
+    return await crypto.subtle.deriveKey(
+      {
+        name: 'PBKDF2',
+        salt,
+        iterations: 100000,
+        hash: 'SHA-256'
+      },
+      keyMaterial,
+      { name: 'AES-GCM', length: 256 },
+      false,
+      ['encrypt', 'decrypt']
+    );
   }
 
 
@@ -76,27 +163,6 @@ export class TaskListComponent implements OnInit, OnDestroy {
     return Math.round(totalTimeSpan / (1000 * 60 * 60));
   }
 
-  calculateTimeLeftPercentage(dueDate?: number): number {
-    if (!dueDate) {
-      return 0;
-    }
-
-    const now = new Date().getTime();
-
-    // If the due date is in the past, return 0
-    if (dueDate < now) {
-      return 0;
-    }
-
-    // Calculate the total time span (in milliseconds)
-    const totalTimeSpan = dueDate - now;
-
-    // Limit the maximum timespan to 30 days (as in your original code)
-    const maxTimeSpan = 30 * 24 * 60 * 60 * 1000;
-
-    // Calculate percentage (capped at 100%)
-    return Math.min(100, Math.round((totalTimeSpan / maxTimeSpan) * 100));
-  }
   /**
    * Checks all tasks and creates notifications for those due within one hour
    */
@@ -124,8 +190,11 @@ export class TaskListComponent implements OnInit, OnDestroy {
 
 
   ngOnInit() {
-    this.subscription = this.tasksService.tasks$.subscribe(tasks => {
+    this.subscription = this.tasksService.tasks$.subscribe(async tasks => {
       this.tasks = tasks;
+      for (const task of this.tasks) {
+        task.decryptedDescription = await this.decryptTaskDesk(task.description);
+      }
       this.checkTasksDueSoon();
     });
   }
